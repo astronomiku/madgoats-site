@@ -133,7 +133,7 @@
       padding: 0;
     }
 
-    /* Bigger + blend-in look (best possible with MP4) */
+    /* Video logo (autoplay muted, no controls, play once) */
     #heroLogoVideo{
       width: min(920px, 96vw);
       height: 360px;
@@ -141,17 +141,20 @@
       display:block;
       margin: 0 auto;
 
-      mix-blend-mode: multiply;
+      /* Emboss-ish look */
+      filter:
+        grayscale(1)
+        contrast(1.15)
+        brightness(1.02)
+        drop-shadow(-2px -2px 0 rgba(255,255,255,.70))
+        drop-shadow( 2px  2px 0 rgba(0,0,0,.18))
+        drop-shadow( 0px 14px 24px rgba(0,0,0,.08));
+
       background: transparent;
       border: 0;
       outline: 0;
 
-      opacity: .96;
-      filter: none;
-
-      transform-origin: center center;
-      will-change: transform, opacity;
-      transition: opacity .15s linear;
+      cursor: pointer;
     }
 
     h1{
@@ -322,11 +325,6 @@
         height: 260px;
       }
     }
-
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      #heroLogoVideo{ transition:none; }
-    }
   </style>
 </head>
 
@@ -339,7 +337,7 @@
       </div>
 
       <nav>
-        <a href="#top">Home</a>
+        <a id="navHome" href="#top">Home</a>
         <a href="#offer">Offer</a>
       </nav>
 
@@ -350,16 +348,15 @@
   </header>
 
   <main id="top">
-<!-- HERO -->
-<section>
-  <div class="container">
-    <div class="hero-stack">
-      <div class="logo-reveal" aria-label="Logo">
-        <!-- Autoplay works because it's muted. Plays once (no loop), no controls. -->
-        <video id="heroLogoVideo" autoplay muted playsinline preload="auto">
-          <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
-        </video>
-      </div>
+    <!-- HERO -->
+    <section>
+      <div class="container">
+        <div class="hero-stack">
+          <div class="logo-reveal" aria-label="Logo">
+            <video id="heroLogoVideo" autoplay muted playsinline preload="auto">
+              <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
+            </video>
+          </div>
 
           <h1>STORY FIRST.<br/>ALWAYS</h1>
 
@@ -484,31 +481,25 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // subtle scale+fade on scroll
+    // Replay video every time Home is clicked
     (function () {
-      const logo = document.getElementById("heroLogoVideo");
-      if (!logo) return;
+      const homeLink = document.getElementById("navHome");
+      const vid = document.getElementById("heroLogoVideo");
+      if (!homeLink || !vid) return;
 
-      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (prefersReduced) return;
+      homeLink.addEventListener("click", () => {
+        vid.currentTime = 0;
+        const p = vid.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      });
 
-      const heroSection = logo.closest("section");
-      function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-
-      function tick(){
-        const rect = heroSection.getBoundingClientRect();
-        const vh = window.innerHeight || 800;
-
-        const progress = clamp((0 - rect.top) / (vh * 0.9), 0, 1);
-        const scale = 1.06 - (progress * 0.20);
-        const opacity = 0.96 - (progress * 0.35);
-
-        logo.style.transform = `scale(${scale})`;
-        logo.style.opacity = `${opacity}`;
-
-        requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
+      // Optional: click video to enable sound after user gesture (still no autoplay sound)
+      vid.addEventListener("click", async () => {
+        try {
+          vid.muted = false;
+          await vid.play();
+        } catch (e) {}
+      });
     })();
   </script>
 </body>
