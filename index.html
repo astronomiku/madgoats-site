@@ -6,8 +6,10 @@
   <title>The Mad Goats Inc.</title>
   <meta name="description" content="The Mad Goats Inc. — Story-first branded filmmaking and narrative-led content." />
 
-  <link rel="icon" href="assets/logoicon.png" sizes="any">
-  
+  <!-- TAB ICON (favicon) -->
+  <link rel="icon" href="assets/logoicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/logoicon.png">
+
   <style>
     :root{
       --bg:#ffffff;
@@ -25,8 +27,8 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       background:
-        radial-gradient(900px 600px at 15% 10%, rgba(211,0,0,.08), transparent 60%),
-        radial-gradient(900px 600px at 85% 35%, rgba(211,0,0,.06), transparent 60%),
+        radial-gradient(900px 600px at 15% 10%, rgba(211,0,0,.06), transparent 60%),
+        radial-gradient(900px 600px at 85% 35%, rgba(211,0,0,.05), transparent 60%),
         var(--bg);
       color: var(--text);
       overflow-x:hidden;
@@ -108,38 +110,45 @@
     .container{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 64px 18px;
+      padding: 56px 18px;
       width:100%;
     }
 
-    /* HERO (logo reveal + scale on scroll) */
+    /* HERO */
     .hero-stack{
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
       text-align:center;
-      gap: 22px;
+      gap: 20px;
       position:relative;
     }
 
     .logo-reveal{
-      width: min(820px, 92vw);
+      width: 100%;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 10px 0;
-      /* no borders, no frame */
+      padding: 0;
     }
 
-    #heroLogo{
-      width: min(640px, 92%);
-      height: 280px;
+    /* Bigger + blend-in look (best possible with MP4) */
+    #heroLogoVideo{
+      width: min(920px, 96vw);
+      height: 360px;
       object-fit: contain;
       display:block;
       margin: 0 auto;
-      opacity: .88;
-      filter: drop-shadow(0 18px 30px rgba(0,0,0,.12));
+
+      mix-blend-mode: multiply;
+      background: transparent;
+      border: 0;
+      outline: 0;
+
+      opacity: .96;
+      filter: none;
+
       transform-origin: center center;
       will-change: transform, opacity;
       transition: opacity .15s linear;
@@ -308,13 +317,15 @@
       nav{ display:none; }
       .person{ grid-template-columns: 100px 1fr; }
       .photo{ width:100px; height:100px; border-radius: 16px; }
-      #heroLogo{ height: 220px; width: min(560px, 92%); }
+      #heroLogoVideo{
+        width: min(760px, 96vw);
+        height: 260px;
+      }
     }
 
-    /* respects reduced motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      #heroLogo{ transition:none; }
+      #heroLogoVideo{ transition:none; }
     }
   </style>
 </head>
@@ -339,13 +350,16 @@
   </header>
 
   <main id="top">
-    <!-- HERO -->
-    <section>
-      <div class="container">
-        <div class="hero-stack">
-          <div class="logo-reveal" aria-label="Logo">
-            <img id="heroLogo" src="assets/logoicon.png" alt="The Mad Goats Inc. logo" />
-          </div>
+<!-- HERO -->
+<section>
+  <div class="container">
+    <div class="hero-stack">
+      <div class="logo-reveal" aria-label="Logo">
+        <!-- Autoplay works because it's muted. Plays once (no loop), no controls. -->
+        <video id="heroLogoVideo" autoplay muted playsinline preload="auto">
+          <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
+        </video>
+      </div>
 
           <h1>STORY FIRST.<br/>ALWAYS</h1>
 
@@ -362,7 +376,7 @@
       <div class="container">
         <h2>WHO WE ARE</h2>
         <p class="lead">
-          <strong>Story-Driven Strategists. Senior Creative Leadership.</strong><br/><br/>
+          <strong>Story-Driven Strategists. Senior Creative Leadership.</strong><br /><br />
           We are writers, directors, producers, and creative executives with over 26 years of experience
           shaping film, television, and large-scale entertainment in the Philippines.
         </p>
@@ -468,38 +482,32 @@
   </main>
 
   <script>
-    // footer year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Logo scale + fade on scroll (one-page, subtle)
+    // subtle scale+fade on scroll
     (function () {
-      const logo = document.getElementById("heroLogo");
+      const logo = document.getElementById("heroLogoVideo");
       if (!logo) return;
 
       const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (prefersReduced) return;
 
       const heroSection = logo.closest("section");
-
       function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
       function tick(){
         const rect = heroSection.getBoundingClientRect();
         const vh = window.innerHeight || 800;
 
-        // progress: 0 when hero top is at top, to 1 when hero mostly scrolled past
         const progress = clamp((0 - rect.top) / (vh * 0.9), 0, 1);
-
-        // from big to smaller
-        const scale = 1.08 - (progress * 0.28);   // 1.08 -> 0.80
-        const opacity = 0.92 - (progress * 0.45); // 0.92 -> 0.47
+        const scale = 1.06 - (progress * 0.20);
+        const opacity = 0.96 - (progress * 0.35);
 
         logo.style.transform = `scale(${scale})`;
         logo.style.opacity = `${opacity}`;
 
         requestAnimationFrame(tick);
       }
-
       requestAnimationFrame(tick);
     })();
   </script>
