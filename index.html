@@ -6,7 +6,6 @@
   <title>The Mad Goats Inc.</title>
   <meta name="description" content="The Mad Goats Inc. — Story-first branded filmmaking and narrative-led content." />
 
-  <!-- TAB ICON (favicon) -->
   <link rel="icon" href="assets/logoicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="assets/logoicon.png">
 
@@ -134,21 +133,20 @@
     }
 
     #heroLogoVideo{
-  width: min(920px, 96vw);
-  height: 360px;
-  object-fit: contain;
-  display:block;
-  margin: 0 auto;
-
-  /* floating + blends on light background */
-  mix-blend-mode: multiply;
-  opacity: .90;
-  filter: drop-shadow(0 18px 30px rgba(0,0,0,.10));
-
-  background: transparent;
-  border: 0;
-  outline: 0;
-}
+      width: min(920px, 96vw);
+      height: 360px;
+      object-fit: contain;
+      display:block;
+      margin: 0 auto;
+      mix-blend-mode: multiply;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      opacity: .96;
+      transform-origin: center center;
+      will-change: transform, opacity;
+      transition: opacity .15s linear;
+    }
 
     h1{
       margin:0;
@@ -237,26 +235,28 @@
       letter-spacing:.08em;
     }
     .bio{
-      margin:0;
+      margin:0 0 12px 0;
       color: var(--muted);
       line-height: 1.7;
       font-size: 14px;
     }
 
-    /* OFFER */
+    /* OFFER / WORKS / UPCOMING layouts */
     .split{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 26px;
       align-items:start;
     }
-    .offer{
+
+    .offer, .panel{
       border: 1px solid var(--line);
       background: rgba(255,255,255,.92);
       border-radius: var(--radius);
       overflow:hidden;
       box-shadow: 0 22px 60px rgba(0,0,0,.08);
     }
+
     .offer .row{
       display:flex;
       gap:14px;
@@ -290,6 +290,37 @@
       font-size: 14px;
     }
 
+    .panel .inner{ padding: 18px; }
+    .small-muted{ color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0; }
+
+    /* Responsive video embeds */
+    .embed{
+      border-top: 1px solid var(--line);
+      padding: 18px;
+    }
+    .embed:first-child{ border-top: 0; }
+    .embed h3{
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      font-weight: 900;
+    }
+    .ratio{
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.04);
+    }
+    .ratio iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
     footer{
       border-top: 1px solid var(--line);
       padding: 24px 18px 40px;
@@ -318,6 +349,11 @@
         height: 260px;
       }
     }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      #heroLogoVideo{ transition:none; }
+    }
   </style>
 </head>
 
@@ -331,6 +367,8 @@
 
       <nav>
         <a id="navHome" href="#top">Home</a>
+        <a href="#works">Sample Works</a>
+        <a href="#upcoming">Upcoming</a>
         <a href="#offer">Offer</a>
       </nav>
 
@@ -341,7 +379,6 @@
   </header>
 
   <main id="top">
-    <!-- HERO -->
     <section>
       <div class="container">
         <div class="hero-stack">
@@ -350,9 +387,7 @@
               <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
             </video>
           </div>
-
           <h1>STORY FIRST.<br/>ALWAYS</h1>
-
           <p class="sub">
             We are filmmakers who bring senior creative leadership and story architecture to brand work —
             so the message lands, and the audience stays.
@@ -361,7 +396,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="container">
         <h2>WHO WE ARE</h2>
@@ -382,11 +416,8 @@
                   <h3>Katski Flores</h3>
                   <p class="role">Creative executive • Writer-director • Producer</p>
                   <p class="bio">
-                    A seasoned creative executive, writer-director, and producer who has led writing teams behind some
-                    of the most iconic Philippine television series. She brings high-level story architecture,
-                    brand-aligned narrative development, and leadership in content strategy. As Creative Head for reality
-                    entertainment, she has overseen development pipelines, greenlit projects, refined concepts, and
-                    provided strategic story direction across multiple formats.
+                    A seasoned creative lead who has headed writing teams behind some of the most iconic Philippine television series. 
+                    She brings high-level story architecture and brand-aligned narrative development.
                   </p>
                 </div>
               </div>
@@ -403,11 +434,7 @@
                   <h3>Michiko Yamamoto</h3>
                   <p class="role">Writer • Creative executive • Producer</p>
                   <p class="bio">
-                    One of the most respected and celebrated voices in Philippine cinema, with a strong production
-                    foundation that bridges creative vision and execution. Her strengths lie in story integrity,
-                    character-driven narratives, and production fluency—ensuring that ideas are not only powerful but
-                    operationally sound. She understands the full lifecycle of content: from development to on-ground
-                    production to audience impact.
+                    A powerhouse voice in Philippine cinema. She protects story and character, ensuring the idea survives from development to set to audience impact.
                   </p>
                 </div>
               </div>
@@ -417,14 +444,83 @@
       </div>
     </section>
 
-    <!-- OFFER -->
+    <section id="works">
+      <div class="container">
+        <div class="split">
+          <div>
+            <h2>Sample Works</h2>
+           
+          </div>
+
+          <div class="panel">
+            <div class="inner">
+              <p class="small-muted">
+                Drop your poster-reel MP4 into <code>assets/poster-reel.mp4</code> and swap this placeholder when ready.
+              </p>
+            </div>
+            <div class="embed">
+              <h3>Poster Reel</h3>
+              <div class="ratio">
+                <iframe
+                  src="about:blank"
+                  title="Poster Reel (coming soon)"
+                  loading="lazy"
+                  allow="fullscreen; picture-in-picture"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="upcoming">
+      <div class="container">
+        <div class="split">
+          <div>
+            <h2>Upcoming Projects</h2>
+
+          </div>
+
+          <div class="panel">
+            <div class="embed">
+              <h3>BuyBust: The Undesirables</h3>
+              <div class="ratio">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/MKemy6nL5Eo?start=7"
+                  title="BuyBust: The Undesirables Trailer"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+
+            <div class="embed">
+              <h3>Edjop — Trailer</h3>
+              <div class="ratio">
+                <iframe
+                  src="about:blank"
+                  title="Edjop Trailer (link to follow)"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="small-muted" style="margin-top:10px;">Link to follow.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="offer">
       <div class="container">
         <div class="split">
           <div>
             <h2>What we offer</h2>
             <p class="lead">
-              Story-led outputs built for brands, platforms, and real attention — not just deliverables.
+              Story-led outputs built for brands, platforms, and real attention.
             </p>
           </div>
 
@@ -436,7 +532,6 @@
                 <p class="desc">Cinematic brand stories with real character, pacing, and payoff.</p>
               </div>
             </div>
-
             <div class="row" role="listitem">
               <div class="num">02</div>
               <div>
@@ -444,7 +539,6 @@
                 <p class="desc">Episode-based formats that build retention and make the brand feel alive.</p>
               </div>
             </div>
-
             <div class="row" role="listitem">
               <div class="num">03</div>
               <div>
@@ -452,11 +546,10 @@
                 <p class="desc">Campaign structure with a story spine — not random posts in a calendar.</p>
               </div>
             </div>
-
             <div class="row" role="listitem">
               <div class="num">04</div>
               <div>
-                <div class="title">Culture-driven and campaign-led storytelling initiatives</div>
+                <div class="title">Culture-driven initiatives</div>
                 <p class="desc">Work that speaks the language of the moment without chasing trends blindly.</p>
               </div>
             </div>
@@ -474,24 +567,35 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Replay video every time Home is clicked
     (function () {
-      const homeLink = document.getElementById("navHome");
+      const logo = document.getElementById("heroLogoVideo");
+      const heroSection = logo?.closest("section");
+      if (!logo || !heroSection) return;
+
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) return;
+
+      function tick(){
+        const rect = heroSection.getBoundingClientRect();
+        const vh = window.innerHeight || 800;
+        const progress = Math.max(0, Math.min(1, (0 - rect.top) / (vh * 0.9)));
+        
+        logo.style.transform = `scale(${1.06 - (progress * 0.20)})`;
+        logo.style.opacity = `${0.96 - (progress * 0.35)}`;
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    (function () {
+      const home = document.getElementById("navHome");
       const vid = document.getElementById("heroLogoVideo");
-      if (!homeLink || !vid) return;
+      if (!home || !vid) return;
 
-      homeLink.addEventListener("click", () => {
+      home.addEventListener("click", () => {
+        vid.pause();
         vid.currentTime = 0;
-        const p = vid.play();
-        if (p && typeof p.catch === "function") p.catch(() => {});
-      });
-
-      // Optional: click video to enable sound after user gesture (still no autoplay sound)
-      vid.addEventListener("click", async () => {
-        try {
-          vid.muted = false;
-          await vid.play();
-        } catch (e) {}
+        vid.play().catch(() => {});
       });
     })();
   </script>
