@@ -312,6 +312,23 @@
       html{ scroll-behavior:auto; }
       #heroLogoVideo{ transition:none; }
     }
+
+/* full-bleed section inside a max-width container */
+.fullbleed{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* keep nice padding at the edges while using full width */
+.fullbleed-inner{
+  padding: 0 18px;
+}
+
+/* make the two cards truly use the full width */
+.fullbleed-inner .about-grid{
+  max-width: none;
+  width: 100%;
+}
   </style>
 </head>
 
@@ -354,85 +371,80 @@
 
 <section id="about">
   <div class="container">
+
     <div class="split">
-      <!-- LEFT: heading + intro -->
+      <!-- LEFT -->
       <div>
         <h2>WHO WE ARE</h2>
         <p class="lead">
-          <strong>Story-Driven Strategists. Senior Creative Leadership.</strong><br /><br />
-          We are writers, directors, producers, and creative executives with over 26 years of experience shaping film, television, and large-scale entertainment in the Philippines.
+          Story-driven strategists with senior creative leadership across all platforms.
         </p>
       </div>
 
-      <!-- RIGHT: pitch deck + cards -->
-      <div>
-        <div class="panel">
-          <div class="embed">
-            <h3>Company Pitch Deck</h3>
-            <div class="ratio">
-              <iframe
-                src="https://www.youtube.com/embed/rjThFAiuV40"
-                title="About the company"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
+      <!-- RIGHT -->
+      <div class="panel">
+        <div class="embed" style="border-top:0;">
+          <h3>Company Pitch Deck</h3>
+          <div class="ratio">
+            <iframe
+              src="https://www.youtube.com/embed/rjThFAiuV40"
+              title="The Mad Goats Inc. — Company Pitch Deck"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
-
-        <div class="about-grid" style="grid-template-columns:1fr; margin-top:18px;">
-          <div class="card">
-            <div class="inner">
-              <div class="person">
-                <div class="photo"><img src="assets/katski.jpg" alt="Katski Flores" /></div>
-                <div>
-                  <h3>Katski Flores</h3>
-                  <p class="role">Filmmaker • Producer</p>
-                  <p class="bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television’s most iconic series.</p>
-                  <p class="bio">Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy.</p>
-                  <p class="bio">A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="inner">
-              <div class="person">
-                <div class="photo"><img src="assets/michiko.jpg" alt="Michiko Yamamoto" /></div>
-                <div>
-                  <h3>Michiko Yamamoto</h3>
-                  <p class="role">Writer • Producer</p>
-                  <p class="bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema.</p>
-                  <p class="bio">A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound.</p>
-                  <p class="bio">She understands the full lifecycle of content: from development to on-ground production to audience impact.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
-</section>
 
-    <section id="works">
-      <div class="container">
-        <div class="split">
-          <div><h2>Sample Works</h2></div>
-          <div class="panel">
-            <div class="embed">
-              <h3>Poster Reel</h3>
-              <div class="ratio">
-                <iframe src="about:blank" title="Poster Reel (coming soon)" loading="lazy" allow="fullscreen; picture-in-picture"></iframe>
-              </div>
+    <!-- Cards full width, aligned with main body -->
+    <div class="about-grid" style="margin-top:26px;">
+      <div class="card">
+        <div class="inner">
+          <div class="person">
+            <div class="photo">
+              <img src="assets/katski.jpg" alt="Katski Flores" />
+            </div>
+            <div>
+              <h3>Katski Flores</h3>
+              <p class="role">Creative executive • Writer-director • Producer</p>
+              <p class="bio">
+                A seasoned creative executive, writer-director, and producer who has led writing teams behind some
+                of the most iconic Philippine television series. She brings high-level story architecture,
+                brand-aligned narrative development, and leadership in content strategy. As Creative Head for reality
+                entertainment, she has overseen development pipelines, greenlit projects, refined concepts, and
+                provided strategic story direction across multiple formats.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+
+      <div class="card">
+        <div class="inner">
+          <div class="person">
+            <div class="photo">
+              <img src="assets/michiko.jpg" alt="Michiko Yamamoto" />
+            </div>
+            <div>
+              <h3>Michiko Yamamoto</h3>
+              <p class="role">Writer • Creative executive • Production fluent</p>
+              <p class="bio">
+                One of the most respected and celebrated voices in Philippine cinema, with a strong production
+                foundation that bridges creative vision and execution. Her strengths lie in story integrity,
+                character-driven narratives, and production fluency—ensuring that ideas are not only powerful but
+                operationally sound. She understands the full lifecycle of content: from development to on-ground
+                production to audience impact.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <section id="upcoming">
       <div class="container">
