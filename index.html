@@ -329,6 +329,43 @@
   max-width: none;
   width: 100%;
 }
+
+nav a.is-active{
+  background: linear-gradient(90deg, #ff004c, #ff8a00, #ffe600, #00d084, #00a3ff, #7a00ff);
+  color: #fff;
+}
+
+/* headline reveal */
+.reveal-h{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .55s ease;
+  will-change: transform, opacity;
+}
+.reveal-h.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* optional underline sweep */
+.reveal-h{
+  position: relative;
+}
+.reveal-h::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-10px;
+  width:0;
+  height:3px;
+  background: var(--red);
+  transition: width .6s ease;
+  border-radius: 999px;
+  opacity:.35;
+}
+.reveal-h.is-visible::after{
+  width: 56px;
+}
   </style>
 </head>
 
@@ -375,7 +412,7 @@
     <div class="split">
       <!-- LEFT -->
       <div>
-        <h2>WHO WE ARE</h2>
+        <h2 class="reveal-h">WHO WE ARE</h2>
         <p class="lead">
           Story-driven strategists with senior creative leadership across all platforms.
         </p>
@@ -408,14 +445,10 @@
             </div>
             <div>
               <h3>Katski Flores</h3>
-              <p class="role">Creative executive • Writer-director • Producer</p>
-              <p class="bio">
-                A seasoned creative executive, writer-director, and producer who has led writing teams behind some
-                of the most iconic Philippine television series. She brings high-level story architecture,
-                brand-aligned narrative development, and leadership in content strategy. As Creative Head for reality
-                entertainment, she has overseen development pipelines, greenlit projects, refined concepts, and
-                provided strategic story direction across multiple formats.
-              </p>
+              <p class="role">Filmmaker • Producer</p>
+            <p class="bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television’s most iconic series.</p>
+            <p class="bio">Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy.</p>
+            <p class="bio">A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
             </div>
           </div>
         </div>
@@ -429,13 +462,10 @@
             </div>
             <div>
               <h3>Michiko Yamamoto</h3>
-              <p class="role">Writer • Creative executive • Production fluent</p>
-              <p class="bio">
-                One of the most respected and celebrated voices in Philippine cinema, with a strong production
-                foundation that bridges creative vision and execution. Her strengths lie in story integrity,
-                character-driven narratives, and production fluency—ensuring that ideas are not only powerful but
-                operationally sound. She understands the full lifecycle of content: from development to on-ground
-                production to audience impact.
+             <p class="role">Writer • Producer</p>
+            <p class="bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema.</p>
+            <p class="bio">A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound.</p>
+            <p class="bio">She understands the full lifecycle of content: from development to on-ground production to audience impact.
               </p>
             </div>
           </div>
@@ -449,8 +479,7 @@
 <section id="works">
   <div class="container">
     <div class="split">
-      <div><h2>Sample Works</h2></div>
-
+      <div><h2 class="reveal-h">Sample Works</h2></div>
       <div class="panel">
         <div class="embed">
           <h3><span class="tag">Coming Soon</span></h3>
@@ -466,7 +495,7 @@
     <section id="upcoming">
       <div class="container">
         <div class="split">
-          <div><h2>Upcoming Projects</h2></div>
+          <div><h2 class="reveal-h">Upcoming Projects</h2></div>
 
           <div class="panel">
             <div class="embed">
@@ -504,7 +533,7 @@
       <div class="container">
         <div class="split">
           <div>
-            <h2>What we offer</h2>
+            <h2 class="reveal-h">What we offer</h2>
             <p class="lead">Story-led outputs built for brands, platforms, and real attention.</p>
           </div>
 
@@ -592,6 +621,19 @@
       go();
     }
   }
+
+(function () {
+  const els = document.querySelectorAll(".reveal-h");
+  if (!els.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add("is-visible");
+    });
+  }, { threshold: 0.15 });
+
+  els.forEach(el => io.observe(el));
+})();
 
   home.addEventListener("click", (e) => {
     e.preventDefault(); // avoid weird timing with the hash jump
