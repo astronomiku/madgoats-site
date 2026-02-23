@@ -446,6 +446,23 @@
   </div>
 </section>
 
+<section id="works">
+  <div class="container">
+    <div class="split">
+      <div><h2>Sample Works</h2></div>
+
+      <div class="panel">
+        <div class="embed">
+          <h3><span class="tag">Coming Soon</span></h3>
+          <div class="ratio">
+            <iframe src="about:blank" title="Poster Reel (coming soon)" loading="lazy" allow="fullscreen; picture-in-picture"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     <section id="upcoming">
       <div class="container">
         <div class="split">
@@ -526,7 +543,7 @@
       </div>
     </section>
 
-<footer>
+   <footer>
   © <span id="y"></span> The Mad Goats Inc. •
   For inquiries: <a href="mailto:admin@themadgoats.com">admin@themadgoats.com</a> •
   YouTube: <a href="https://www.youtube.com/@themadgoats" target="_blank" rel="noopener noreferrer">@themadgoats</a>
@@ -554,17 +571,36 @@
       requestAnimationFrame(tick);
     })();
 
-    (function () {
-      const home = document.getElementById("navHome");
-      const vid = document.getElementById("heroLogoVideo");
-      if (!home || !vid) return;
+ (function () {
+  const home = document.getElementById("navHome");
+  const vid = document.getElementById("heroLogoVideo");
+  if (!home || !vid) return;
 
-      home.addEventListener("click", () => {
-        vid.pause();
-        vid.currentTime = 0;
-        vid.play().catch(() => {});
-      });
-    })();
+  function replay() {
+    vid.pause();
+
+    const go = () => {
+      try { vid.currentTime = 0; } catch (e) {}
+      vid.play().catch(() => {});
+    };
+
+    // wait until the video can seek/play
+    if (vid.readyState < 2) {
+      vid.addEventListener("canplay", go, { once: true });
+      vid.load();
+    } else {
+      go();
+    }
+  }
+
+  home.addEventListener("click", (e) => {
+    e.preventDefault(); // avoid weird timing with the hash jump
+    document.getElementById("top").scrollIntoView({ behavior: "smooth" });
+    replay();
+  });
+})();
+
+
   </script>
 </body>
 </html>
