@@ -308,64 +308,48 @@
       .photo{ width:100px; height:100px; border-radius: 16px; }
       #heroLogoVideo{ width: min(760px, 96vw); height: 260px; }
     }
+    
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
       #heroLogoVideo{ transition:none; }
+      .reveal-h, .reveal-h::after{ transition:none; opacity: 1; transform: none; }
     }
 
-/* full-bleed section inside a max-width container */
-.fullbleed{
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-}
-
-/* keep nice padding at the edges while using full width */
-.fullbleed-inner{
-  padding: 0 18px;
-}
-
-/* make the two cards truly use the full width */
-.fullbleed-inner .about-grid{
-  max-width: none;
-  width: 100%;
-}
-
-nav a.is-active{
-  background: linear-gradient(90deg, #ff004c, #ff8a00, #ffe600, #00d084, #00a3ff, #7a00ff);
-  color: #fff;
-}
-
-/* headline reveal */
+ /* --- Headline Reveal Animations (LEFT → RIGHT) --- */
 .reveal-h{
+  display:inline-block;
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity .55s ease, transform .55s ease;
-  will-change: transform, opacity;
+  clip-path: inset(0 100% 0 0); /* hide from the right (reveals left→right) */
+  transition: opacity .5s ease, clip-path 1s ease;
+  will-change: clip-path, opacity;
 }
+
 .reveal-h.is-visible{
   opacity: 1;
-  transform: translateY(0);
+  clip-path: inset(0 0 0 0);
 }
 
-/* optional underline sweep */
-.reveal-h{
-  position: relative;
-}
+/* underline line */
 .reveal-h::after{
   content:"";
-  position:absolute;
-  left:0;
-  bottom:-10px;
+  display:block;
+  margin-top:10px;
   width:0;
   height:3px;
   background: var(--red);
-  transition: width .6s ease;
-  border-radius: 999px;
+  border-radius:999px;
   opacity:.35;
+  transition: width .8s ease .25s; /* starts after text begins revealing */
 }
+
 .reveal-h.is-visible::after{
-  width: 56px;
+  width:56px;
 }
+
+    nav a.is-active{
+      background: linear-gradient(90deg, #ff004c, #ff8a00, #ffe600, #00d084, #00a3ff, #7a00ff);
+      color: #fff;
+    }
   </style>
 </head>
 
@@ -406,91 +390,80 @@ nav a.is-active{
       </div>
     </section>
 
-<section id="about">
-  <div class="container">
-
-    <div class="split">
-      <!-- LEFT -->
-      <div>
-        <h2 class="reveal-h">WHO WE ARE</h2>
-        <p class="lead">
-          Story-driven strategists with senior creative leadership across all platforms.
-        </p>
-      </div>
-
-      <!-- RIGHT -->
-      <div class="panel">
-        <div class="embed" style="border-top:0;">
-          <h3>About The Company</h3>
-          <div class="ratio">
-            <iframe
-              src="https://www.youtube.com/embed/rjThFAiuV40"
-              title="The Mad Goats Inc. — Company Pitch Deck"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+    <section id="about">
+      <div class="container">
+        <div class="split">
+          <div>
+            <h2 class="reveal-h">WHO WE ARE</h2>
+            <p class="lead">Story-driven strategists with senior creative leadership across all platforms.</p>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Cards full width, aligned with main body -->
-    <div class="about-grid" style="margin-top:26px;">
-      <div class="card">
-        <div class="inner">
-          <div class="person">
-            <div class="photo">
-              <img src="assets/katski.jpg" alt="Katski Flores" />
-            </div>
-            <div>
-              <h3>Katski Flores</h3>
-              <p class="role">Filmmaker • Producer</p>
-            <p class="bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television’s most iconic series.</p>
-            <p class="bio">Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy.</p>
-            <p class="bio">A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
+          <div class="panel">
+            <div class="embed" style="border-top:0;">
+              <h3>About The Company</h3>
+              <div class="ratio">
+                <iframe
+                  src="https://www.youtube.com/embed/rjThFAiuV40"
+                  title="The Mad Goats Inc. — Company Pitch Deck"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="inner">
-          <div class="person">
-            <div class="photo">
-              <img src="assets/michiko.jpg" alt="Michiko Yamamoto" />
+        <div class="about-grid" style="margin-top:26px;">
+          <div class="card">
+            <div class="inner">
+              <div class="person">
+                <div class="photo"><img src="assets/katski.jpg" alt="Katski Flores" /></div>
+                <div>
+                  <h3>Katski Flores</h3>
+                  <p class="role">Filmmaker • Producer</p>
+                  <p class="bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television’s most iconic series.</p>
+                  <p class="bio">Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy.</p>
+                  <p class="bio">A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3>Michiko Yamamoto</h3>
-             <p class="role">Writer • Producer</p>
-            <p class="bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema.</p>
-            <p class="bio">A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound.</p>
-            <p class="bio">She understands the full lifecycle of content: from development to on-ground production to audience impact.
-              </p>
+          </div>
+
+          <div class="card">
+            <div class="inner">
+              <div class="person">
+                <div class="photo"><img src="assets/michiko.jpg" alt="Michiko Yamamoto" /></div>
+                <div>
+                  <h3>Michiko Yamamoto</h3>
+                  <p class="role">Writer • Producer</p>
+                  <p class="bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema.</p>
+                  <p class="bio">A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound.</p>
+                  <p class="bio">She understands the full lifecycle of content: from development to on-ground production to audience impact.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="container">
+        <div class="split">
+          <div><h2 class="reveal-h">Sample Works</h2></div>
+          <div class="panel">
+            <div class="embed">
+              <h3><span class="tag">Coming Soon</span></h3>
+              <div class="ratio">
+                <iframe src="about:blank" title="Poster Reel (coming soon)" loading="lazy" allow="fullscreen; picture-in-picture"></iframe>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="works">
-  <div class="container">
-    <div class="split">
-      <div><h2 class="reveal-h">Sample Works</h2></div>
-      <div class="panel">
-        <div class="embed">
-          <h3><span class="tag">Coming Soon</span></h3>
-          <div class="ratio">
-            <iframe src="about:blank" title="Poster Reel (coming soon)" loading="lazy" allow="fullscreen; picture-in-picture"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <section id="upcoming">
       <div class="container">
@@ -572,21 +545,42 @@ nav a.is-active{
       </div>
     </section>
 
-   <footer>
-  © <span id="y"></span> The Mad Goats Inc. •
-  For inquiries: <a href="mailto:admin@themadgoats.com">admin@themadgoats.com</a> •
-  YouTube: <a href="https://www.youtube.com/@themadgoats" target="_blank" rel="noopener noreferrer">@themadgoats</a>
-</footer>
-</main>
+    <footer>
+      © <span id="y"></span> The Mad Goats Inc. •
+      For inquiries: <a href="mailto:admin@themadgoats.com">admin@themadgoats.com</a> •
+      YouTube: <a href="https://www.youtube.com/@themadgoats" target="_blank" rel="noopener noreferrer">@themadgoats</a>
+    </footer>
+  </main>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
+// Force refresh to always land on Home (top)
+(function () {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  // remove hash so it doesn't jump to a section
+  if (window.location.hash) {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+
+  function toTop() {
+    window.scrollTo(0, 0);
+    // extra nudge for iOS/Safari/Chrome restore behavior
+    setTimeout(() => window.scrollTo(0, 0), 0);
+    setTimeout(() => window.scrollTo(0, 0), 50);
+  }
+
+  window.addEventListener("load", toTop);
+  window.addEventListener("pageshow", toTop);
+})();
+    // 1. Logo Parallax/Fade Effect
     (function () {
       const logo = document.getElementById("heroLogoVideo");
       const heroSection = logo && logo.closest("section");
       if (!logo || !heroSection) return;
-
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       function tick(){
@@ -600,49 +594,80 @@ nav a.is-active{
       requestAnimationFrame(tick);
     })();
 
- (function () {
-  const home = document.getElementById("navHome");
-  const vid = document.getElementById("heroLogoVideo");
-  if (!home || !vid) return;
+    // 2. Nav Home Click / Video Replay
+    (function () {
+      const home = document.getElementById("navHome");
+      const vid = document.getElementById("heroLogoVideo");
+      if (!home || !vid) return;
 
-  function replay() {
-    vid.pause();
+      home.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("top").scrollIntoView({ behavior: "smooth" });
+        vid.pause();
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      });
+    })();
 
-    const go = () => {
-      try { vid.currentTime = 0; } catch (e) {}
-      vid.play().catch(() => {});
-    };
+ // 3. Headline Reveal (scroll + replay on nav clicks)
+(function () {
+  const headlines = Array.from(document.querySelectorAll(".reveal-h"));
+  if (!headlines.length) return;
 
-    // wait until the video can seek/play
-    if (vid.readyState < 2) {
-      vid.addEventListener("canplay", go, { once: true });
-      vid.load();
-    } else {
-      go();
-    }
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) {
+    headlines.forEach(h => h.classList.add("is-visible"));
+    return;
   }
 
-(function () {
-  const els = document.querySelectorAll(".reveal-h");
-  if (!els.length) return;
+  function replay(el){
+    if (!el) return;
+    el.classList.remove("is-visible");
+    void el.offsetWidth; // force reflow so transitions retrigger
+    requestAnimationFrame(() => el.classList.add("is-visible"));
+  }
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add("is-visible");
+  // Reveal when entering viewport (and allow replays)
+  const observerOptions = { threshold: 0.12, rootMargin: "0px 0px -50px 0px" };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) replay(entry.target);
     });
-  }, { threshold: 0.15 });
+  }, observerOptions);
 
-  els.forEach(el => io.observe(el));
-})();
+  headlines.forEach(h => observer.observe(h));
 
-  home.addEventListener("click", (e) => {
-    e.preventDefault(); // avoid weird timing with the hash jump
-    document.getElementById("top").scrollIntoView({ behavior: "smooth" });
-    replay();
+  // Replay whatever is already visible on initial load
+  window.addEventListener("load", () => {
+    headlines.forEach(h => {
+      const r = h.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      if (r.top < vh * 0.85 && r.bottom > 0) replay(h);
+    });
+  });
+
+  // Replay the section headline whenever a nav link is clicked
+  document.querySelectorAll("header nav a").forEach(a => {
+    a.addEventListener("click", () => {
+      const href = a.getAttribute("href") || "";
+      if (!href.startsWith("#")) return;
+
+      const section = document.querySelector(href);
+      if (!section) return;
+
+      const h = section.querySelector(".reveal-h");
+      setTimeout(() => replay(h), 500);
+    });
   });
 })();
 
-
+// 4) Always load at Home on refresh (remove hash + jump to top)
+(function () {
+  if (window.location.hash) {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+  window.scrollTo(0, 0);
+})();
   </script>
 </body>
 </html>
