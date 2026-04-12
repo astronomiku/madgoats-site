@@ -365,9 +365,9 @@
 
       <nav>
         <a id="navHome" href="#top">Home</a>
-        <a href="#works">Sample Works</a>
+        <a href="#workshop">Workshop</a>
         <a href="#upcoming">Upcoming</a>
-        <a href="#offer">Services</a>
+        <a href="#offer">Offer</a>
       </nav>
 
       <button class="cta" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">About us</button>
@@ -451,16 +451,35 @@
       </div>
     </section>
 
-    <section id="works">
+    <section id="workshop">
       <div class="container">
         <div class="split">
-          <div><h2 class="reveal-h">Sample Works</h2></div>
+          <div>
+            <h2 class="reveal-h">WIP Series</h2>
+            <p class="lead">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
+          </div>
+
           <div class="panel">
-            <div class="embed">
-              <h3><span class="tag">Coming Soon</span></h3>
-              <div class="ratio">
-                <iframe src="about:blank" title="Poster Reel (coming soon)" loading="lazy" allow="fullscreen; picture-in-picture"></iframe>
+            <div class="embed" style="border-top:0; padding: 28px;">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px;">
+                <div style="background:var(--red); color:#fff; font-size:11px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; padding:5px 12px; border-radius:999px;">Now Open</div>
+                <div style="color:var(--muted); font-size:12px; letter-spacing:.1em; text-transform:uppercase;">Limited Slots</div>
               </div>
+              <h3 style="font-size:clamp(18px,2.2vw,26px); font-weight:950; letter-spacing:-0.02em; text-transform:uppercase; margin:0 0 12px; line-height:1.15;">Screenwriting Workshop<br/>for Beginners</h3>
+              <p style="color:var(--muted); font-size:14px; line-height:1.7; margin:0 0 24px;">Learn the fundamentals of screenwriting directly from industry veterans. Sign up to reserve your slot — successful registrants will be emailed with full details.</p>
+
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:7px; background:rgba(211,0,0,.07); border:1px solid rgba(211,0,0,.15); border-radius:12px; padding:8px 14px;">
+                  <svg width="14" height="14" fill="none" stroke="var(--red)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span style="font-size:12px; font-weight:900; color:var(--red); letter-spacing:.06em; text-transform:uppercase;">Limited Slots</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:7px; background:rgba(11,11,11,.04); border:1px solid var(--line); border-radius:12px; padding:8px 14px;">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                  <span style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:.06em; text-transform:uppercase;">Details via Email</span>
+                </div>
+              </div>
+
+              <a href="https://tinyurl.com/MadGoatsWIP" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:var(--red); color:#fff; font-weight:900; font-size:13px; letter-spacing:.12em; text-transform:uppercase; padding:14px 28px; border-radius:14px; text-decoration:none; transition:.2s ease; box-shadow: 0 8px 24px rgba(211,0,0,.25);" onmouseover="this.style.transform='translateY(-2px)';this.style.filter='brightness(1.05)'" onmouseout="this.style.transform='';this.style.filter=''">Sign Up Now →</a>
             </div>
           </div>
         </div>
@@ -549,12 +568,12 @@
 
     <footer>
       © <span id="y"></span> The Mad Goats Inc. •
-      For inquiries: <a href="mailto:admin@themadgoats.com">admin@themadgoats.com</a> •
+      For inquiries: <a href="/cdn-cgi/l/email-protection#f796939a9e99b7839f929a96939098968384d994989a"><span class="__cf_email__" data-cfemail="1170757c787f516579747c7075767e7065623f727e7c">[email&#160;protected]</span></a> •
       YouTube: <a href="https://www.youtube.com/@themadgoats" target="_blank" rel="noopener noreferrer">@themadgoats</a>
     </footer>
   </main>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
 // Force refresh to always land on Home (top)
@@ -684,13 +703,4 @@
   });
 })();
 
-// 4) Always load at Home on refresh (remove hash + jump to top)
-(function () {
-  if (window.location.hash) {
-    history.replaceState(null, "", window.location.pathname + window.location.search);
-  }
-  window.scrollTo(0, 0);
-})();
-  </script>
-</body>
-</html>
+// 4) Always
