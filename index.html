@@ -82,44 +82,32 @@
       transition: .2s ease;
     }
     nav a:hover{ color: var(--text); background: rgba(0,0,0,.05); }
-    .nav-cta{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      color: #fff;
-      background: var(--red);
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      border: 0;
-      border-radius: 12px;
-      padding: 10px 18px;
-      cursor:pointer;
+    .nav-who{
+      color: var(--text);
       text-decoration:none;
-      transition:.2s ease;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding: 9px 16px;
+      border-radius: 10px;
+      border: 1.5px solid var(--line);
+      transition: .2s ease;
       white-space:nowrap;
     }
-    .nav-cta:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(204,0,0,.30); }
+    .nav-who:hover{ border-color:rgba(10,10,10,.3); background:rgba(0,0,0,.03); }
 
     /* ── TICKER ── */
     .ticker-wrap{
       position:fixed;
       top:60px; left:0; right:0;
       z-index:49;
-      background: repeating-linear-gradient(
-        -55deg,
-        #f5c800 0px,
-        #f5c800 20px,
-        #0a0a0a 20px,
-        #0a0a0a 40px
-      );
+      background: #f5c800;
       overflow:hidden;
       height: 36px;
       display:flex;
       align-items:center;
-      border-bottom: 2px solid #0a0a0a;
+      border-bottom: 2px solid rgba(0,0,0,.10);
     }
     .ticker-track{
       display:flex;
@@ -132,14 +120,11 @@
       font-size: 15px;
       letter-spacing:.18em;
       color:#0a0a0a;
-      background: #f5c800;
-      padding: 0 20px;
-      font-weight:900;
+      padding: 0 24px;
     }
     .ticker-track .dot{
-      background: #0a0a0a;
-      color: #f5c800;
-      padding: 0 14px;
+      color: rgba(0,0,0,.30);
+      padding: 0 4px;
       letter-spacing:0;
       font-size: 13px;
     }
@@ -259,11 +244,11 @@
     .btn-ghost:hover{ border-color:rgba(10,10,10,.3); background:rgba(0,0,0,.03); }
     .hero-right{ position:relative; }
     .logo-card{
-      background: #fff;
-      border: 1px solid var(--line);
+      background: transparent;
+      border: none;
       border-radius: 26px;
       overflow:hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,.10);
+      box-shadow: none;
       aspect-ratio: 4/3;
       display:flex;
       align-items:center;
@@ -730,36 +715,33 @@
         <span class="name">The Mad Goats Inc.</span>
       </a>
       <nav>
-        <a href="#about">Who We Are</a>
         <a href="#workshop">Workshop</a>
         <a href="#upcoming">Upcoming</a>
         <a href="#offer">Services</a>
       </nav>
-      <a class="nav-cta" href="https://tinyurl.com/MadGoatsWIP" target="_blank" rel="noopener noreferrer">
-        Sign Up — WIP Series
-      </a>
+      <a class="nav-who" href="#about">Who We Are</a>
     </div>
   </header>
 
   <!-- TICKER -->
   <div class="ticker-wrap" aria-hidden="true">
     <div class="ticker-track">
-      <span>! The Mad Goats WIP Series !</span><span class="dot">▨</span>
-      <span>! Screenwriting Workshop for Beginners !</span><span class="dot">▨</span>
-      <span>! Limited Slots Available !</span><span class="dot">▨</span>
-      <span>! Sign Up Now !</span><span class="dot">▨</span>
-      <span>! The Mad Goats WIP Series !</span><span class="dot">▨</span>
-      <span>! Screenwriting Workshop for Beginners !</span><span class="dot">▨</span>
-      <span>! Limited Slots Available !</span><span class="dot">▨</span>
-      <span>! Sign Up Now !</span><span class="dot">▨</span>
-      <span>! The Mad Goats WIP Series !</span><span class="dot">▨</span>
-      <span>! Screenwriting Workshop for Beginners !</span><span class="dot">▨</span>
-      <span>! Limited Slots Available !</span><span class="dot">▨</span>
-      <span>! Sign Up Now !</span><span class="dot">▨</span>
-      <span>! The Mad Goats WIP Series !</span><span class="dot">▨</span>
-      <span>! Screenwriting Workshop for Beginners !</span><span class="dot">▨</span>
-      <span>! Limited Slots Available !</span><span class="dot">▨</span>
-      <span>! Sign Up Now !</span><span class="dot">▨</span>
+      <span>The Mad Goats WIP Series!</span><span class="dot">·</span>
+      <span>Screenwriting Workshop for Beginners!</span><span class="dot">·</span>
+      <span>Limited Slots Available!</span><span class="dot">·</span>
+      <span>Sign Up Now!</span><span class="dot">·</span>
+      <span>The Mad Goats WIP Series!</span><span class="dot">·</span>
+      <span>Screenwriting Workshop for Beginners!</span><span class="dot">·</span>
+      <span>Limited Slots Available!</span><span class="dot">·</span>
+      <span>Sign Up Now!</span><span class="dot">·</span>
+      <span>The Mad Goats WIP Series!</span><span class="dot">·</span>
+      <span>Screenwriting Workshop for Beginners!</span><span class="dot">·</span>
+      <span>Limited Slots Available!</span><span class="dot">·</span>
+      <span>Sign Up Now!</span><span class="dot">·</span>
+      <span>The Mad Goats WIP Series!</span><span class="dot">·</span>
+      <span>Screenwriting Workshop for Beginners!</span><span class="dot">·</span>
+      <span>Limited Slots Available!</span><span class="dot">·</span>
+      <span>Sign Up Now!</span><span class="dot">·</span>
     </div>
   </div>
 
