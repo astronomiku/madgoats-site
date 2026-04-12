@@ -131,17 +131,11 @@
       height:36px;
     }
     .ticker-track .dot{
+      color: #1a6dd4;
+      font-size: 10px;
+      padding: 0 8px;
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      padding: 0;
-      height:36px;
-      flex-shrink:0;
-    }
-    .ticker-track .dot svg{
-      display:block;
-      width:8px;
-      height:22px;
     }
     @keyframes ticker{
       0%{ transform:translateX(0); }
@@ -750,7 +744,7 @@
       nav{ display:none; }
       .nav-who{ display:none; }
       .offer-grid{ grid-template-columns:1fr 1fr; }
-      .bottom-nav{ display:block; }
+      .bottom-nav{ display:flex; }
       main{ padding-bottom: 80px; }
     }
     @media(max-width:540px){
@@ -787,18 +781,18 @@
   <!-- TICKER -->
   <div class="ticker-wrap" aria-hidden="true">
     <div class="ticker-track">
-      <span>The Mad Goats WIP Series!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Screenwriting Workshop for Beginners!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Limited Slots Available!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Sign Up Now!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>The Mad Goats WIP Series!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Screenwriting Workshop for Beginners!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Limited Slots Available!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Sign Up Now!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>The Mad Goats WIP Series!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Screenwriting Workshop for Beginners!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Limited Slots Available!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
-      <span>Sign Up Now!</span><span class="dot"><svg width="8" height="22" viewBox="0 0 14 38" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="34" fill="#0a0a0a"/><rect x="2" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="2" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="9" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="16" width="4" height="5" rx="1" fill="#f5c800"/><rect x="2" y="23" width="4" height="5" rx="1" fill="#f5c800"/><rect x="8" y="23" width="4" height="5" rx="1" fill="#f5c800"/></svg></span>
+      <span>The Mad Goats WIP Series!</span><span class="dot">●</span>
+      <span>Screenwriting Workshop for Beginners!</span><span class="dot">●</span>
+      <span>Limited Slots Available!</span><span class="dot">●</span>
+      <span>Sign Up Now!</span><span class="dot">●</span>
+      <span>The Mad Goats WIP Series!</span><span class="dot">●</span>
+      <span>Screenwriting Workshop for Beginners!</span><span class="dot">●</span>
+      <span>Limited Slots Available!</span><span class="dot">●</span>
+      <span>Sign Up Now!</span><span class="dot">●</span>
+      <span>The Mad Goats WIP Series!</span><span class="dot">●</span>
+      <span>Screenwriting Workshop for Beginners!</span><span class="dot">●</span>
+      <span>Limited Slots Available!</span><span class="dot">●</span>
+      <span>Sign Up Now!</span><span class="dot">●</span>
     </div>
   </div>
 
