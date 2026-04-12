@@ -266,39 +266,6 @@
       mix-blend-mode: multiply;
       display:block;
     }
-    .hero-stat-row{
-      display:flex;
-      gap:0;
-      margin-top: 20px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: #fff;
-      overflow:hidden;
-    }
-    .hero-stat{
-      flex:1;
-      padding: 16px 18px;
-      border-right: 1px solid var(--line);
-      text-align:center;
-    }
-    .hero-stat:last-child{ border-right:0; }
-    .hero-stat .val{
-      font-family: var(--font-display);
-      font-size:28px;
-      letter-spacing:.02em;
-      color: var(--red);
-      display:block;
-    }
-    .hero-stat .lbl{
-      font-size:10px;
-      font-weight:600;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: var(--muted);
-      display:block;
-      margin-top:2px;
-    }
-
     /* ── SECTION BASE ── */
     section{
       border-bottom: 1px solid var(--line);
@@ -812,20 +779,6 @@
               <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
             </video>
           </div>
-          <div class="hero-stat-row">
-            <div class="hero-stat">
-              <span class="val">2</span>
-              <span class="lbl">Films in Dev</span>
-            </div>
-            <div class="hero-stat">
-              <span class="val">20+</span>
-              <span class="lbl">Years Combined</span>
-            </div>
-            <div class="hero-stat">
-              <span class="val">PH</span>
-              <span class="lbl">Cinema</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -857,7 +810,7 @@
               <div class="person-info">
                 <h3>Katski Flores</h3>
                 <div class="person-role">Filmmaker · Producer</div>
-                <p class="person-bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television's most iconic series. Former Creative Head for major studios, specializing in story architecture and brand-aligned content strategy.</p>
+                <p class="person-bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television's most iconic series. Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy. A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
               </div>
             </div>
             <div class="person-card reveal" style="transition-delay:.22s">
@@ -865,7 +818,7 @@
               <div class="person-info">
                 <h3>Michiko Yamamoto</h3>
                 <div class="person-role">Writer · Producer</div>
-                <p class="person-bio">Multi-awarded screenwriter in the Philippines and abroad. A master of character-driven narratives — highly production fluent, ensuring ideas are both powerful and operationally sound.</p>
+                <p class="person-bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema. A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound. She understands the full lifecycle of content: from development to on-ground production to audience impact.</p>
               </div>
             </div>
           </div>
@@ -1040,18 +993,27 @@
       });
     })();
 
-    // Logo parallax fade
+    // Logo parallax fade + replay on return
     (function(){
       const logo = document.getElementById("heroLogoVideo");
       if(!logo) return;
       if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const hero = logo.closest("section");
+      let wasOut = false;
       function tick(){
         const rect = hero.getBoundingClientRect();
         const vh = window.innerHeight || 800;
         const p = Math.max(0, Math.min(1, (0 - rect.top) / (vh * 0.85)));
         logo.style.transform = `scale(${1.05 - p * 0.15})`;
         logo.style.opacity = `${1 - p * 0.4}`;
+        // replay video when scrolling back into hero
+        const inView = rect.top < vh && rect.bottom > 0;
+        if(!inView){ wasOut = true; }
+        if(inView && wasOut){
+          wasOut = false;
+          logo.currentTime = 0;
+          logo.play().catch(()=>{});
+        }
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
