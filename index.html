@@ -108,11 +108,18 @@
       position:fixed;
       top:60px; left:0; right:0;
       z-index:49;
-      background: var(--red);
+      background: repeating-linear-gradient(
+        -55deg,
+        #f5c800 0px,
+        #f5c800 20px,
+        #0a0a0a 20px,
+        #0a0a0a 40px
+      );
       overflow:hidden;
-      height: 34px;
+      height: 36px;
       display:flex;
       align-items:center;
+      border-bottom: 2px solid #0a0a0a;
     }
     .ticker-track{
       display:flex;
@@ -122,16 +129,19 @@
     }
     .ticker-track span{
       font-family: var(--font-display);
-      font-size: 14px;
+      font-size: 15px;
       letter-spacing:.18em;
-      color:#fff;
-      padding: 0 32px;
-      opacity:.95;
+      color:#0a0a0a;
+      background: #f5c800;
+      padding: 0 20px;
+      font-weight:900;
     }
     .ticker-track .dot{
-      color: rgba(255,255,255,.5);
-      padding:0;
+      background: #0a0a0a;
+      color: #f5c800;
+      padding: 0 14px;
       letter-spacing:0;
+      font-size: 13px;
     }
     @keyframes ticker{
       0%{ transform:translateX(0); }
@@ -734,22 +744,22 @@
   <!-- TICKER -->
   <div class="ticker-wrap" aria-hidden="true">
     <div class="ticker-track">
-      <span>The Mad Goats WIP Series</span><span class="dot">·</span>
-      <span>Screenwriting Workshop for Beginners</span><span class="dot">·</span>
-      <span>Limited Slots Available</span><span class="dot">·</span>
-      <span>Sign Up Now</span><span class="dot">·</span>
-      <span>The Mad Goats WIP Series</span><span class="dot">·</span>
-      <span>Screenwriting Workshop for Beginners</span><span class="dot">·</span>
-      <span>Limited Slots Available</span><span class="dot">·</span>
-      <span>Sign Up Now</span><span class="dot">·</span>
-      <span>The Mad Goats WIP Series</span><span class="dot">·</span>
-      <span>Screenwriting Workshop for Beginners</span><span class="dot">·</span>
-      <span>Limited Slots Available</span><span class="dot">·</span>
-      <span>Sign Up Now</span><span class="dot">·</span>
-      <span>The Mad Goats WIP Series</span><span class="dot">·</span>
-      <span>Screenwriting Workshop for Beginners</span><span class="dot">·</span>
-      <span>Limited Slots Available</span><span class="dot">·</span>
-      <span>Sign Up Now</span><span class="dot">·</span>
+      <span>! The Mad Goats WIP Series !</span><span class="dot">▨</span>
+      <span>! Screenwriting Workshop for Beginners !</span><span class="dot">▨</span>
+      <span>! Limited Slots Available !</span><span class="dot">▨</span>
+      <span>! Sign Up Now !</span><span class="dot">▨</span>
+      <span>! The Mad Goats WIP Series !</span><span class="dot">▨</span>
+      <span>! Screenwriting Workshop for Beginners !</span><span class="dot">▨</span>
+      <span>! Limited Slots Available !</span><span class="dot">▨</span>
+      <span>! Sign Up Now !</span><span class="dot">▨</span>
+      <span>! The Mad Goats WIP Series !</span><span class="dot">▨</span>
+      <span>! Screenwriting Workshop for Beginners !</span><span class="dot">▨</span>
+      <span>! Limited Slots Available !</span><span class="dot">▨</span>
+      <span>! Sign Up Now !</span><span class="dot">▨</span>
+      <span>! The Mad Goats WIP Series !</span><span class="dot">▨</span>
+      <span>! Screenwriting Workshop for Beginners !</span><span class="dot">▨</span>
+      <span>! Limited Slots Available !</span><span class="dot">▨</span>
+      <span>! Sign Up Now !</span><span class="dot">▨</span>
     </div>
   </div>
 
