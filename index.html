@@ -7,273 +7,379 @@
   <meta name="description" content="The Mad Goats Inc. — Story-first branded filmmaking and narrative-led content." />
   <link rel="icon" href="assets/logoicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="assets/logoicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#0b0b0b;
-      --muted:rgba(11,11,11,.68);
-      --line:rgba(11,11,11,.12);
-      --red:#d30000;
-      --max:1080px;
-      --radius:22px;
+      --bg:#fafaf8;
+      --text:#0a0a0a;
+      --muted:rgba(10,10,10,.55);
+      --line:rgba(10,10,10,.10);
+      --red:#cc0000;
+      --red-soft:rgba(204,0,0,.07);
+      --max:1100px;
+      --radius:20px;
+      --font-display:'Bebas Neue', sans-serif;
+      --font-body:'DM Sans', sans-serif;
     }
-    *{ box-sizing:border-box; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
     html{ scroll-behavior:smooth; }
     body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(900px 600px at 15% 10%, rgba(211,0,0,.06), transparent 60%),
-        radial-gradient(900px 600px at 85% 35%, rgba(211,0,0,.05), transparent 60%),
-        var(--bg);
+      font-family: var(--font-body);
+      background: var(--bg);
       color: var(--text);
       overflow-x:hidden;
     }
+
+    /* ── HEADER ── */
     header{
-      position:sticky;
-      top:0;
-      z-index:20;
-      background: rgba(255,255,255,.82);
-      backdrop-filter: blur(10px);
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:50;
+      background: rgba(250,250,248,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
+      transition: background .3s;
     }
     .nav{
       max-width: var(--max);
       margin:0 auto;
-      padding: 14px 18px;
+      padding: 0 24px;
+      height: 60px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      gap:16px;
     }
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
-      min-width: 180px;
+      gap:10px;
+      text-decoration:none;
+      color:inherit;
     }
-    .brand img{ width:34px; height:34px; object-fit:contain; }
+    .brand img{ width:30px; height:30px; object-fit:contain; }
     .brand .name{
-      font-size: 13px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      opacity:.92;
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing:.08em;
+      color: var(--text);
       white-space:nowrap;
     }
+    nav{ display:flex; align-items:center; gap:4px; }
     nav a{
       color: var(--muted);
       text-decoration:none;
-      font-size: 13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      padding:10px;
-      border-radius: 12px;
-      transition: .2s ease;
-    }
-    nav a:hover{
-      color: var(--text);
-      background: rgba(0,0,0,.04);
-    }
-    .cta{
-      color: #fff;
-      background: var(--red);
-      font-weight: 900;
-      border: 0;
-      border-radius: 14px;
-      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 500;
       letter-spacing:.10em;
       text-transform:uppercase;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: .2s ease;
+    }
+    nav a:hover{ color: var(--text); background: rgba(0,0,0,.05); }
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      color: #fff;
+      background: var(--red);
+      font-family: var(--font-body);
+      font-weight: 700;
       font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 18px;
       cursor:pointer;
+      text-decoration:none;
       transition:.2s ease;
       white-space:nowrap;
     }
-    .cta:hover{ transform: translateY(-1px); filter: brightness(0.98); }
-    section{
-      min-height: calc(100vh - 62px);
+    .nav-cta:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(204,0,0,.30); }
+
+    /* ── TICKER ── */
+    .ticker-wrap{
+      position:fixed;
+      top:60px; left:0; right:0;
+      z-index:49;
+      background: var(--red);
+      overflow:hidden;
+      height: 34px;
+      display:flex;
+      align-items:center;
+    }
+    .ticker-track{
+      display:flex;
+      gap:0;
+      animation: ticker 28s linear infinite;
+      white-space:nowrap;
+    }
+    .ticker-track span{
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing:.18em;
+      color:#fff;
+      padding: 0 32px;
+      opacity:.95;
+    }
+    .ticker-track .dot{
+      color: rgba(255,255,255,.5);
+      padding:0;
+      letter-spacing:0;
+    }
+    @keyframes ticker{
+      0%{ transform:translateX(0); }
+      100%{ transform:translateX(-50%); }
+    }
+
+    /* ── MAIN OFFSET ── */
+    main{ padding-top: 94px; }
+
+    /* ── HERO ── */
+    .hero{
+      min-height: calc(100vh - 94px);
       display:flex;
       align-items:center;
       border-bottom: 1px solid var(--line);
-    }
-    .container{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 56px 18px;
-      width:100%;
-    }
-
-    .hero-stack{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      gap: 20px;
       position:relative;
+      overflow:hidden;
     }
-    .logo-reveal{
-      width: 100%;
+    .hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(ellipse 800px 500px at 20% 50%, rgba(204,0,0,.055), transparent 65%),
+        radial-gradient(ellipse 600px 400px at 80% 20%, rgba(204,0,0,.04), transparent 65%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 60px 24px;
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items:center;
+    }
+    .hero-left{ position:relative; }
+    .hero-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color: var(--red);
+      margin-bottom: 22px;
+    }
+    .hero-eyebrow::before{
+      content:'';
+      display:block;
+      width:28px; height:2px;
+      background: var(--red);
+      border-radius:2px;
+    }
+    h1{
+      font-family: var(--font-display);
+      font-size: clamp(72px, 10vw, 148px);
+      line-height: .88;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    h1 .accent{ color: var(--red); display:block; }
+    .hero-sub{
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+      max-width: 52ch;
+      font-weight: 300;
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      margin-top:36px;
+      flex-wrap:wrap;
+    }
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background: var(--red);
+      color:#fff;
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding:14px 28px;
+      border-radius:14px;
+      text-decoration:none;
+      border:0;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(204,0,0,.28); }
+    .btn-ghost{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background: transparent;
+      color: var(--text);
+      font-weight:600;
+      font-size:13px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding:14px 28px;
+      border-radius:14px;
+      text-decoration:none;
+      border:1.5px solid var(--line);
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .btn-ghost:hover{ border-color:rgba(10,10,10,.3); background:rgba(0,0,0,.03); }
+    .hero-right{ position:relative; }
+    .logo-card{
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      overflow:hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,.10);
+      aspect-ratio: 4/3;
       display:flex;
       align-items:center;
       justify-content:center;
     }
     #heroLogoVideo{
-      width: min(920px, 96vw);
-      height: 360px;
+      width:100%;
+      height:100%;
       object-fit: contain;
-      display:block;
-      margin: 0 auto;
       mix-blend-mode: multiply;
-      background: transparent;
-      border: 0;
-      outline: 0;
-      opacity: .96;
-      transform-origin: center center;
-      will-change: transform, opacity;
-      transition: opacity .15s linear;
+      display:block;
     }
-    h1{
-      margin:0;
-      font-size: clamp(56px, 7vw, 118px);
-      line-height: .9;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      font-weight: 950;
+    .hero-stat-row{
+      display:flex;
+      gap:0;
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      overflow:hidden;
+    }
+    .hero-stat{
+      flex:1;
+      padding: 16px 18px;
+      border-right: 1px solid var(--line);
+      text-align:center;
+    }
+    .hero-stat:last-child{ border-right:0; }
+    .hero-stat .val{
+      font-family: var(--font-display);
+      font-size:28px;
+      letter-spacing:.02em;
       color: var(--red);
-      text-shadow: 0 10px 40px rgba(211,0,0,.10);
+      display:block;
     }
-    .sub{
-      margin:0;
+    .hero-stat .lbl{
+      font-size:10px;
+      font-weight:600;
+      letter-spacing:.14em;
+      text-transform:uppercase;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.65;
-      max-width: 70ch;
+      display:block;
+      margin-top:2px;
     }
 
+    /* ── SECTION BASE ── */
+    section{
+      border-bottom: 1px solid var(--line);
+      position:relative;
+    }
+    .container{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 80px 24px;
+      width:100%;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .section-label::before{
+      content:'';
+      display:block;
+      width:20px; height:1.5px;
+      background: var(--red);
+      border-radius:2px;
+    }
+
+    /* ── H2 ── */
     h2{
-      margin:0 0 12px 0;
-      font-size: clamp(28px, 3.4vw, 46px);
-      letter-spacing:-0.02em;
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 76px);
+      letter-spacing:.02em;
       text-transform: uppercase;
-      font-weight: 950;
+      line-height:.92;
+      color: var(--text);
+      margin-bottom:0;
     }
     .lead{
       color: var(--muted);
-      line-height: 1.75;
-      font-size: 16px;
-      max-width: 70ch;
+      line-height: 1.8;
+      font-size: 15px;
+      font-weight:300;
+      max-width: 52ch;
+      margin-top:16px;
     }
 
-    .about-grid{
+    /* ── ABOUT ── */
+    .about-layout{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 26px;
+      gap:48px;
       align-items:start;
-      margin-top: 22px;
     }
-    .card{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.92);
+    .about-left{ }
+    .about-video{
+      background:#fff;
+      border:1px solid var(--line);
       border-radius: var(--radius);
       overflow:hidden;
-      box-shadow: 0 22px 60px rgba(0,0,0,.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,.08);
+      margin-top:32px;
     }
-    .card .inner{ padding: 18px 18px 20px; }
-    .person{
-      display:grid;
-      grid-template-columns: 120px 1fr;
-      gap: 16px;
-      align-items:start;
-    }
-    .photo{
-      width:120px;
-      height:120px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(211,0,0,.10), rgba(0,0,0,.02));
-    }
-    .photo img{ width:100%; height:100%; object-fit: cover; display:block; }
-    .person h3{
-      margin: 0 0 6px 0;
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing:.01em;
-    }
-    .role{
-      margin: 0 0 10px 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-      text-transform: uppercase;
-      letter-spacing:.08em;
-    }
-    .bio{
-      margin:0 0 12px 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 14px;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      align-items:start;
-    }
-    .offer, .panel{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.92);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: 0 22px 60px rgba(0,0,0,.08);
-    }
-    .offer .row{
-      display:flex;
-      gap:14px;
-      padding: 18px;
-      border-top: 1px solid var(--line);
-      align-items:flex-start;
-    }
-    .offer .row:first-child{ border-top:0; }
-    .num{
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      border: 1px solid rgba(211,0,0,.25);
-      display:grid;
-      place-items:center;
-      color: var(--red);
-      font-weight:950;
-      font-size:12px;
-      flex: 0 0 auto;
-      background: rgba(211,0,0,.06);
-    }
-    .offer .title{ font-weight: 900; letter-spacing:.01em; margin: 2px 0 6px; }
-    .offer .desc{ color: var(--muted); line-height: 1.55; margin:0; font-size: 14px; }
-
-    .panel .inner{ padding: 18px; }
-    .small-muted{ color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0; }
-
-    .embed{
-      border-top: 1px solid var(--line);
-      padding: 18px;
-    }
-    .embed:first-child{ border-top: 0; }
-    .embed h3{
-      margin: 0 0 8px 0;
-      font-size: 16px;
-      font-weight: 900;
+    .about-video-label{
+      padding:14px 18px;
+      border-bottom:1px solid var(--line);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
     }
     .ratio{
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,.04);
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      background:rgba(0,0,0,.03);
     }
     .ratio iframe{
       position:absolute;
@@ -281,128 +387,459 @@
       width:100%;
       height:100%;
       border:0;
+      display:block;
+    }
+    .people-stack{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+    .person-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.06);
+      display:grid;
+      grid-template-columns: 100px 1fr;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .person-card:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 18px 48px rgba(0,0,0,.10);
+    }
+    .person-photo{
+      width:100px;
+      height:100%;
+      min-height:130px;
+      overflow:hidden;
+      background: rgba(204,0,0,.06);
+    }
+    .person-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .person-info{ padding:18px 20px; }
+    .person-info h3{
+      font-family: var(--font-display);
+      font-size:22px;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin-bottom:4px;
+    }
+    .person-role{
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color: var(--red);
+      margin-bottom:10px;
+    }
+    .person-bio{
+      font-size:13px;
+      line-height:1.7;
+      color:var(--muted);
+      font-weight:300;
     }
 
-    footer{
-      border-top: 1px solid var(--line);
-      padding: 24px 18px 40px;
-      color: rgba(11,11,11,.55);
-      font-size: 12px;
+    /* ── WORKSHOP ── */
+    #workshop{ background: var(--text); color:#fff; }
+    #workshop::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(ellipse 700px 500px at 80% 50%, rgba(204,0,0,.18), transparent 65%),
+        radial-gradient(ellipse 400px 300px at 10% 80%, rgba(204,0,0,.10), transparent 65%);
+      pointer-events:none;
+    }
+    #workshop .section-label{ color:rgba(255,255,255,.45); }
+    #workshop h2{ color:#fff; }
+    #workshop .lead{ color:rgba(255,255,255,.55); }
+    .workshop-layout{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:56px;
+      align-items:center;
+    }
+    .workshop-card{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 26px;
+      padding:36px;
+      position:relative;
+      overflow:hidden;
+    }
+    .workshop-card::before{
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height:3px;
+      background: var(--red);
+    }
+    .ws-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background: var(--red);
+      color:#fff;
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      padding:5px 14px;
+      border-radius:999px;
+      margin-bottom:20px;
+    }
+    .ws-badge::before{
+      content:'';
+      width:6px; height:6px;
+      background:#fff;
+      border-radius:50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:.5; transform:scale(0.7); }
+    }
+    .ws-title{
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 42px);
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      color:#fff;
+      line-height:.95;
+      margin-bottom:18px;
+    }
+    .ws-desc{
+      font-size:14px;
+      font-weight:300;
+      line-height:1.8;
+      color:rgba(255,255,255,.60);
+      margin-bottom:28px;
+    }
+    .ws-pills{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:28px;
+    }
+    .ws-pill{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:10px;
+      padding:7px 14px;
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.70);
+    }
+    .ws-pill svg{ opacity:.7; }
+    .ws-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background: var(--red);
+      color:#fff;
+      font-weight:700;
+      font-size:13px;
       letter-spacing:.12em;
       text-transform:uppercase;
-      text-align:center;
-    }
-    footer a{
-      color: var(--red);
+      padding:15px 32px;
+      border-radius:14px;
       text-decoration:none;
-      font-weight: 900;
+      border:0;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow: 0 8px 28px rgba(204,0,0,.35);
     }
-    footer a:hover{ text-decoration: underline; }
+    .ws-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 40px rgba(204,0,0,.45); }
+    .ws-arrow{ font-size:18px; transition: transform .2s; }
+    .ws-btn:hover .ws-arrow{ transform:translateX(4px); }
 
-    @media (max-width: 980px){
-      .about-grid, .split{ grid-template-columns: 1fr; }
-      section{ min-height: auto; }
-      .container{ padding: 44px 18px; }
+    /* ── UPCOMING ── */
+    .upcoming-layout{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:56px;
+      align-items:start;
+    }
+    .upcoming-left{ position:sticky; top:100px; }
+    .video-stack{
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+    }
+    .video-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.06);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .video-item:hover{ transform:translateY(-3px); box-shadow:0 20px 50px rgba(0,0,0,.10); }
+    .video-label{
+      padding:14px 18px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .video-label h3{
+      font-family: var(--font-display);
+      font-size:18px;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+    .video-tag{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color: var(--red);
+      background: var(--red-soft);
+      border:1px solid rgba(204,0,0,.15);
+      border-radius:8px;
+      padding:4px 10px;
+    }
+
+    /* ── OFFER ── */
+    .offer-layout{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:48px;
+      align-items:start;
+    }
+    .offer-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    .offer-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.05);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .offer-card:hover{ transform:translateY(-3px); box-shadow:0 16px 44px rgba(0,0,0,.09); }
+    .offer-num{
+      font-family: var(--font-display);
+      font-size:36px;
+      letter-spacing:.02em;
+      color: rgba(204,0,0,.18);
+      margin-bottom:12px;
+      line-height:1;
+    }
+    .offer-title{
+      font-weight:700;
+      font-size:14px;
+      letter-spacing:.04em;
+      margin-bottom:8px;
+    }
+    .offer-desc{
+      font-size:13px;
+      font-weight:300;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer{
+      border-top: 1px solid var(--line);
+      padding: 32px 24px 48px;
+    }
+    .footer-inner{
+      max-width: var(--max);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .footer-brand{
+      font-family: var(--font-display);
+      font-size:16px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color: var(--text);
+    }
+    .footer-links{
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
+    .footer-links a{
+      color: var(--muted);
+      text-decoration:none;
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      transition:.2s;
+    }
+    .footer-links a:hover{ color: var(--red); }
+    .footer-copy{
+      color: var(--muted);
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      width:100%;
+      text-align:center;
+      margin-top:16px;
+      border-top:1px solid var(--line);
+      padding-top:20px;
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal{
+      opacity:0;
+      transform:translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .reveal-h{
+      display:block;
+      overflow:hidden;
+    }
+    .reveal-h .inner{
+      display:block;
+      transform:translateY(100%);
+      transition: transform .9s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal-h.visible .inner{
+      transform:translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .hero-inner{ grid-template-columns:1fr; gap:40px; }
+      .hero-right{ display:none; }
+      .about-layout,
+      .workshop-layout,
+      .offer-layout{ grid-template-columns:1fr; gap:36px; }
+      .upcoming-layout{ grid-template-columns:1fr; gap:32px; }
+      .upcoming-left{ position:static; }
       nav{ display:none; }
-      .person{ grid-template-columns: 100px 1fr; }
-      .photo{ width:100px; height:100px; border-radius: 16px; }
-      #heroLogoVideo{ width: min(760px, 96vw); height: 260px; }
+      .offer-grid{ grid-template-columns:1fr 1fr; }
     }
-    
-    @media (prefers-reduced-motion: reduce){
+    @media(max-width:540px){
+      .offer-grid{ grid-template-columns:1fr; }
+      .person-card{ grid-template-columns:80px 1fr; }
+      .person-photo{ min-height:110px; width:80px; }
+    }
+    @media(prefers-reduced-motion:reduce){
       html{ scroll-behavior:auto; }
-      #heroLogoVideo{ transition:none; }
-      .reveal-h, .reveal-h::after{ transition:none; opacity: 1; transform: none; }
+      .reveal, .reveal-h .inner{ transition:none; opacity:1; transform:none; }
+      .ticker-track{ animation:none; }
+      .ws-badge::before{ animation:none; }
     }
-
- /* --- Headline Reveal Animations (LEFT → RIGHT) --- */
-.reveal-h{
-  display:inline-block;
-  opacity: 0;
-  clip-path: inset(0 100% 0 0); /* hide from the right (reveals left→right) */
-  transition: opacity .5s ease, clip-path 1s ease;
-  will-change: clip-path, opacity;
-}
-
-.reveal-h.is-visible{
-  opacity: 1;
-  clip-path: inset(0 0 0 0);
-}
-
-/* underline line */
-.reveal-h::after{
-  content:"";
-  display:block;
-  margin-top:10px;
-  width:0;
-  height:3px;
-  background: var(--red);
-  border-radius:999px;
-  opacity:.35;
-  transition: width .8s ease .25s; /* starts after text begins revealing */
-}
-
-.reveal-h.is-visible::after{
-  width:56px;
-}
-
-    nav a.is-active{
-      background: linear-gradient(90deg, #ff004c, #ff8a00, #ffe600, #00d084, #00a3ff, #7a00ff);
-      color: #fff;
-    }
-
-#about .split { margin-top: 28px; }
   </style>
 </head>
 
 <body>
+  <!-- HEADER -->
   <header>
     <div class="nav">
-      <div class="brand">
-        <img src="assets/logoicon.png" alt="The Mad Goats Inc. logo" />
-        <div class="name">The Mad Goats Inc.</div>
-      </div>
-
+      <a class="brand" id="navHome" href="#top">
+        <img src="assets/logoicon.png" alt="The Mad Goats Inc." />
+        <span class="name">The Mad Goats Inc.</span>
+      </a>
       <nav>
-        <a id="navHome" href="#top">Home</a>
+        <a href="#about">Who We Are</a>
         <a href="#workshop">Workshop</a>
         <a href="#upcoming">Upcoming</a>
-        <a href="#offer">Offer</a>
+        <a href="#offer">Services</a>
       </nav>
-
-      <button class="cta" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">About us</button>
+      <a class="nav-cta" href="https://tinyurl.com/MadGoatsWIP" target="_blank" rel="noopener noreferrer">
+        Sign Up — WIP Series
+      </a>
     </div>
   </header>
 
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span>The Mad Goats WIP Series</span><span class="dot">·</span>
+      <span>Screenwriting Workshop for Beginners</span><span class="dot">·</span>
+      <span>Limited Slots Available</span><span class="dot">·</span>
+      <span>Sign Up Now</span><span class="dot">·</span>
+      <span>The Mad Goats WIP Series</span><span class="dot">·</span>
+      <span>Screenwriting Workshop for Beginners</span><span class="dot">·</span>
+      <span>Limited Slots Available</span><span class="dot">·</span>
+      <span>Sign Up Now</span><span class="dot">·</span>
+      <span>The Mad Goats WIP Series</span><span class="dot">·</span>
+      <span>Screenwriting Workshop for Beginners</span><span class="dot">·</span>
+      <span>Limited Slots Available</span><span class="dot">·</span>
+      <span>Sign Up Now</span><span class="dot">·</span>
+      <span>The Mad Goats WIP Series</span><span class="dot">·</span>
+      <span>Screenwriting Workshop for Beginners</span><span class="dot">·</span>
+      <span>Limited Slots Available</span><span class="dot">·</span>
+      <span>Sign Up Now</span><span class="dot">·</span>
+    </div>
+  </div>
+
   <main id="top">
-    <section>
-      <div class="container">
-        <div class="hero-stack">
-          <div class="logo-reveal" aria-label="Logo">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-eyebrow reveal" style="transition-delay:.1s">Story-first filmmaking</div>
+          <h1>
+            <span class="reveal-h" style="transition-delay:.2s"><span class="inner">Story</span></span>
+            <span class="reveal-h" style="transition-delay:.32s"><span class="inner">First.</span></span>
+            <span class="accent reveal-h" style="transition-delay:.44s"><span class="inner">Always.</span></span>
+          </h1>
+          <p class="hero-sub reveal" style="transition-delay:.6s">
+            We are filmmakers who bring senior creative leadership and story architecture to brand work — so the message lands, and the audience stays.
+          </p>
+          <div class="hero-actions reveal" style="transition-delay:.72s">
+            <a class="btn-primary" href="#workshop">Join the Workshop →</a>
+            <a class="btn-ghost" href="#about">Who We Are</a>
+          </div>
+        </div>
+        <div class="hero-right reveal" style="transition-delay:.5s">
+          <div class="logo-card">
             <video id="heroLogoVideo" autoplay muted playsinline preload="auto">
               <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
             </video>
           </div>
-          <h1>STORY FIRST.<br/>ALWAYS</h1>
-          <p class="sub">
-            We are filmmakers who bring senior creative leadership and story architecture to brand work —
-            so the message lands, and the audience stays.
-          </p>
+          <div class="hero-stat-row">
+            <div class="hero-stat">
+              <span class="val">2</span>
+              <span class="lbl">Films in Dev</span>
+            </div>
+            <div class="hero-stat">
+              <span class="val">20+</span>
+              <span class="lbl">Years Combined</span>
+            </div>
+            <div class="hero-stat">
+              <span class="val">PH</span>
+              <span class="lbl">Cinema</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
       <div class="container">
-        <div class="split">
-          <div>
-            <h2 class="reveal-h is-visible">WHO WE ARE</h2>
-            <p class="lead">Story-driven strategists with senior creative leadership across all platforms.</p>
-          </div>
-
-          <div class="panel">
-            <div class="embed" style="border-top:0;">
-              <h3>About The Company</h3>
+        <div class="about-layout">
+          <div class="about-left">
+            <div class="section-label reveal">About the Company</div>
+            <div class="reveal-h"><h2 class="inner">Who<br/>We Are</h2></div>
+            <p class="lead reveal" style="transition-delay:.15s">Story-driven strategists with senior creative leadership across all platforms.</p>
+            <div class="about-video reveal" style="transition-delay:.25s">
+              <div class="about-video-label">Company Overview</div>
               <div class="ratio">
                 <iframe
                   src="https://www.youtube.com/embed/rjThFAiuV40"
@@ -414,86 +851,78 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="about-grid" style="margin-top:26px;">
-          <div class="card">
-            <div class="inner">
-              <div class="person">
-                <div class="photo"><img src="assets/katski.jpg" alt="Katski Flores" /></div>
-                <div>
-                  <h3>Katski Flores</h3>
-                  <p class="role">Filmmaker • Producer</p>
-                  <p class="bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television’s most iconic series.</p>
-                  <p class="bio">Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy.</p>
-                  <p class="bio">A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
-                </div>
+          <div class="people-stack">
+            <div class="person-card reveal" style="transition-delay:.1s">
+              <div class="person-photo"><img src="assets/katski.jpg" alt="Katski Flores" /></div>
+              <div class="person-info">
+                <h3>Katski Flores</h3>
+                <div class="person-role">Filmmaker · Producer</div>
+                <p class="person-bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television's most iconic series. Former Creative Head for major studios, specializing in story architecture and brand-aligned content strategy.</p>
               </div>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="inner">
-              <div class="person">
-                <div class="photo"><img src="assets/michiko.jpg" alt="Michiko Yamamoto" /></div>
-                <div>
-                  <h3>Michiko Yamamoto</h3>
-                  <p class="role">Writer • Producer</p>
-                  <p class="bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema.</p>
-                  <p class="bio">A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound.</p>
-                  <p class="bio">She understands the full lifecycle of content: from development to on-ground production to audience impact.</p>
-                </div>
+            <div class="person-card reveal" style="transition-delay:.22s">
+              <div class="person-photo"><img src="assets/michiko.jpg" alt="Michiko Yamamoto" /></div>
+              <div class="person-info">
+                <h3>Michiko Yamamoto</h3>
+                <div class="person-role">Writer · Producer</div>
+                <p class="person-bio">Multi-awarded screenwriter in the Philippines and abroad. A master of character-driven narratives — highly production fluent, ensuring ideas are both powerful and operationally sound.</p>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
+    <!-- WORKSHOP -->
     <section id="workshop">
-      <div class="container">
-        <div class="split">
+      <div class="container" style="position:relative; z-index:1;">
+        <div class="workshop-layout">
           <div>
-            <h2 class="reveal-h">WIP Series</h2>
-            <p class="lead">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
+            <div class="section-label reveal">Open Now</div>
+            <div class="reveal-h"><h2 class="inner">WIP<br/>Series</h2></div>
+            <p class="lead reveal" style="transition-delay:.18s">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
           </div>
-
-          <div class="panel">
-            <div class="embed" style="border-top:0; padding: 28px;">
-              <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px;">
-                <div style="background:var(--red); color:#fff; font-size:11px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; padding:5px 12px; border-radius:999px;">Now Open</div>
-                <div style="color:var(--muted); font-size:12px; letter-spacing:.1em; text-transform:uppercase;">Limited Slots</div>
+          <div class="workshop-card reveal" style="transition-delay:.2s">
+            <div class="ws-badge">Now Enrolling</div>
+            <div class="ws-title">Screenwriting<br/>Workshop for<br/>Beginners</div>
+            <p class="ws-desc">Learn the fundamentals of screenwriting directly from industry veterans. Reserve your slot — confirmed registrants will be emailed with full details on schedule and location.</p>
+            <div class="ws-pills">
+              <div class="ws-pill">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Limited Slots
               </div>
-              <h3 style="font-size:clamp(18px,2.2vw,26px); font-weight:950; letter-spacing:-0.02em; text-transform:uppercase; margin:0 0 12px; line-height:1.15;">Screenwriting Workshop<br/>for Beginners</h3>
-              <p style="color:var(--muted); font-size:14px; line-height:1.7; margin:0 0 24px;">Learn the fundamentals of screenwriting directly from industry veterans. Sign up to reserve your slot — successful registrants will be emailed with full details.</p>
-
-              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:20px;">
-                <div style="display:flex; align-items:center; gap:7px; background:rgba(211,0,0,.07); border:1px solid rgba(211,0,0,.15); border-radius:12px; padding:8px 14px;">
-                  <svg width="14" height="14" fill="none" stroke="var(--red)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span style="font-size:12px; font-weight:900; color:var(--red); letter-spacing:.06em; text-transform:uppercase;">Limited Slots</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:7px; background:rgba(11,11,11,.04); border:1px solid var(--line); border-radius:12px; padding:8px 14px;">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                  <span style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:.06em; text-transform:uppercase;">Details via Email</span>
-                </div>
+              <div class="ws-pill">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Details via Email
               </div>
-
-              <a href="https://tinyurl.com/MadGoatsWIP" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:var(--red); color:#fff; font-weight:900; font-size:13px; letter-spacing:.12em; text-transform:uppercase; padding:14px 28px; border-radius:14px; text-decoration:none; transition:.2s ease; box-shadow: 0 8px 24px rgba(211,0,0,.25);" onmouseover="this.style.transform='translateY(-2px)';this.style.filter='brightness(1.05)'" onmouseout="this.style.transform='';this.style.filter=''">Sign Up Now →</a>
+              <div class="ws-pill">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Beginners Welcome
+              </div>
             </div>
+            <a class="ws-btn" href="https://tinyurl.com/MadGoatsWIP" target="_blank" rel="noopener noreferrer">
+              Sign Up Now <span class="ws-arrow">→</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- UPCOMING -->
     <section id="upcoming">
       <div class="container">
-        <div class="split">
-          <div><h2 class="reveal-h">Upcoming Projects</h2></div>
-
-          <div class="panel">
-            <div class="embed">
-              <h3>BuyBust: The Undesirables</h3>
+        <div class="upcoming-layout">
+          <div class="upcoming-left">
+            <div class="section-label reveal">In Production</div>
+            <div class="reveal-h"><h2 class="inner">Upcoming<br/>Projects</h2></div>
+            <p class="lead reveal" style="transition-delay:.15s">Stories in motion. Two major projects currently in development.</p>
+          </div>
+          <div class="video-stack">
+            <div class="video-item reveal" style="transition-delay:.1s">
+              <div class="video-label">
+                <h3>BuyBust: The Undesirables</h3>
+                <span class="video-tag">In Dev</span>
+              </div>
               <div class="ratio">
                 <iframe
                   src="https://www.youtube-nocookie.com/embed/MKemy6nL5Eo?start=7"
@@ -504,9 +933,11 @@
                 ></iframe>
               </div>
             </div>
-
-            <div class="embed">
-              <h3>Edjop — Trailer</h3>
+            <div class="video-item reveal" style="transition-delay:.22s">
+              <div class="video-label">
+                <h3>Edjop — Trailer</h3>
+                <span class="video-tag">In Dev</span>
+              </div>
               <div class="ratio">
                 <iframe
                   src="https://www.youtube-nocookie.com/embed/VldT1Dj5AfU?origin=https://themadgoats.com"
@@ -518,189 +949,125 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
+    <!-- OFFER -->
     <section id="offer">
       <div class="container">
-        <div class="split">
+        <div class="offer-layout">
           <div>
-            <h2 class="reveal-h">What we offer</h2>
-            <p class="lead">Story-led outputs built for brands, platforms, and real attention.</p>
+            <div class="section-label reveal">What We Do</div>
+            <div class="reveal-h"><h2 class="inner">Services</h2></div>
+            <p class="lead reveal" style="transition-delay:.15s">Story-led outputs built for brands, platforms, and real attention.</p>
           </div>
-
-          <div class="offer" role="list">
-            <div class="row" role="listitem">
-              <div class="num">01</div>
-              <div>
-                <div class="title">Branded films</div>
-                <p class="desc">Cinematic brand stories with real character, pacing, and payoff.</p>
-              </div>
+          <div class="offer-grid">
+            <div class="offer-card reveal" style="transition-delay:.1s">
+              <div class="offer-num">01</div>
+              <div class="offer-title">Branded Films</div>
+              <p class="offer-desc">Cinematic brand stories with real character, pacing, and payoff.</p>
             </div>
-            <div class="row" role="listitem">
-              <div class="num">02</div>
-              <div>
-                <div class="title">Serialized digital content</div>
-                <p class="desc">Episode-based formats that build retention and make the brand feel alive.</p>
-              </div>
+            <div class="offer-card reveal" style="transition-delay:.18s">
+              <div class="offer-num">02</div>
+              <div class="offer-title">Serialized Content</div>
+              <p class="offer-desc">Episode-based formats that build retention and make the brand feel alive.</p>
             </div>
-            <div class="row" role="listitem">
-              <div class="num">03</div>
-              <div>
-                <div class="title">Narrative-led campaigns</div>
-                <p class="desc">Campaign structure with a story spine — not random posts in a calendar.</p>
-              </div>
+            <div class="offer-card reveal" style="transition-delay:.26s">
+              <div class="offer-num">03</div>
+              <div class="offer-title">Narrative Campaigns</div>
+              <p class="offer-desc">Campaign structure with a story spine — not random posts in a calendar.</p>
             </div>
-            <div class="row" role="listitem">
-              <div class="num">04</div>
-              <div>
-                <div class="title">Culture-driven initiatives</div>
-                <p class="desc">Work that speaks the language of the moment without chasing trends blindly.</p>
-              </div>
+            <div class="offer-card reveal" style="transition-delay:.34s">
+              <div class="offer-num">04</div>
+              <div class="offer-title">Culture Initiatives</div>
+              <p class="offer-desc">Work that speaks the language of the moment without chasing trends blindly.</p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-      © <span id="y"></span> The Mad Goats Inc. •
-      For inquiries: <a href="/cdn-cgi/l/email-protection#f796939a9e99b7839f929a96939098968384d994989a"><span class="__cf_email__" data-cfemail="1170757c787f516579747c7075767e7065623f727e7c">[email&#160;protected]</span></a> •
-      YouTube: <a href="https://www.youtube.com/@themadgoats" target="_blank" rel="noopener noreferrer">@themadgoats</a>
+      <div class="footer-inner">
+        <div class="footer-brand">The Mad Goats Inc.</div>
+        <div class="footer-links">
+          <a href="mailto:admin@themadgoats.com">admin@themadgoats.com</a>
+          <a href="https://www.youtube.com/@themadgoats" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+        <div class="footer-copy">© <span id="y"></span> The Mad Goats Inc. — Story First. Always.</div>
+      </div>
     </footer>
+
   </main>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-// Force refresh to always land on Home (top)
-(function () {
-  if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-  }
+    // Scroll restoration
+    (function(){
+      if("scrollRestoration" in history) history.scrollRestoration = "manual";
+      if(window.location.hash) history.replaceState(null,"",window.location.pathname+window.location.search);
+      function toTop(){ window.scrollTo(0,0); setTimeout(()=>window.scrollTo(0,0),0); setTimeout(()=>window.scrollTo(0,0),50); }
+      window.addEventListener("load", toTop);
+      window.addEventListener("pageshow", toTop);
+    })();
 
-  // remove hash so it doesn't jump to a section
-  if (window.location.hash) {
-    history.replaceState(null, "", window.location.pathname + window.location.search);
-  }
+    // Scroll reveal
+    (function(){
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if(prefersReduced){
+        document.querySelectorAll(".reveal, .reveal-h").forEach(el=>{
+          el.classList.add("visible");
+        });
+        return;
+      }
+      const els = document.querySelectorAll(".reveal, .reveal-h");
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ e.target.classList.add("visible"); }
+        });
+      }, { threshold:0.08, rootMargin:"0px 0px -40px 0px" });
+      els.forEach(el => io.observe(el));
+      // trigger visible on load
+      requestAnimationFrame(()=>{
+        els.forEach(el=>{
+          const r = el.getBoundingClientRect();
+          if(r.top < window.innerHeight * 0.95) el.classList.add("visible");
+        });
+      });
+    })();
 
-  function toTop() {
-    window.scrollTo(0, 0);
-    // extra nudge for iOS/Safari/Chrome restore behavior
-    setTimeout(() => window.scrollTo(0, 0), 0);
-    setTimeout(() => window.scrollTo(0, 0), 50);
-  }
-
-  window.addEventListener("load", toTop);
-  window.addEventListener("pageshow", toTop);
-})();
-    // 1. Logo Parallax/Fade Effect
-    (function () {
+    // Logo parallax fade
+    (function(){
       const logo = document.getElementById("heroLogoVideo");
-      const heroSection = logo && logo.closest("section");
-      if (!logo || !heroSection) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
+      if(!logo) return;
+      if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const hero = logo.closest("section");
       function tick(){
-        const rect = heroSection.getBoundingClientRect();
+        const rect = hero.getBoundingClientRect();
         const vh = window.innerHeight || 800;
-        const progress = Math.max(0, Math.min(1, (0 - rect.top) / (vh * 0.9)));
-        logo.style.transform = `scale(${1.06 - progress * 0.20})`;
-        logo.style.opacity = `${0.96 - progress * 0.35}`;
+        const p = Math.max(0, Math.min(1, (0 - rect.top) / (vh * 0.85)));
+        logo.style.transform = `scale(${1.05 - p * 0.15})`;
+        logo.style.opacity = `${1 - p * 0.4}`;
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
     })();
 
-    // 2. Nav Home Click / Video Replay
-    (function () {
+    // Nav home replay
+    (function(){
       const home = document.getElementById("navHome");
       const vid = document.getElementById("heroLogoVideo");
-      if (!home || !vid) return;
-
-      home.addEventListener("click", (e) => {
+      if(!home || !vid) return;
+      home.addEventListener("click", e=>{
         e.preventDefault();
-        document.getElementById("top").scrollIntoView({ behavior: "smooth" });
-        vid.pause();
-        vid.currentTime = 0;
-        vid.play().catch(() => {});
+        document.getElementById("top").scrollIntoView({behavior:"smooth"});
+        vid.pause(); vid.currentTime = 0; vid.play().catch(()=>{});
       });
     })();
-
-// 3. Headline Reveal (scroll + replay on nav clicks)
-(function () {
-  const headlines = Array.from(document.querySelectorAll(".reveal-h"));
-  if (!headlines.length) return;
-
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (prefersReduced) {
-    headlines.forEach(h => h.classList.add("is-visible"));
-    return;
-  }
-
-  function replay(el){
-    if (!el) return;
-    el.classList.remove("is-visible");
-    void el.offsetWidth; // force reflow so transitions retrigger
-    requestAnimationFrame(() => el.classList.add("is-visible"));
-  }
-
-  function replayVisibleNow(){
-    const vh = window.innerHeight || 800;
-    headlines.forEach(h => {
-      const r = h.getBoundingClientRect();
-      if (r.top < vh * 0.9 && r.bottom > 0) replay(h);
-    });
-  }
-
-  // Reveal when entering viewport (and allow replays)
-  const observerOptions = { threshold: 0.12, rootMargin: "0px 0px -50px 0px" };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) replay(entry.target);
-    });
-  }, observerOptions);
-
-  headlines.forEach(h => observer.observe(h));
-
-  // Make sure "WHO WE ARE" (and other near-top headings) animate reliably
-  function forceAboutOnce(){
-    const aboutH = document.querySelector("#about .reveal-h");
-    if (aboutH) replay(aboutH);
-  }
-
-  requestAnimationFrame(() => {
-    replayVisibleNow();
-    forceAboutOnce();
-  });
-
-  window.addEventListener("load", () => {
-    replayVisibleNow();
-    forceAboutOnce();
-  });
-
-  window.addEventListener("pageshow", () => {
-    replayVisibleNow();
-    forceAboutOnce();
-  });
-
-  // Replay the section headline whenever a nav link is clicked
-  document.querySelectorAll("header nav a").forEach(a => {
-    a.addEventListener("click", () => {
-      const href = a.getAttribute("href") || "";
-      if (!href.startsWith("#")) return;
-
-      const section = document.querySelector(href);
-      if (!section) return;
-
-      const h = section.querySelector(".reveal-h");
-      setTimeout(() => replay(h), 500);
-      setTimeout(replayVisibleNow, 700);
-    });
-  });
-})();
-
-// 4) Always
+  </script>
+</body>
+</html>
