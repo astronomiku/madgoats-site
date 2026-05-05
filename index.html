@@ -103,7 +103,7 @@
     }
 
     /* ── MAIN OFFSET ── */
-    main{ padding-top: 60px; }
+    main{ padding-top: 112px; }
 
     /* ── HERO ── */
     .hero{
@@ -692,6 +692,67 @@
     }
     .bottom-nav a.who-btn svg{ stroke:#fff; }
 
+
+    /* ── TICKER ── */
+    .ticker-wrap{
+      position:fixed;
+      top:60px; left:0; right:0;
+      z-index:49;
+      background: #f5c800;
+      overflow:hidden;
+      height: 52px;
+      display:flex;
+      align-items:center;
+      border-bottom: 2px solid rgba(0,0,0,.10);
+    }
+    .ticker-track{
+      display:flex;
+      align-items:center;
+      gap:0;
+      animation: ticker 22s linear infinite;
+      white-space:nowrap;
+      height:52px;
+    }
+    .ticker-track span{
+      font-family: var(--font-display);
+      font-size: 15px;
+      letter-spacing:.18em;
+      color:#0a0a0a;
+      padding: 0 20px;
+      display:inline-flex;
+      align-items:center;
+      height:52px;
+    }
+    .ticker-track .dot{
+      color: #1a6dd4;
+      font-size: 16px;
+      padding: 0 8px;
+      display:inline-flex;
+      align-items:center;
+    }
+    @keyframes ticker{
+      0%{ transform:translateX(0); }
+      100%{ transform:translateX(-50%); }
+    }
+    /* Pixie fairy flying across ticker */
+    .ticker-fairy{
+      position:fixed;
+      top: 28px;
+      height: 90px;
+      width: auto;
+      pointer-events: none;
+      animation: fairy-fly 18s linear infinite;
+      z-index: 55;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,.18));
+    }
+    @keyframes fairy-fly{
+      0%   { left: 105%; transform: scaleX(-1) rotate(-8deg); }
+      30%  { transform: scaleX(-1) rotate(-12deg) translateY(-8px); }
+      60%  { transform: scaleX(-1) rotate(-6deg) translateY(4px); }
+      80%  { transform: scaleX(-1) rotate(-10deg) translateY(-5px); }
+      100% { left: -12%; transform: scaleX(-1) rotate(-8deg); }
+    }
+
     /* ── RESPONSIVE ── */
     @media(max-width:900px){
       .hero-inner{ grid-template-columns:1fr; gap:40px; }
@@ -705,7 +766,7 @@
       .nav-who{ display:none; }
       .offer-grid{ grid-template-columns:1fr 1fr; }
       .bottom-nav{ display:flex; }
-      main{ padding-bottom: 80px; }
+      main{ padding-bottom: 80px; padding-top: 112px; }
     }
     @media(max-width:540px){
       .offer-grid{ grid-template-columns:1fr; }
@@ -715,6 +776,7 @@
     @media(prefers-reduced-motion:reduce){
       html{ scroll-behavior:auto; }
       .reveal, .reveal-h .inner{ transition:none; opacity:1; transform:none; }
+      .ticker-track, .ticker-fairy{ animation:none; }
 
       .ws-badge::before{ animation:none; }
     }
@@ -736,7 +798,34 @@
       </nav>
       <a class="nav-who" href="#about">Who We Are</a>
     </div>
-  </header><main id="top">
+  </header>
+
+  <!-- PIXIE WINKS FAIRY - flies above ticker -->
+  <img class="ticker-fairy" src="assets/pixieflyingfinal.png" alt="Pixie Winks fairy" aria-hidden="true" />
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-label="Announcement">
+    <div class="ticker-track">
+      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
+      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
+      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
+      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
+      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
+      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
+      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
+      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
+      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
+      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
+      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
+      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
+      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
+      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
+      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
+      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
+    </div>
+  </div>
+
+  <main id="top">
 
     <!-- HERO -->
     <section class="hero">
