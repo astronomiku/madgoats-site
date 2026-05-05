@@ -871,6 +871,28 @@
     }
     .latest-link:hover{ opacity:.7; }
 
+    .latest-pagination{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+    .latest-pagination button{
+      width:36px; height:36px;
+      border-radius:10px;
+      border:1.5px solid var(--line);
+      background:#fff;
+      font-family: var(--font-body);
+      font-size:13px;
+      font-weight:700;
+      color:var(--muted);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .latest-pagination button:hover{ border-color:var(--red); color:var(--red); }
+    .latest-pagination button.active{ background:var(--red); border-color:var(--red); color:#fff; }
+
     /* ── RESPONSIVE ── */
     @media(max-width:900px){
       .hero-inner{ grid-template-columns:1fr; gap:40px; }
@@ -1056,43 +1078,10 @@
             <div class="reveal-h"><h2 class="inner">Latest</h2></div>
             <p class="lead reveal" style="transition-delay:.15s">Announcements, launches, and updates from The Mad Goats.</p>
           </div>
-          <div class="latest-feed">
-
-            <!-- CARD: Pixie Winks with reel -->
-            <div class="latest-card latest-card--featured reveal" style="transition-delay:.1s">
-              <div class="latest-card-header">
-                <span class="latest-tag latest-tag--channel">Channel</span>
-                <span class="latest-date">May 2025</span>
-              </div>
-              <div class="latest-card-body">
-                <div class="latest-reel-wrap">
-                  <div class="latest-reel">
-                    <iframe src="https://www.youtube.com/embed/KDKTvuLJQ9k" title="Pixie Winks Launch Reel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div>
-                  <div class="latest-card-text">
-                    <h3 class="latest-title">Pixie Winks — Launching Soon!</h3>
-                    <p class="latest-desc">A brand new YouTube channel for kids is on its way. Stories. Magic. Adventures. Subscribe now and be the first to know when we go live.</p>
-                    <a class="latest-link" href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer">Subscribe on YouTube →</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- CARD: Workshop -->
-            <div class="latest-card reveal" style="transition-delay:.2s">
-              <div class="latest-card-header">
-                <span class="latest-tag latest-tag--workshop">Workshop</span>
-                <span class="latest-date">May 5, 2025</span>
-              </div>
-              <div class="latest-card-body latest-card-body--slim">
-                <div>
-                  <h3 class="latest-title">Last Day to Register — May 6!</h3>
-                  <p class="latest-desc">The Mad Goats WIP Series: Screenwriting Workshop for Beginners. Sign up before slots close tomorrow.</p>
-                </div>
-                <a class="latest-link" href="https://tinyurl.com/MadGoatsWIP" target="_blank" rel="noopener noreferrer">Register Now →</a>
-              </div>
-            </div>
+          <div class="latest-feed" id="latestFeed">
+            <!-- Cards are rendered by JS below -->
           </div>
+          <div class="latest-pagination" id="latestPagination"></div>
 
           </div>
         </div>
@@ -1297,6 +1286,96 @@
         document.getElementById("top").scrollIntoView({behavior:"smooth"});
         vid.pause(); vid.currentTime = 0; vid.play().catch(()=>{});
       });
+    })();
+
+    // ── LATEST CARDS PAGINATION ──
+    // TO ADD A NEW CARD: copy an object below, paste at the TOP of the array, update the fields.
+    // type options: 'channel' | 'workshop' | 'film' | 'press'
+    // video: optional YouTube embed URL (makes card featured with reel)
+    const LATEST_CARDS = [
+      {
+        type: 'channel',
+        date: 'May 2025',
+        title: 'Pixie Winks — Launching Soon!',
+        desc: 'A brand new YouTube channel for kids is on its way. Stories. Magic. Adventures. Subscribe now and be the first to know when we go live.',
+        link: 'https://www.youtube.com/@pixie_winks',
+        linkText: 'Subscribe on YouTube →',
+        video: 'https://www.youtube.com/embed/KDKTvuLJQ9k'
+      },
+      {
+        type: 'workshop',
+        date: 'May 5, 2025',
+        title: 'Last Day to Register — May 6!',
+        desc: 'The Mad Goats WIP Series: Screenwriting Workshop for Beginners. Sign up before slots close tomorrow.',
+        link: 'https://tinyurl.com/MadGoatsWIP',
+        linkText: 'Register Now →'
+      }
+    ];
+
+    (function(){
+      const PER_PAGE = 3;
+      const feed = document.getElementById('latestFeed');
+      const pagination = document.getElementById('latestPagination');
+      if(!feed || !pagination) return;
+
+      let currentPage = 1;
+      const totalPages = () => Math.ceil(LATEST_CARDS.length / PER_PAGE);
+
+      function tagClass(type){ return `latest-tag latest-tag--${type}`; }
+
+      function renderCards(page){
+        const start = (page - 1) * PER_PAGE;
+        const slice = LATEST_CARDS.slice(start, start + PER_PAGE);
+        feed.innerHTML = slice.map(card => {
+          const featured = card.video ? 'latest-card--featured' : '';
+          const body = card.video
+            ? `<div class="latest-card-body">
+                <div class="latest-reel-wrap">
+                  <div class="latest-reel">
+                    <iframe src="${card.video}" title="${card.title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                  <div class="latest-card-text">
+                    <h3 class="latest-title">${card.title}</h3>
+                    <p class="latest-desc">${card.desc}</p>
+                    ${card.link ? `<a class="latest-link" href="${card.link}" target="_blank" rel="noopener noreferrer">${card.linkText}</a>` : ''}
+                  </div>
+                </div>
+              </div>`
+            : `<div class="latest-card-body latest-card-body--slim">
+                <div>
+                  <h3 class="latest-title">${card.title}</h3>
+                  <p class="latest-desc">${card.desc}</p>
+                </div>
+                ${card.link ? `<a class="latest-link" href="${card.link}" target="_blank" rel="noopener noreferrer">${card.linkText}</a>` : ''}
+              </div>`;
+          return `<div class="latest-card ${featured}">
+            <div class="latest-card-header">
+              <span class="${tagClass(card.type)}">${card.type.charAt(0).toUpperCase()+card.type.slice(1)}</span>
+              <span class="latest-date">${card.date}</span>
+            </div>
+            ${body}
+          </div>`;
+        }).join('');
+      }
+
+      function renderPagination(page){
+        const total = totalPages();
+        if(total <= 1){ pagination.innerHTML = ''; return; }
+        pagination.innerHTML = Array.from({length: total}, (_,i) => {
+          const n = i + 1;
+          return `<button class="${n === page ? 'active' : ''}" onclick="latestGoTo(${n})">${n}</button>`;
+        }).join('');
+      }
+
+      window.latestGoTo = function(page){
+        currentPage = page;
+        renderCards(page);
+        renderPagination(page);
+        document.getElementById('latest').scrollIntoView({behavior:'smooth', block:'start'});
+      };
+
+      renderCards(currentPage);
+      renderPagination(currentPage);
     })();
   </script>
 </body>
