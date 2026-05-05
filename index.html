@@ -741,10 +741,17 @@
       top: 10px;
       height: 220px;
       width: auto;
-      pointer-events: none;
+      pointer-events: auto;
       z-index: 55;
-      filter: drop-shadow(-3px 3px 8px rgba(0,0,0,.15));
+      display:block;
       animation: pixie-peek 9s ease-in-out infinite;
+      cursor: pointer;
+    }
+    .pixie-peek img{
+      height: 220px;
+      width: auto;
+      filter: drop-shadow(-3px 3px 8px rgba(0,0,0,.15));
+      display:block;
     }
     @keyframes pixie-peek{
       0%   { right: -200px; transform: rotate(8deg); }
@@ -805,27 +812,23 @@
   </header>
 
   <!-- PIXIE WINKS - peeks from right edge -->
-  <img class="pixie-peek" src="assets/pixieflyingfinal.png" alt="Pixie Winks" aria-hidden="true" />
+  <a class="pixie-peek" href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer"><img src="assets/pixieflyingfinal.png" alt="Visit Pixie Winks on YouTube" /></a>
 
   <!-- TICKER -->
   <div class="ticker-wrap" aria-label="Announcement">
     <div class="ticker-track">
-      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
-      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
+      <span>✨ Pixie Winks — Launching Soon!</span><span class="dot">●</span>
       <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
-      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
+      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#c2185b;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
+      <span>✨ Pixie Winks — Launching Soon!</span><span class="dot">●</span>
       <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
-      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
+      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#c2185b;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
+      <span>✨ Pixie Winks — Launching Soon!</span><span class="dot">●</span>
       <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
-      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
+      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#c2185b;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
+      <span>✨ Pixie Winks — Launching Soon!</span><span class="dot">●</span>
       <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
+      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#c2185b;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
     </div>
   </div>
 
