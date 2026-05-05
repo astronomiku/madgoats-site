@@ -734,23 +734,26 @@
       0%{ transform:translateX(0); }
       100%{ transform:translateX(-50%); }
     }
-    /* Pixie fairy flying across ticker */
-    .ticker-fairy{
+    /* Pixie peeks from right edge */
+    .pixie-peek{
       position:fixed;
-      top: 28px;
-      height: 90px;
+      right: -130px;
+      bottom: 120px;
+      height: 160px;
       width: auto;
       pointer-events: none;
-      animation: fairy-fly 18s linear infinite;
       z-index: 55;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,.18));
+      filter: drop-shadow(-4px 4px 12px rgba(0,0,0,.20));
+      animation: pixie-peek 8s ease-in-out infinite;
     }
-    @keyframes fairy-fly{
-      0%   { left: 105%; transform: scaleX(-1) rotate(-8deg); }
-      30%  { transform: scaleX(-1) rotate(-12deg) translateY(-8px); }
-      60%  { transform: scaleX(-1) rotate(-6deg) translateY(4px); }
-      80%  { transform: scaleX(-1) rotate(-10deg) translateY(-5px); }
-      100% { left: -12%; transform: scaleX(-1) rotate(-8deg); }
+    @keyframes pixie-peek{
+      0%   { right: -130px; transform: rotate(5deg); }
+      15%  { right: -20px;  transform: rotate(-8deg) translateY(-10px); }
+      30%  { right: -20px;  transform: rotate(5deg)  translateY(0px); }
+      45%  { right: -20px;  transform: rotate(-5deg) translateY(-8px); }
+      65%  { right: -20px;  transform: rotate(3deg)  translateY(0px); }
+      80%  { right: -130px; transform: rotate(5deg); }
+      100% { right: -130px; transform: rotate(5deg); }
     }
 
     /* ── RESPONSIVE ── */
@@ -776,7 +779,8 @@
     @media(prefers-reduced-motion:reduce){
       html{ scroll-behavior:auto; }
       .reveal, .reveal-h .inner{ transition:none; opacity:1; transform:none; }
-      .ticker-track, .ticker-fairy{ animation:none; }
+      .ticker-track{ animation:none; }
+      .pixie-peek{ animation:none; right:-130px; }
 
       .ws-badge::before{ animation:none; }
     }
@@ -800,8 +804,8 @@
     </div>
   </header>
 
-  <!-- PIXIE WINKS FAIRY - flies above ticker -->
-  <img class="ticker-fairy" src="assets/pixieflyingfinal.png" alt="Pixie Winks fairy" aria-hidden="true" />
+  <!-- PIXIE WINKS - peeks from right edge -->
+  <img class="pixie-peek" src="assets/pixieflyingfinal.png" alt="Pixie Winks" aria-hidden="true" />
 
   <!-- TICKER -->
   <div class="ticker-wrap" aria-label="Announcement">
