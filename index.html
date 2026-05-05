@@ -737,9 +737,9 @@
     /* Pixie peeks from right edge */
     .pixie-peek{
       position:fixed;
-      right: -110px;
-      top: 42px;
-      height: 110px;
+      right: -200px;
+      top: 10px;
+      height: 220px;
       width: auto;
       pointer-events: none;
       z-index: 55;
@@ -747,13 +747,13 @@
       animation: pixie-peek 9s ease-in-out infinite;
     }
     @keyframes pixie-peek{
-      0%   { right: -110px; transform: rotate(8deg); }
+      0%   { right: -200px; transform: rotate(8deg); }
       18%  { right: 4px;    transform: rotate(-10deg) translateY(-6px); }
       32%  { right: 4px;    transform: rotate(6deg)   translateY(2px); }
       48%  { right: 4px;    transform: rotate(-7deg)  translateY(-5px); }
       64%  { right: 4px;    transform: rotate(4deg)   translateY(0px); }
-      78%  { right: -110px; transform: rotate(8deg); }
-      100% { right: -110px; transform: rotate(8deg); }
+      78%  { right: -200px; transform: rotate(8deg); }
+      100% { right: -200px; transform: rotate(8deg); }
     }
 
     /* ── RESPONSIVE ── */
@@ -780,7 +780,7 @@
       html{ scroll-behavior:auto; }
       .reveal, .reveal-h .inner{ transition:none; opacity:1; transform:none; }
       .ticker-track{ animation:none; }
-      .pixie-peek{ animation:none; right:-110px; }
+      .pixie-peek{ animation:none; right:-200px; }
 
       .ws-badge::before{ animation:none; }
     }
