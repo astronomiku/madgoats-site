@@ -763,6 +763,114 @@
       100% { right: -200px; transform: rotate(8deg); }
     }
 
+    /* ── LATEST ── */
+    .latest-layout{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:56px;
+      align-items:start;
+    }
+    .latest-left{ position:sticky; top:100px; }
+    .latest-feed{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .latest-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.05);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .latest-card:hover{ transform:translateY(-3px); box-shadow:0 16px 44px rgba(0,0,0,.09); }
+    .latest-card-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 18px;
+      border-bottom:1px solid var(--line);
+    }
+    .latest-tag{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      padding:4px 10px;
+      border-radius:8px;
+    }
+    .latest-tag--channel{ background:rgba(233,30,99,.08); color:#c2185b; border:1px solid rgba(233,30,99,.15); }
+    .latest-tag--workshop{ background:var(--red-soft); color:var(--red); border:1px solid rgba(204,0,0,.15); }
+    .latest-tag--film{ background:rgba(33,150,243,.07); color:#1565c0; border:1px solid rgba(33,150,243,.15); }
+    .latest-date{
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .latest-card-body{
+      padding:20px 18px;
+    }
+    .latest-card-body--slim{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .latest-reel-wrap{
+      display:grid;
+      grid-template-columns: 200px 1fr;
+      gap:20px;
+      align-items:center;
+    }
+    .latest-reel{
+      position:relative;
+      width:200px;
+      padding-top:calc(200px * 16/9);
+      border-radius:12px;
+      overflow:hidden;
+      background:rgba(0,0,0,.04);
+      flex-shrink:0;
+    }
+    .latest-reel iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+    .latest-title{
+      font-family: var(--font-display);
+      font-size:20px;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+      line-height:1.1;
+    }
+    .latest-desc{
+      font-size:13px;
+      font-weight:300;
+      color:var(--muted);
+      line-height:1.7;
+      margin-bottom:12px;
+    }
+    .latest-link{
+      display:inline-flex;
+      align-items:center;
+      color:var(--red);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      text-decoration:none;
+      transition:.2s;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
+    .latest-link:hover{ opacity:.7; }
+
     /* ── RESPONSIVE ── */
     @media(max-width:900px){
       .hero-inner{ grid-template-columns:1fr; gap:40px; }
@@ -770,13 +878,18 @@
       .about-layout,
       .workshop-layout,
       .offer-layout{ grid-template-columns:1fr; gap:36px; }
-      .upcoming-layout{ grid-template-columns:1fr; gap:32px; }
-      .upcoming-left{ position:static; }
+      .upcoming-layout,
+      .latest-layout{ grid-template-columns:1fr; gap:32px; }
+      .upcoming-left,
+      .latest-left{ position:static; }
       nav{ display:none; }
       .nav-who{ display:none; }
       .offer-grid{ grid-template-columns:1fr 1fr; }
       .bottom-nav{ display:flex; }
       main{ padding-bottom: 80px; padding-top: 112px; }
+      .latest-reel-wrap{ grid-template-columns:1fr; }
+      .latest-reel{ width:100%; padding-top:56.25%; }
+      .latest-card-body--slim{ flex-direction:column; align-items:flex-start; }
     }
     @media(max-width:540px){
       .offer-grid{ grid-template-columns:1fr; }
@@ -804,6 +917,7 @@
       </a>
       <nav>
         <a href="#workshop">Workshop</a>
+        <a href="#latest">Latest</a>
         <a href="#upcoming">Upcoming</a>
         <a href="#offer">Services</a>
       </nav>
@@ -933,6 +1047,58 @@
       </div>
     </section>
 
+    <!-- LATEST -->
+    <section id="latest">
+      <div class="container">
+        <div class="latest-layout">
+          <div class="latest-left">
+            <div class="section-label reveal">What's Happening</div>
+            <div class="reveal-h"><h2 class="inner">Latest</h2></div>
+            <p class="lead reveal" style="transition-delay:.15s">Announcements, launches, and updates from The Mad Goats.</p>
+          </div>
+          <div class="latest-feed">
+
+            <!-- CARD: Pixie Winks with reel -->
+            <div class="latest-card latest-card--featured reveal" style="transition-delay:.1s">
+              <div class="latest-card-header">
+                <span class="latest-tag latest-tag--channel">Channel</span>
+                <span class="latest-date">May 2025</span>
+              </div>
+              <div class="latest-card-body">
+                <div class="latest-reel-wrap">
+                  <div class="latest-reel">
+                    <iframe src="https://www.youtube.com/embed/KDKTvuLJQ9k" title="Pixie Winks Launch Reel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                  <div class="latest-card-text">
+                    <h3 class="latest-title">Pixie Winks — Launching Soon!</h3>
+                    <p class="latest-desc">A brand new YouTube channel for kids is on its way. Stories. Magic. Adventures. Subscribe now and be the first to know when we go live.</p>
+                    <a class="latest-link" href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer">Subscribe on YouTube →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD: Workshop -->
+            <div class="latest-card reveal" style="transition-delay:.2s">
+              <div class="latest-card-header">
+                <span class="latest-tag latest-tag--workshop">Workshop</span>
+                <span class="latest-date">May 5, 2025</span>
+              </div>
+              <div class="latest-card-body latest-card-body--slim">
+                <div>
+                  <h3 class="latest-title">Last Day to Register — May 6!</h3>
+                  <p class="latest-desc">The Mad Goats WIP Series: Screenwriting Workshop for Beginners. Sign up before slots close tomorrow.</p>
+                </div>
+                <a class="latest-link" href="https://tinyurl.com/MadGoatsWIP" target="_blank" rel="noopener noreferrer">Register Now →</a>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- UPCOMING -->
     <section id="upcoming">
       <div class="container">
@@ -1037,6 +1203,10 @@
       <a href="#workshop">
         <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         Workshop
+      </a>
+      <a href="#latest">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Latest
       </a>
       <a href="#about" class="who-btn">
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
