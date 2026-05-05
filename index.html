@@ -99,8 +99,6 @@
       white-space:nowrap;
     }
     .nav-who:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(204,0,0,.30); }
-      100%{ transform:translateX(-50%); }
-    }
 
     /* ── MAIN OFFSET ── */
     main{ padding-top: 112px; }
@@ -230,6 +228,7 @@
       mix-blend-mode: multiply;
       display:block;
     }
+
     /* ── SECTION BASE ── */
     section{
       border-bottom: 1px solid var(--line);
@@ -268,49 +267,51 @@
       font-size: clamp(42px, 5vw, 76px);
       letter-spacing:.02em;
       text-transform: uppercase;
-      line-height:.92;
-      color: var(--text);
-      margin-bottom:0;
+      margin-bottom: 14px;
     }
     .lead{
       color: var(--muted);
+      font-size: 16px;
       line-height: 1.8;
-      font-size: 15px;
-      font-weight:300;
-      max-width: 52ch;
-      margin-top:16px;
+      max-width: 70ch;
+      font-weight: 300;
     }
 
-    /* ── ABOUT ── */
-    .about-layout{
+    /* ── GRID / PANELS ── */
+    .split{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:48px;
+      gap: 26px;
       align-items:start;
     }
-    .about-left{ }
-    .about-video{
-      background:#fff;
-      border:1px solid var(--line);
+    .panel{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.80);
       border-radius: var(--radius);
       overflow:hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,.08);
-      margin-top:32px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.06);
     }
-    .about-video-label{
-      padding:14px 18px;
-      border-bottom:1px solid var(--line);
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--muted);
+    .embed{
+      padding: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .embed:first-child{ border-top:0; }
+    .embed h3{
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--text);
     }
     .ratio{
-      position:relative;
+      position: relative;
       width:100%;
       padding-top:56.25%;
-      background:rgba(0,0,0,.03);
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.04);
     }
     .ratio iframe{
       position:absolute;
@@ -318,536 +319,324 @@
       width:100%;
       height:100%;
       border:0;
+    }
+
+    /* ── ABOUT CARDS ── */
+    .about-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      margin-top: 26px;
+    }
+    .card{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.82);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,.06);
+    }
+    .inner{ padding: 18px 18px 20px; }
+    .person{
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items:start;
+    }
+    .photo{
+      width:120px; height:120px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      overflow:hidden;
+      background: linear-gradient(135deg, rgba(204,0,0,.10), rgba(0,0,0,.02));
+    }
+    .photo img{
+      width:100%; height:100%;
+      object-fit: cover;
       display:block;
     }
-    .people-stack{
-      display:flex;
-      flex-direction:column;
-      gap:20px;
+    .person h3{
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
-    .person-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,.06);
-      display:grid;
-      grid-template-columns: 100px 1fr;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .person-card:hover{
-      transform: translateY(-3px);
-      box-shadow: 0 18px 48px rgba(0,0,0,.10);
-    }
-    .person-photo{
-      width:100px;
-      height:100%;
-      min-height:130px;
-      overflow:hidden;
-      background: rgba(204,0,0,.06);
-    }
-    .person-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .person-info{ padding:18px 20px; }
-    .person-info h3{
-      font-family: var(--font-display);
-      font-size:22px;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      margin-bottom:4px;
-    }
-    .person-role{
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color: var(--red);
-      margin-bottom:10px;
-    }
-    .person-bio{
-      font-size:13px;
-      line-height:1.7;
-      color:var(--muted);
-      font-weight:300;
-    }
-
-    /* ── WORKSHOP ── */
-    #workshop{ background: var(--text); color:#fff; }
-    #workshop::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(ellipse 700px 500px at 80% 50%, rgba(204,0,0,.18), transparent 65%),
-        radial-gradient(ellipse 400px 300px at 10% 80%, rgba(204,0,0,.10), transparent 65%);
-      pointer-events:none;
-    }
-    #workshop .section-label{ color:rgba(255,255,255,.45); }
-    #workshop h2{ color:#fff; }
-    #workshop .lead{ color:rgba(255,255,255,.55); }
-    .workshop-layout{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:56px;
-      align-items:center;
-    }
-    .workshop-card{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 26px;
-      padding:36px;
-      position:relative;
-      overflow:hidden;
-    }
-    .workshop-card::before{
-      content:'';
-      position:absolute;
-      top:0; left:0; right:0;
-      height:3px;
-      background: var(--red);
-    }
-    .ws-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      background: var(--red);
-      color:#fff;
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.20em;
-      text-transform:uppercase;
-      padding:5px 14px;
-      border-radius:999px;
-      margin-bottom:20px;
-    }
-    .ws-badge::before{
-      content:'';
-      width:6px; height:6px;
-      background:#fff;
-      border-radius:50%;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes pulse{
-      0%,100%{ opacity:1; transform:scale(1); }
-      50%{ opacity:.5; transform:scale(0.7); }
-    }
-    .ws-title{
-      font-family: var(--font-display);
-      font-size: clamp(28px, 3vw, 42px);
-      letter-spacing:.03em;
-      text-transform:uppercase;
-      color:#fff;
-      line-height:.95;
-      margin-bottom:18px;
-    }
-    .ws-desc{
-      font-size:14px;
-      font-weight:300;
-      line-height:1.8;
-      color:rgba(255,255,255,.60);
-      margin-bottom:28px;
-    }
-    .ws-pills{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:28px;
-    }
-    .ws-pill{
-      display:flex;
-      align-items:center;
-      gap:6px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:10px;
-      padding:7px 14px;
-      font-size:11px;
-      font-weight:600;
+    .role{
+      font-size: 12px;
+      font-weight: 600;
       letter-spacing:.10em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.70);
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
     }
-    .ws-pill svg{ opacity:.7; }
-    .ws-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      background: var(--red);
-      color:#fff;
-      font-weight:700;
-      font-size:13px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      padding:15px 32px;
-      border-radius:14px;
-      text-decoration:none;
-      border:0;
-      cursor:pointer;
-      transition:.25s ease;
-      box-shadow: 0 8px 28px rgba(204,0,0,.35);
+    .bio{
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      font-weight: 300;
     }
-    .ws-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 40px rgba(204,0,0,.45); }
-    .ws-arrow{ font-size:18px; transition: transform .2s; }
-    .ws-btn:hover .ws-arrow{ transform:translateX(4px); }
 
-    /* ── UPCOMING ── */
-    .upcoming-layout{
-      display:grid;
-      grid-template-columns: 340px 1fr;
-      gap:56px;
-      align-items:start;
-    }
-    .upcoming-left{ position:sticky; top:100px; }
-    .video-stack{
-      display:flex;
-      flex-direction:column;
-      gap:24px;
-    }
-    .video-item{
-      background:#fff;
-      border:1px solid var(--line);
+    /* ── OFFER LIST ── */
+    .offer{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.82);
       border-radius: var(--radius);
       overflow:hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,.06);
-      transition: transform .25s, box-shadow .25s;
+      box-shadow: 0 18px 50px rgba(0,0,0,.06);
     }
-    .video-item:hover{ transform:translateY(-3px); box-shadow:0 20px 50px rgba(0,0,0,.10); }
-    .video-label{
-      padding:14px 18px;
-      border-bottom:1px solid var(--line);
+    .row{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
+      gap:16px;
+      padding: 18px;
+      border-top: 1px solid var(--line);
+      align-items:flex-start;
     }
-    .video-label h3{
+    .row:first-child{ border-top:0; }
+    .num{
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
       font-family: var(--font-display);
-      font-size:18px;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-    }
-    .video-tag{
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.16em;
-      text-transform:uppercase;
+      font-size: 18px;
       color: var(--red);
       background: var(--red-soft);
-      border:1px solid rgba(204,0,0,.15);
-      border-radius:8px;
-      padding:4px 10px;
+      border: 1px solid rgba(204,0,0,.20);
+      flex:0 0 auto;
     }
-
-    /* ── OFFER ── */
-    .offer-layout{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:48px;
-      align-items:start;
+    .title{
+      font-size: 18px;
+      font-weight: 700;
+      margin: 2px 0 8px;
     }
-    .offer-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
-    }
-    .offer-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.05);
-      transition: transform .25s, box-shadow .25s;
-    }
-    .offer-card:hover{ transform:translateY(-3px); box-shadow:0 16px 44px rgba(0,0,0,.09); }
-    .offer-num{
-      font-family: var(--font-display);
-      font-size:36px;
-      letter-spacing:.02em;
-      color: rgba(204,0,0,.18);
-      margin-bottom:12px;
-      line-height:1;
-    }
-    .offer-title{
-      font-weight:700;
-      font-size:14px;
-      letter-spacing:.04em;
-      margin-bottom:8px;
-    }
-    .offer-desc{
-      font-size:13px;
-      font-weight:300;
-      color:var(--muted);
-      line-height:1.7;
+    .desc{
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 300;
     }
 
     /* ── FOOTER ── */
     footer{
-      border-top: 1px solid var(--line);
-      padding: 32px 24px 48px;
+      padding: 56px 24px;
+      background: rgba(255,255,255,.65);
     }
     .footer-inner{
       max-width: var(--max);
       margin:0 auto;
       display:flex;
+      flex-direction:column;
+      gap:10px;
       align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:16px;
+      text-align:center;
     }
     .footer-brand{
       font-family: var(--font-display);
-      font-size:16px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color: var(--text);
+      font-size: 26px;
+      letter-spacing:.06em;
     }
     .footer-links{
       display:flex;
-      gap:24px;
-      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:center;
+      font-size: 14px;
+      color: var(--muted);
     }
     .footer-links a{
       color: var(--muted);
       text-decoration:none;
-      font-size:12px;
-      font-weight:600;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      transition:.2s;
+      border-bottom: 1px solid transparent;
+      transition: .2s ease;
     }
-    .footer-links a:hover{ color: var(--red); }
+    .footer-links a:hover{
+      color: var(--text);
+      border-bottom-color: rgba(0,0,0,.15);
+    }
     .footer-copy{
       color: var(--muted);
-      font-size:11px;
-      letter-spacing:.10em;
+      font-size: 12px;
+      letter-spacing:.12em;
       text-transform:uppercase;
-      width:100%;
-      text-align:center;
-      margin-top:16px;
-      border-top:1px solid var(--line);
-      padding-top:20px;
+      margin-top: 10px;
     }
 
-    /* ── REVEAL ANIMATIONS ── */
-    .reveal{
-      opacity:0;
-      transform:translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-    .reveal-h{
-      display:block;
-      overflow:hidden;
-    }
-    .reveal-h .inner{
-      display:block;
-      transform:translateY(100%);
-      transition: transform .9s cubic-bezier(.16,1,.3,1);
-    }
-    .reveal-h.visible .inner{
-      transform:translateY(0);
-    }
-
-    /* ── BOTTOM NAV (mobile) ── */
+    /* ── MOBILE BOTTOM NAV ── */
     .bottom-nav{
-      display:none;
       position:fixed;
-      bottom:0; left:0; right:0;
-      z-index:50;
-      background: rgba(250,250,248,.95);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      left:0; right:0; bottom:0;
+      background: rgba(250,250,248,.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-top: 1px solid var(--line);
-      padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+      z-index:60;
+      display:none;
     }
     .bottom-nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-around;
+      max-width: var(--max);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      padding: 10px 10px 12px;
     }
     .bottom-nav a{
+      text-decoration:none;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:4px;
-      text-decoration:none;
-      color: var(--muted);
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      padding:6px 12px;
-      border-radius:10px;
-      transition:.2s ease;
-      flex:1;
+      gap:6px;
+      padding: 8px 6px;
+      border-radius: 14px;
+      transition: .2s ease;
     }
-    .bottom-nav a:hover, .bottom-nav a.active{ color: var(--red); }
-    .bottom-nav a svg{ width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:1.8; }
-    .bottom-nav a.who-btn{
-      color:#fff;
+    .bottom-nav a:hover{ background: rgba(0,0,0,.04); color: var(--text); }
+    .bottom-nav svg{
+      width: 18px; height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity:.9;
+    }
+    .bottom-nav .who-btn{
       background: var(--red);
-      border-radius:12px;
-      margin: 0 6px;
+      color:#fff;
     }
-    .bottom-nav a.who-btn svg{ stroke:#fff; }
+    .bottom-nav .who-btn svg{ stroke:#fff; }
 
-
-    /* ── TICKER ── */
-    .ticker-wrap{
-      position:fixed;
-      top:60px; left:0; right:0;
-      z-index:49;
-      background: #f5c800;
-      overflow:hidden;
-      height: 52px;
-      display:flex;
-      align-items:center;
-      border-bottom: 2px solid rgba(0,0,0,.10);
+    /* ── REVEAL ── */
+    .reveal{
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .65s ease, transform .65s ease;
+      will-change: transform, opacity;
     }
-    .ticker-track{
-      display:flex;
-      align-items:center;
-      gap:0;
-      animation: ticker 22s linear infinite;
-      white-space:nowrap;
-      height:52px;
+    .reveal.visible{
+      opacity:1;
+      transform: translateY(0);
     }
-    .ticker-track span{
-      font-family: var(--font-display);
-      font-size: 15px;
-      letter-spacing:.18em;
-      color:#0a0a0a;
-      padding: 0 20px;
-      display:inline-flex;
-      align-items:center;
-      height:52px;
+    .reveal-h{
+      display:inline-block;
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+      will-change: transform, opacity;
+      position:relative;
     }
-    .ticker-track .dot{
-      color: #1a6dd4;
-      font-size: 16px;
-      padding: 0 8px;
-      display:inline-flex;
-      align-items:center;
+    .reveal-h.visible{
+      opacity:1;
+      transform: translateY(0);
     }
-    @keyframes ticker{
-      0%{ transform:translateX(0); }
-      100%{ transform:translateX(-50%); }
+    .reveal-h::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-10px;
+      width:0;
+      height:3px;
+      background: var(--red);
+      transition: width .6s ease;
+      border-radius: 999px;
+      opacity:.35;
     }
-    /* Pixie peeks from right edge */
-    .pixie-peek{
-      position:fixed;
-      right: -130px;
-      bottom: 120px;
-      height: 160px;
-      width: auto;
-      pointer-events: none;
-      z-index: 55;
-      filter: drop-shadow(-4px 4px 12px rgba(0,0,0,.20));
-      animation: pixie-peek 8s ease-in-out infinite;
-    }
-    @keyframes pixie-peek{
-      0%   { right: -130px; transform: rotate(5deg); }
-      15%  { right: -20px;  transform: rotate(-8deg) translateY(-10px); }
-      30%  { right: -20px;  transform: rotate(5deg)  translateY(0px); }
-      45%  { right: -20px;  transform: rotate(-5deg) translateY(-8px); }
-      65%  { right: -20px;  transform: rotate(3deg)  translateY(0px); }
-      80%  { right: -130px; transform: rotate(5deg); }
-      100% { right: -130px; transform: rotate(5deg); }
+    .reveal-h.visible::after{
+      width: 56px;
     }
 
     /* ── RESPONSIVE ── */
-    @media(max-width:900px){
-      .hero-inner{ grid-template-columns:1fr; gap:40px; }
-      .hero-right{ display:none; }
-      .about-layout,
-      .workshop-layout,
-      .offer-layout{ grid-template-columns:1fr; gap:36px; }
-      .upcoming-layout{ grid-template-columns:1fr; gap:32px; }
-      .upcoming-left{ position:static; }
-      nav{ display:none; }
-      .nav-who{ display:none; }
-      .offer-grid{ grid-template-columns:1fr 1fr; }
-      .bottom-nav{ display:flex; }
-      main{ padding-bottom: 80px; padding-top: 112px; }
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; gap: 34px; }
+      .logo-card{ max-width: 520px; margin: 0 auto; }
+      .split{ grid-template-columns: 1fr; }
+      .about-grid{ grid-template-columns: 1fr; }
+      header{ position:fixed; }
+      main{ padding-top: 96px; padding-bottom: 88px; }
+      .bottom-nav{ display:block; }
     }
-    @media(max-width:540px){
-      .offer-grid{ grid-template-columns:1fr; }
-      .person-card{ grid-template-columns:80px 1fr; }
-      .person-photo{ min-height:110px; width:80px; }
-    }
-    @media(prefers-reduced-motion:reduce){
+    @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      .reveal, .reveal-h .inner{ transition:none; opacity:1; transform:none; }
-      .ticker-track{ animation:none; }
-      .pixie-peek{ animation:none; right:-130px; }
-
-      .ws-badge::before{ animation:none; }
+      .reveal, .reveal-h{ opacity:1 !important; transform:none !important; transition:none !important; }
     }
+
+    /* ── PIXIE PEEK (transparent PNG) ── */
+    .pixie-peek{
+      position: fixed;
+      right: -220px;          /* starts off-screen */
+      bottom: 84px;           /* above mobile bottom nav */
+      width: 260px;
+      height: auto;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0;
+    }
+    .pixie-peek.peek{
+      animation: pixiePeek 4.5s ease-in-out forwards;
+    }
+    @keyframes pixiePeek{
+      0%   { opacity:0; transform: translateX(0); }
+      12%  { opacity:1; transform: translateX(-220px); } /* peek in */
+      65%  { opacity:1; transform: translateX(-220px); } /* hang */
+      100% { opacity:0; transform: translateX(0); }      /* leave */
+    }
+    @media (max-width: 980px){
+      .pixie-peek{ width: 220px; right: -190px; }
+      @keyframes pixiePeek{
+        0%   { opacity:0; transform: translateX(0); }
+        12%  { opacity:1; transform: translateX(-190px); }
+        65%  { opacity:1; transform: translateX(-190px); }
+        100% { opacity:0; transform: translateX(0); }
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .pixie-peek{ display:none; }
+    }
+
   </style>
 </head>
 
 <body>
-  <!-- HEADER -->
   <header>
     <div class="nav">
       <a class="brand" id="navHome" href="#top">
-        <img src="assets/logoicon.png" alt="The Mad Goats Inc." />
-        <span class="name">The Mad Goats Inc.</span>
+        <img src="assets/logoicon.png" alt="The Mad Goats Inc. logo" />
+        <div class="name">The Mad Goats Inc.</div>
       </a>
+
       <nav>
         <a href="#workshop">Workshop</a>
+        <a href="#works">Sample Works</a>
         <a href="#upcoming">Upcoming</a>
         <a href="#offer">Services</a>
       </nav>
+
       <a class="nav-who" href="#about">Who We Are</a>
     </div>
   </header>
 
-  <!-- PIXIE WINKS - peeks from right edge -->
-  <img class="pixie-peek" src="assets/pixieflyingfinal.png" alt="Pixie Winks" aria-hidden="true" />
-
-  <!-- TICKER -->
-  <div class="ticker-wrap" aria-label="Announcement">
-    <div class="ticker-track">
-      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
-      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
-      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
-      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
-      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
-      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
-      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Meet Pixie Winks!</span><span class="dot">●</span>
-      <span>Subscribe to our YouTube Channel!</span><span class="dot">●</span>
-      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks" target="_blank" rel="noopener noreferrer" style="color:#cc0000;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-    </div>
-  </div>
-
   <main id="top">
-
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-left">
-          <div class="hero-eyebrow reveal" style="transition-delay:.1s">Story-first filmmaking</div>
-          <h1>
-            <span class="reveal-h" style="transition-delay:.2s"><span class="inner">Story</span></span>
-            <span class="reveal-h" style="transition-delay:.32s"><span class="inner">First.</span></span>
-            <span class="accent reveal-h" style="transition-delay:.44s"><span class="inner">Always.</span></span>
-          </h1>
-          <p class="hero-sub reveal" style="transition-delay:.6s">
-            We are filmmakers who bring senior creative leadership and story architecture to brand work — so the message lands, and the audience stays.
+          <div class="hero-eyebrow">Story first. Always.</div>
+          <h1>STORY FIRST.<span class="accent">ALWAYS</span></h1>
+          <p class="hero-sub">
+            We are filmmakers who bring senior creative leadership and story architecture to brand work —
+            so the message lands, and the audience stays.
           </p>
-
+          <div class="hero-actions">
+            <a class="btn-primary" href="#about">Who we are</a>
+            <a class="btn-ghost" href="#offer">Services</a>
+          </div>
         </div>
-        <div class="hero-right reveal" style="transition-delay:.5s">
-          <div class="logo-card">
+
+        <div class="hero-right">
+          <div class="logo-card" aria-label="Logo">
             <video id="heroLogoVideo" autoplay muted playsinline preload="auto">
               <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
             </video>
@@ -856,16 +645,32 @@
       </div>
     </section>
 
+    <!-- WORKSHOP -->
+    <section id="workshop">
+      <div class="container">
+        <div class="section-label reveal">Workshop</div>
+        <h2 class="reveal-h">SCRIPT CLINIC</h2>
+        <p class="lead reveal">
+          Professional script readings and notes. One or three reads — no ongoing development package.
+        </p>
+      </div>
+    </section>
+
     <!-- ABOUT -->
     <section id="about">
       <div class="container">
-        <div class="about-layout">
-          <div class="about-left">
-            <div class="section-label reveal">About the Company</div>
-            <div class="reveal-h"><h2 class="inner">Who<br/>We Are</h2></div>
-            <p class="lead reveal" style="transition-delay:.15s">Story-driven strategists with senior creative leadership across all platforms.</p>
-            <div class="about-video reveal" style="transition-delay:.25s">
-              <div class="about-video-label">Company Overview</div>
+        <div class="split">
+          <div>
+            <div class="section-label reveal">About</div>
+            <h2 class="reveal-h">WHO WE ARE</h2>
+            <p class="lead reveal">
+              Story-driven strategists with senior creative leadership across all platforms.
+            </p>
+          </div>
+
+          <div class="panel reveal">
+            <div class="embed" style="border-top:0;">
+              <h3>About the company</h3>
               <div class="ratio">
                 <iframe
                   src="https://www.youtube.com/embed/rjThFAiuV40"
@@ -877,49 +682,58 @@
               </div>
             </div>
           </div>
-          <div class="people-stack">
-            <div class="person-card reveal" style="transition-delay:.1s">
-              <div class="person-photo"><img src="assets/katski.jpg" alt="Katski Flores" /></div>
-              <div class="person-info">
-                <h3>Katski Flores</h3>
-                <div class="person-role">Filmmaker · Producer</div>
-                <p class="person-bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television's most iconic series. Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy. A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
+        </div>
+
+        <div class="about-grid reveal">
+          <div class="card">
+            <div class="inner">
+              <div class="person">
+                <div class="photo"><img src="assets/katski.jpg" alt="Katski Flores" /></div>
+                <div>
+                  <h3>Katski Flores</h3>
+                  <p class="role">Filmmaker • Producer</p>
+                  <p class="bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television’s most iconic series.</p>
+                  <p class="bio">Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy.</p>
+                  <p class="bio">A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
+                </div>
               </div>
             </div>
-            <div class="person-card reveal" style="transition-delay:.22s">
-              <div class="person-photo"><img src="assets/michiko.jpg" alt="Michiko Yamamoto" /></div>
-              <div class="person-info">
-                <h3>Michiko Yamamoto</h3>
-                <div class="person-role">Writer · Producer</div>
-                <p class="person-bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema. A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound. She understands the full lifecycle of content: from development to on-ground production to audience impact.</p>
+          </div>
+
+          <div class="card">
+            <div class="inner">
+              <div class="person">
+                <div class="photo"><img src="assets/michiko.jpg" alt="Michiko Yamamoto" /></div>
+                <div>
+                  <h3>Michiko Yamamoto</h3>
+                  <p class="role">Writer • Producer</p>
+                  <p class="bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema.</p>
+                  <p class="bio">A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound.</p>
+                  <p class="bio">She understands the full lifecycle of content: from development to on-ground production to audience impact.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- WORKSHOP -->
-    <section id="workshop">
-      <div class="container" style="position:relative; z-index:1;">
-        <div class="workshop-layout">
+    <!-- SAMPLE WORKS -->
+    <section id="works">
+      <div class="container">
+        <div class="split">
           <div>
-            <div class="section-label reveal">Ongoing</div>
-            <div class="reveal-h"><h2 class="inner">WIP<br/>Series</h2></div>
-            <p class="lead reveal" style="transition-delay:.18s">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
+            <div class="section-label reveal">Portfolio</div>
+            <h2 class="reveal-h">SAMPLE WORKS</h2>
+            <p class="lead reveal">Poster reel coming soon.</p>
           </div>
-          <div class="workshop-card reveal" style="transition-delay:.2s">
-            <div class="ws-badge">Ongoing</div>
-            <div class="ws-title">Screenwriting<br/>Workshop for<br/>Beginners</div>
-            <p class="ws-desc">The workshop has begun! Stay tuned for updates and future batches of the WIP Series.</p>
-            <div class="ws-pills">
-              <div class="ws-pill">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                In Progress
-              </div>
-              <div class="ws-pill">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-                More Batches Coming
+
+          <div class="panel reveal">
+            <div class="embed" style="border-top:0;">
+              <h3>Coming soon</h3>
+              <div class="ratio">
+                <iframe src="about:blank" title="Poster Reel (coming soon)" loading="lazy" allow="fullscreen; picture-in-picture"></iframe>
               </div>
             </div>
           </div>
@@ -927,21 +741,19 @@
       </div>
     </section>
 
-    <!-- UPCOMING -->
+    <!-- UPCOMING PROJECTS -->
     <section id="upcoming">
       <div class="container">
-        <div class="upcoming-layout">
-          <div class="upcoming-left">
-            <div class="section-label reveal">In Production</div>
-            <div class="reveal-h"><h2 class="inner">Upcoming<br/>Projects</h2></div>
-            <p class="lead reveal" style="transition-delay:.15s">Stories in motion. Two major projects currently in production.</p>
+        <div class="split">
+          <div>
+            <div class="section-label reveal">Upcoming</div>
+            <h2 class="reveal-h">UPCOMING PROJECTS</h2>
+            <p class="lead reveal">Two trailers.</p>
           </div>
-          <div class="video-stack">
-            <div class="video-item reveal" style="transition-delay:.1s">
-              <div class="video-label">
-                <h3>BuyBust: The Undesirables</h3>
-                <span class="video-tag">In Production</span>
-              </div>
+
+          <div class="panel reveal">
+            <div class="embed" style="border-top:0;">
+              <h3>BuyBust: The Undesirables</h3>
               <div class="ratio">
                 <iframe
                   src="https://www.youtube-nocookie.com/embed/MKemy6nL5Eo?start=7"
@@ -952,11 +764,9 @@
                 ></iframe>
               </div>
             </div>
-            <div class="video-item reveal" style="transition-delay:.22s">
-              <div class="video-label">
-                <h3>Edjop — Trailer</h3>
-                <span class="video-tag">In Production</span>
-              </div>
+
+            <div class="embed">
+              <h3>Edjop — Trailer</h3>
               <div class="ratio">
                 <iframe
                   src="https://www.youtube-nocookie.com/embed/VldT1Dj5AfU?origin=https://themadgoats.com"
@@ -968,6 +778,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -975,34 +786,44 @@
     <!-- OFFER -->
     <section id="offer">
       <div class="container">
-        <div class="offer-layout">
+        <div class="split">
           <div>
-            <div class="section-label reveal">What We Do</div>
-            <div class="reveal-h"><h2 class="inner">Services</h2></div>
-            <p class="lead reveal" style="transition-delay:.15s">Story-led outputs built for brands, platforms, and real attention.</p>
+            <div class="section-label reveal">Services</div>
+            <h2 class="reveal-h">WHAT WE OFFER</h2>
+            <p class="lead reveal">Story-led outputs built for brands, platforms, and real attention.</p>
           </div>
-          <div class="offer-grid">
-            <div class="offer-card reveal" style="transition-delay:.1s">
-              <div class="offer-num">01</div>
-              <div class="offer-title">Branded Films</div>
-              <p class="offer-desc">Cinematic brand stories with real character, pacing, and payoff.</p>
+
+          <div class="offer reveal" role="list">
+            <div class="row" role="listitem">
+              <div class="num">01</div>
+              <div>
+                <div class="title">Branded films</div>
+                <p class="desc">Cinematic brand stories with real character, pacing, and payoff.</p>
+              </div>
             </div>
-            <div class="offer-card reveal" style="transition-delay:.18s">
-              <div class="offer-num">02</div>
-              <div class="offer-title">Serialized Content</div>
-              <p class="offer-desc">Episode-based formats that build retention and make the brand feel alive.</p>
+            <div class="row" role="listitem">
+              <div class="num">02</div>
+              <div>
+                <div class="title">Serialized digital content</div>
+                <p class="desc">Episode-based formats that build retention and make the brand feel alive.</p>
+              </div>
             </div>
-            <div class="offer-card reveal" style="transition-delay:.26s">
-              <div class="offer-num">03</div>
-              <div class="offer-title">Narrative Campaigns</div>
-              <p class="offer-desc">Campaign structure with a story spine — not random posts in a calendar.</p>
+            <div class="row" role="listitem">
+              <div class="num">03</div>
+              <div>
+                <div class="title">Narrative-led campaigns</div>
+                <p class="desc">Campaign structure with a story spine — not random posts in a calendar.</p>
+              </div>
             </div>
-            <div class="offer-card reveal" style="transition-delay:.34s">
-              <div class="offer-num">04</div>
-              <div class="offer-title">Culture Initiatives</div>
-              <p class="offer-desc">Work that speaks the language of the moment without chasing trends blindly.</p>
+            <div class="row" role="listitem">
+              <div class="num">04</div>
+              <div>
+                <div class="title">Culture-driven initiatives</div>
+                <p class="desc">Work that speaks the language of the moment without chasing trends blindly.</p>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -1020,6 +841,15 @@
     </footer>
 
   </main>
+
+  <!-- PIXIE PEEK -->
+  <img
+    src="assets/pixiepeekfinal.png"
+    alt=""
+    class="pixie-peek"
+    id="pixiePeek"
+    aria-hidden="true"
+  />
 
   <!-- BOTTOM NAV (mobile only) -->
   <nav class="bottom-nav" aria-label="Mobile navigation">
@@ -1121,6 +951,33 @@
         document.getElementById("top").scrollIntoView({behavior:"smooth"});
         vid.pause(); vid.currentTime = 0; vid.play().catch(()=>{});
       });
+    })();
+
+    // Pixie peek-in (random interval)
+    (function(){
+      const el = document.getElementById("pixiePeek");
+      if(!el) return;
+      if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      let timer = null;
+
+      function run(){
+        el.classList.remove("peek");
+        void el.offsetWidth; // reflow
+        el.classList.add("peek");
+        const next = 18000 + Math.floor(Math.random() * 17000); // 18–35s
+        timer = setTimeout(run, next);
+      }
+
+      window.addEventListener("load", () => {
+        setTimeout(run, 2200);
+      });
+
+      // also peek when user clicks Home
+      const home = document.getElementById("navHome");
+      if(home){
+        home.addEventListener("click", () => setTimeout(run, 400));
+      }
     })();
   </script>
 </body>
