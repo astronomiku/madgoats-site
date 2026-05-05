@@ -99,51 +99,11 @@
       white-space:nowrap;
     }
     .nav-who:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(204,0,0,.30); }
-
-    /* ── TICKER ── */
-    .ticker-wrap{
-      position:fixed;
-      top:60px; left:0; right:0;
-      z-index:49;
-      background: #f5c800;
-      overflow:hidden;
-      height: 36px;
-      display:flex;
-      align-items:center;
-      border-bottom: 2px solid rgba(0,0,0,.10);
-    }
-    .ticker-track{
-      display:flex;
-      align-items:center;
-      gap:0;
-      animation: ticker 28s linear infinite;
-      white-space:nowrap;
-      height:36px;
-    }
-    .ticker-track span{
-      font-family: var(--font-display);
-      font-size: 15px;
-      letter-spacing:.18em;
-      color:#0a0a0a;
-      padding: 0 20px;
-      display:inline-flex;
-      align-items:center;
-      height:36px;
-    }
-    .ticker-track .dot{
-      color: #1a6dd4;
-      font-size: 16px;
-      padding: 0 8px;
-      display:inline-flex;
-      align-items:center;
-    }
-    @keyframes ticker{
-      0%{ transform:translateX(0); }
       100%{ transform:translateX(-50%); }
     }
 
     /* ── MAIN OFFSET ── */
-    main{ padding-top: 94px; }
+    main{ padding-top: 60px; }
 
     /* ── HERO ── */
     .hero{
@@ -755,7 +715,7 @@
     @media(prefers-reduced-motion:reduce){
       html{ scroll-behavior:auto; }
       .reveal, .reveal-h .inner{ transition:none; opacity:1; transform:none; }
-      .ticker-track{ animation:none; }
+
       .ws-badge::before{ animation:none; }
     }
   </style>
@@ -776,27 +736,7 @@
       </nav>
       <a class="nav-who" href="#about">Who We Are</a>
     </div>
-  </header>
-
-  <!-- TICKER -->
-  <div class="ticker-wrap" aria-hidden="true">
-    <div class="ticker-track">
-      <span>The Mad Goats WIP Series!</span><span class="dot">●</span>
-      <span>Screenwriting Workshop for Beginners!</span><span class="dot">●</span>
-      <span>Limited Slots Available!</span><span class="dot">●</span>
-      <span>Sign Up Now!</span><span class="dot">●</span>
-      <span>The Mad Goats WIP Series!</span><span class="dot">●</span>
-      <span>Screenwriting Workshop for Beginners!</span><span class="dot">●</span>
-      <span>Limited Slots Available!</span><span class="dot">●</span>
-      <span>Sign Up Now!</span><span class="dot">●</span>
-      <span>The Mad Goats WIP Series!</span><span class="dot">●</span>
-      <span>Screenwriting Workshop for Beginners!</span><span class="dot">●</span>
-      <span>Limited Slots Available!</span><span class="dot">●</span>
-      <span>Sign Up Now!</span><span class="dot">●</span>
-    </div>
-  </div>
-
-  <main id="top">
+  </header><main id="top">
 
     <!-- HERO -->
     <section class="hero">
@@ -811,9 +751,7 @@
           <p class="hero-sub reveal" style="transition-delay:.6s">
             We are filmmakers who bring senior creative leadership and story architecture to brand work — so the message lands, and the audience stays.
           </p>
-          <div class="hero-actions reveal" style="transition-delay:.72s">
-            <a class="btn-primary" href="#workshop">Join the Workshop →</a>
-          </div>
+
         </div>
         <div class="hero-right reveal" style="transition-delay:.5s">
           <div class="logo-card">
@@ -873,31 +811,24 @@
       <div class="container" style="position:relative; z-index:1;">
         <div class="workshop-layout">
           <div>
-            <div class="section-label reveal">Open Now</div>
+            <div class="section-label reveal">Ongoing</div>
             <div class="reveal-h"><h2 class="inner">WIP<br/>Series</h2></div>
             <p class="lead reveal" style="transition-delay:.18s">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
           </div>
           <div class="workshop-card reveal" style="transition-delay:.2s">
-            <div class="ws-badge">Now Enrolling</div>
+            <div class="ws-badge">Ongoing</div>
             <div class="ws-title">Screenwriting<br/>Workshop for<br/>Beginners</div>
-            <p class="ws-desc">Learn the fundamentals of screenwriting directly from industry veterans. Reserve your slot — confirmed registrants will be emailed with full details on schedule and location.</p>
+            <p class="ws-desc">The workshop has begun! Stay tuned for updates and future batches of the WIP Series.</p>
             <div class="ws-pills">
               <div class="ws-pill">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                Limited Slots
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                In Progress
               </div>
               <div class="ws-pill">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Details via Email
-              </div>
-              <div class="ws-pill">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                Beginners Welcome
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                More Batches Coming
               </div>
             </div>
-            <a class="ws-btn" href="https://tinyurl.com/MadGoatsWIP" target="_blank" rel="noopener noreferrer">
-              Sign Up Now <span class="ws-arrow">→</span>
-            </a>
           </div>
         </div>
       </div>
