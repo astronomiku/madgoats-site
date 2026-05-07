@@ -1291,6 +1291,14 @@
     // video: optional YouTube embed URL (makes card featured with reel)
     const LATEST_CARDS = [
       {
+        type: 'workshop',
+        date: 'May 7, 2025',
+        title: 'WIP Series Batch 1 — Starting May 16!',
+        desc: 'The Mad Goats WIP Series: Screenwriting Workshop for Beginners officially kicks off on May 16. Stay tuned for updates and future batches!',
+        link: null,
+        linkText: null
+      },
+      {
         type: 'channel',
         date: 'May 2025',
         title: 'Pixie Winks — Launching Soon!',
@@ -1302,10 +1310,10 @@
       {
         type: 'workshop',
         date: 'May 5, 2025',
-        title: 'WIP Series Batch 1 — Starting May 16!',
-        desc: 'The Mad Goats WIP Series: Screenwriting Workshop for Beginners officially kicks off on May 16. Stay tuned for updates and future batches!',
-        link: null,
-        linkText: null
+        title: 'Last Day to Register — May 6!',
+        desc: 'The Mad Goats WIP Series: Screenwriting Workshop for Beginners. Registration closes tomorrow — sign up before slots fill up!',
+        link: 'https://tinyurl.com/MadGoatsWIP',
+        linkText: 'Register Now →'
       }
     ];
 
@@ -1338,7 +1346,7 @@
                   </div>
                 </div>
               </div>`
-            : `<div class="latest-card-body latest-card-body--slim">
+            : `<div class="latest-card-body">
                 <div>
                   <h3 class="latest-title">${card.title}</h3>
                   <p class="latest-desc">${card.desc}</p>
