@@ -101,6 +101,7 @@
     .nav-who:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(204,0,0,.30); }
       100%{ transform:translateX(-50%); }
     }
+  
 
     /* ── MAIN OFFSET ── */
     main{ padding-top: 112px; }
@@ -398,6 +399,49 @@
       position:relative;
       overflow:hidden;
     }
+    .workshop-layout-photo{
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: stretch;
+}
+
+.workshop-photo{
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  min-height: 520px;
+  background:#111;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.workshop-photo img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+  filter: grayscale(100%) contrast(1.05);
+}
+
+.workshop-photo::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.05)),
+    rgba(204,0,0,.08);
+  pointer-events:none;
+}
+
+@media(max-width:900px){
+  .workshop-layout-photo{
+    grid-template-columns:1fr;
+  }
+
+  .workshop-photo{
+    min-height:340px;
+    order:-1;
+  }
+}
     .workshop-card::before{
       content:'';
       position:absolute;
@@ -1041,9 +1085,13 @@
     <!-- WORKSHOP -->
     <section id="workshop">
       <div class="container" style="position:relative; z-index:1;">
-        <div class="workshop-layout">
-          <div>
-            <div class="section-label reveal">Ongoing</div>
+        <div class="workshop-layout workshop-layout-photo">
+         <div class="workshop-photo reveal">
+  <img src="assets/workshop1.JPG" alt="Mad Goats Workshop">
+</div>
+
+<div>
+  <div class="section-label reveal">Ongoing</div>
             <div class="reveal-h"><h2 class="inner">WIP<br/>Series</h2></div>
             <p class="lead reveal" style="transition-delay:.18s">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
           </div>
