@@ -399,48 +399,35 @@
       position:relative;
       overflow:hidden;
     }
-    .workshop-layout-photo{
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: stretch;
-}
-
-.workshop-photo{
-  position: relative;
-  border-radius: 26px;
-  overflow: hidden;
-  min-height: 520px;
-  background:#111;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-}
-
-.workshop-photo img{
+    .workshop-update-photo{
   width:100%;
-  height:100%;
-  object-fit: cover;
+  border-radius:18px;
+  overflow:hidden;
+  margin-bottom:20px;
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.workshop-update-photo img{
+  width:100%;
   display:block;
+  object-fit:cover;
   filter: grayscale(100%) contrast(1.05);
 }
 
-.workshop-photo::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.05)),
-    rgba(204,0,0,.08);
-  pointer-events:none;
-}
-
-@media(max-width:900px){
-  .workshop-layout-photo{
-    grid-template-columns:1fr;
-  }
-
-  .workshop-photo{
-    min-height:340px;
-    order:-1;
-  }
+.ws-status-finished{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background: rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:6px 14px;
+  border-radius:999px;
+  margin-bottom:18px;
 }
     .workshop-card::before{
       content:'';
@@ -1096,9 +1083,23 @@
             <p class="lead reveal" style="transition-delay:.18s">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
           </div>
           <div class="workshop-card reveal" style="transition-delay:.2s">
-            <div class="ws-badge">Ongoing</div>
-            <div class="ws-title">Screenwriting<br/>Workshop for<br/>Beginners</div>
-            <p class="ws-desc">The workshop has begun! Stay tuned for updates and future batches of the WIP Series.</p>
+           <div class="ws-badge">WIP Series</div>
+
+<div class="workshop-update-photo">
+  <img src="assets/workshop1.JPG" alt="WIP Series Workshop Session 1">
+</div>
+
+<div class="ws-status-finished">
+  Session 1 Finished
+</div>
+
+<div class="ws-title">Screenwriting<br/>Workshop for<br/>Beginners</div>
+
+<p class="ws-desc">
+  Session 1 of the Mad Goats WIP Series is complete.
+  The workshop continues with succeeding sessions currently underway.
+  More batches will be announced soon.
+</p>
             <div class="ws-pills">
               <div class="ws-pill">
                 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
