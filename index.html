@@ -143,7 +143,7 @@
       background-size: cover;
       background-position: center;
       filter: brightness(1) contrast(1.08) saturate(1);
-      animation: imageDissolve 4.8s ease forwards;
+      animation: imageDissolve 4.4s ease 0.8s forwards;
     }
 
     .hero-panel::after {
@@ -160,25 +160,70 @@
       z-index: 2;
       text-align: center;
       padding: clamp(28px, 5vw, 64px);
-      opacity: 0;
-      animation: titleReveal 1.8s ease 3.05s forwards;
     }
 
-    .hero-panel.replay .hero-content {
+    .hero-content h1,
+    .hero-content .eyebrow,
+    .hero-content .hero-subtitle {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .hero-content h1 {
+      animation: titleReveal 1.35s ease 2.15s forwards;
+    }
+
+    .hero-content .eyebrow,
+    .hero-content .hero-subtitle {
+      animation: titleReveal 1.3s ease 3.25s forwards;
+    }
+
+    .hero-panel.animation-reset::before,
+    .hero-panel.animation-reset::after,
+    .hero-panel.animation-reset .hero-content h1,
+    .hero-panel.animation-reset .hero-content .eyebrow,
+    .hero-panel.animation-reset .hero-content .hero-subtitle {
       animation: none;
     }
 
-.hero-panel.replay .hero-content.replay {
-  animation: titleReveal 1.8s ease 3.05s forwards;
-}
-
-    .hero-panel.replay::before {
-      animation: imageDissolve 4.8s ease forwards;
+    .hero-panel.animation-reset::before {
+      filter: brightness(1) contrast(1.08) saturate(1);
+      transform: scale(1.01);
     }
 
-.hero-panel.replay::after {
-  animation: veilIn 2.8s ease 1.15s forwards;
-}
+    .hero-panel.animation-reset::after {
+      opacity: 0;
+    }
+
+    .hero-panel.animation-reset .hero-content h1,
+    .hero-panel.animation-reset .hero-content .eyebrow,
+    .hero-panel.animation-reset .hero-content .hero-subtitle {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .hero-panel.replay .hero-content h1,
+    .hero-panel.replay .hero-content .eyebrow,
+    .hero-panel.replay .hero-content .hero-subtitle {
+      animation: none;
+    }
+
+    .hero-panel.replay .hero-content.replay h1 {
+      animation: titleReveal 1.35s ease 2.15s forwards;
+    }
+
+    .hero-panel.replay .hero-content.replay .eyebrow,
+    .hero-panel.replay .hero-content.replay .hero-subtitle {
+      animation: titleReveal 1.3s ease 3.25s forwards;
+    }
+
+    .hero-panel.replay::before {
+      animation: imageDissolve 4.4s ease 0.8s forwards;
+    }
+
+    .hero-panel.replay::after {
+      animation: veilIn 2.8s ease 1.15s forwards;
+    }
 
     .eyebrow {
       margin: 0 0 14px;
@@ -545,13 +590,15 @@
 
       hero.classList.remove("replay");
       content.classList.remove("replay");
+      hero.classList.add("animation-reset");
 
       void hero.offsetWidth;
 
-      hero.classList.add("replay");
-      content.classList.add("replay");
-
       document.querySelector("#home").scrollIntoView({ behavior: "smooth" });
+
+      requestAnimationFrame(function () {
+        hero.classList.remove("animation-reset");
+      });
     });
   </script>
 </body>
