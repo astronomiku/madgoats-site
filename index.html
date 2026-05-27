@@ -1,1497 +1,558 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The Mad Goats Inc.</title>
-  <meta name="description" content="The Mad Goats Inc. — Story-first branded filmmaking and narrative-led content." />
-  <link rel="icon" href="assets/logoicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="assets/logoicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Skrip Dox script consultation studio by Moira Lang and Michiko Yamamoto."
+  >
+
+  <title>Skrip Dox | Script Consultation Studio</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#fafaf8;
-      --text:#0a0a0a;
-      --muted:rgba(10,10,10,.55);
-      --line:rgba(10,10,10,.10);
-      --red:#cc0000;
-      --red-soft:rgba(204,0,0,.07);
-      --max:1100px;
-      --radius:20px;
-      --font-display:'Bebas Neue', sans-serif;
-      --font-body:'DM Sans', sans-serif;
-    }
-    *{ box-sizing:border-box; margin:0; padding:0; }
-    html{ scroll-behavior:smooth; }
-    body{
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text);
-      overflow-x:hidden;
+    :root {
+      --ink: #1b1614;
+      --walnut: #321d18;
+      --deep-green: #24352f;
+      --paper: #efe2ce;
+      --ivory: #d8cbb7;
+      --cream: #f3e8d5;
+      --frame: rgba(50, 29, 24, 0.72);
+      --frame-light: rgba(243, 232, 213, 0.2);
+      --site-width: 1500px;
+      --frame-size: 2px;
     }
 
-    /* ── HEADER ── */
-    header{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:50;
-      background: rgba(250,250,248,.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-      transition: background .3s;
+    * {
+      box-sizing: border-box;
     }
-    .nav{
-      max-width: var(--max);
-      margin:0 auto;
-      padding: 0 24px;
-      height: 60px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-      color:inherit;
-    }
-    .brand img{ width:30px; height:30px; object-fit:contain; }
-    .brand .name{
-      font-family: var(--font-display);
-      font-size: 18px;
-      letter-spacing:.08em;
-      color: var(--text);
-      white-space:nowrap;
-    }
-    nav{ display:flex; align-items:center; gap:4px; }
-    nav a{
-      color: var(--muted);
-      text-decoration:none;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      padding: 8px 12px;
-      border-radius: 10px;
-      transition: .2s ease;
-    }
-    nav a:hover{ color: var(--text); background: rgba(0,0,0,.05); }
-    .nav-who{
-      display:inline-flex;
-      align-items:center;
-      color: #fff;
-      background: var(--red);
-      text-decoration:none;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      padding: 10px 18px;
-      border-radius: 12px;
-      border: 0;
-      transition: .2s ease;
-      white-space:nowrap;
-    }
-    .nav-who:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(204,0,0,.30); }
-      100%{ transform:translateX(-50%); }
-    }
-  
 
-    /* ── MAIN OFFSET ── */
-    main{ padding-top: 112px; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-    /* ── HERO ── */
-    .hero{
-      min-height: calc(100vh - 94px);
-      display:flex;
-      align-items:center;
-      border-bottom: 1px solid var(--line);
-      position:relative;
-      overflow:hidden;
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--ivory);
+      font-family: "Source Sans 3", sans-serif;
+      line-height: 1.55;
     }
-    .hero::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(ellipse 800px 500px at 20% 50%, rgba(204,0,0,.055), transparent 65%),
-        radial-gradient(ellipse 600px 400px at 80% 20%, rgba(204,0,0,.04), transparent 65%);
-      pointer-events:none;
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    .hero-inner{
-      max-width: var(--max);
-      margin:0 auto;
-      padding: 60px 24px;
-      width:100%;
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap: 60px;
-      align-items:center;
-    }
-    .hero-left{ position:relative; }
-    .hero-eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color: var(--red);
-      margin-bottom: 22px;
-    }
-    .hero-eyebrow::before{
-      content:'';
-      display:block;
-      width:28px; height:2px;
-      background: var(--red);
-      border-radius:2px;
-    }
-    h1{
-      font-family: var(--font-display);
-      font-size: clamp(72px, 10vw, 148px);
-      line-height: .88;
-      letter-spacing: .01em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 28px;
-    }
-    h1 .accent{ color: var(--red); display:block; }
-    .hero-sub{
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.75;
-      max-width: 52ch;
-      font-weight: 300;
-    }
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      margin-top:36px;
-      flex-wrap:wrap;
-    }
-    .btn-primary{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background: var(--red);
-      color:#fff;
-      font-weight:700;
-      font-size:13px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      padding:14px 28px;
-      border-radius:14px;
-      text-decoration:none;
-      border:0;
-      cursor:pointer;
-      transition:.25s ease;
-    }
-    .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(204,0,0,.28); }
-    .btn-ghost{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background: transparent;
-      color: var(--text);
-      font-weight:600;
-      font-size:13px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      padding:14px 28px;
-      border-radius:14px;
-      text-decoration:none;
-      border:1.5px solid var(--line);
-      cursor:pointer;
-      transition:.25s ease;
-    }
-    .btn-ghost:hover{ border-color:rgba(10,10,10,.3); background:rgba(0,0,0,.03); }
-    .hero-right{ position:relative; }
-    .logo-card{
-      background: transparent;
-      border: none;
-      border-radius: 26px;
-      overflow:hidden;
-      box-shadow: none;
-      aspect-ratio: 4/3;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    #heroLogoVideo{
-      width:100%;
-      height:100%;
-      object-fit: contain;
-      mix-blend-mode: multiply;
-      display:block;
-    }
-    /* ── SECTION BASE ── */
-    section{
-      border-bottom: 1px solid var(--line);
-      position:relative;
-    }
-    .container{
-      max-width: var(--max);
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: min(100%, var(--site-width));
       margin: 0 auto;
-      padding: 80px 24px;
-      width:100%;
+      height: clamp(88px, 9vw, 112px);
+      display: grid;
+      grid-template-columns: minmax(130px, auto) 1fr auto;
+      align-items: center;
+      padding: 0 clamp(28px, 5vw, 72px);
+      background-image: url("assets/terracotta.jpg");
+      background-size: auto 100%;
+      background-repeat: repeat-x;
+      background-position: center;
+      border-left: var(--frame-size) solid var(--frame);
+      border-right: var(--frame-size) solid var(--frame);
+      border-bottom: var(--frame-size) solid var(--frame);
     }
 
-    /* ── SECTION LABEL ── */
-    .section-label{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .section-label::before{
-      content:'';
-      display:block;
-      width:20px; height:1.5px;
-      background: var(--red);
-      border-radius:2px;
+    .nav-logo {
+      grid-column: 1;
+      justify-self: start;
+      display: flex;
+      align-items: center;
     }
 
-    /* ── H2 ── */
-    h2{
-      font-family: var(--font-display);
-      font-size: clamp(42px, 5vw, 76px);
-      letter-spacing:.02em;
+    .nav-logo img {
+      height: clamp(62px, 7vw, 96px);
+      width: auto;
+      display: block;
+      filter:
+        drop-shadow(0 2px 2px rgba(0, 0, 0, 0.45))
+        drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.25));
+    }
+
+    .nav {
+      grid-column: 3;
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 3vw, 48px);
+      font-size: clamp(0.78rem, 1vw, 0.86rem);
+      font-weight: 900;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      line-height:.92;
-      color: var(--text);
-      margin-bottom:0;
-    }
-    .lead{
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 15px;
-      font-weight:300;
-      max-width: 52ch;
-      margin-top:16px;
     }
 
-    /* ── ABOUT ── */
-    .about-layout{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:48px;
-      align-items:start;
-    }
-    .about-left{ }
-    .about-video{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,.08);
-      margin-top:32px;
-    }
-    .about-video-label{
-      padding:14px 18px;
-      border-bottom:1px solid var(--line);
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--muted);
-    }
-    .ratio{
-      position:relative;
-      width:100%;
-      padding-top:56.25%;
-      background:rgba(0,0,0,.03);
-    }
-    .ratio iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-      display:block;
-    }
-    .people-stack{
-      display:flex;
-      flex-direction:column;
-      gap:20px;
-    }
-    .person-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,.06);
-      display:grid;
-      grid-template-columns: 100px 1fr;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .person-card:hover{
-      transform: translateY(-3px);
-      box-shadow: 0 18px 48px rgba(0,0,0,.10);
-    }
-    .person-photo{
-      width:100px;
-      height:100%;
-      min-height:130px;
-      overflow:hidden;
-      background: rgba(204,0,0,.06);
-    }
-    .person-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .person-info{ padding:18px 20px; }
-    .person-info h3{
-      font-family: var(--font-display);
-      font-size:22px;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      margin-bottom:4px;
-    }
-    .person-role{
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color: var(--red);
-      margin-bottom:10px;
-    }
-    .person-bio{
-      font-size:13px;
-      line-height:1.7;
-      color:var(--muted);
-      font-weight:300;
+    .nav a {
+      color: #f3e8d5;
+      text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.65),
+        0 -1px 0 rgba(255, 255, 255, 0.18);
     }
 
-    /* ── WORKSHOP ── */
-    #workshop{ background: var(--text); color:#fff; }
-    #workshop::before{
-      content:'';
-      position:absolute;
-      inset:0;
+    .nav a:hover {
+      color: #ffffff;
+      border-bottom: 2px solid #f3e8d5;
+    }
+
+    main {
+      width: min(100%, var(--site-width));
+      margin: 0 auto;
+    }
+
+    .panel {
+      width: 100%;
+      margin: 0;
+      border-left: var(--frame-size) solid var(--frame);
+      border-right: var(--frame-size) solid var(--frame);
+      border-bottom: var(--frame-size) solid var(--frame);
+      box-shadow:
+        inset 0 12px 20px rgba(255, 255, 255, 0.08),
+        inset 0 -14px 24px rgba(40, 25, 18, 0.22);
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: calc(100vh - clamp(88px, 9vw, 112px));
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: var(--walnut);
+      color: var(--paper);
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/stethoscope.png");
+      background-size: cover;
+      background-position: center;
+      filter: brightness(1) contrast(1.08) saturate(1);
+      animation: imageDissolve 4.8s ease forwards;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(27, 22, 20, 0.46);
+      opacity: 0;
+      animation: veilIn 2.8s ease 1.15s forwards;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: clamp(28px, 5vw, 64px);
+      opacity: 0;
+      animation: titleReveal 1.8s ease 3.05s forwards;
+    }
+
+    .hero-panel.replay .hero-content {
+      animation: none;
+    }
+
+.hero-panel.replay .hero-content.replay {
+  animation: titleReveal 1.8s ease 3.05s forwards;
+}
+
+    .hero-panel.replay::before {
+      animation: imageDissolve 4.8s ease forwards;
+    }
+
+.hero-panel.replay::after {
+  animation: veilIn 2.8s ease 1.15s forwards;
+}
+
+    .eyebrow {
+      margin: 0 0 14px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-panel .eyebrow {
+      color: rgba(255, 248, 237, 0.78);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-weight: 400;
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 0;
+      font-size: clamp(3.8rem, 8.4vw, 9rem);
+      line-height: 0.95;
+    }
+
+    .hero-subtitle {
+      margin-top: 18px;
+      color: rgba(255, 248, 237, 0.82);
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1rem, 1.6vw, 1.45rem);
+    }
+
+    .bio-panel {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(48px, 6vw, 90px);
       background:
-        radial-gradient(ellipse 700px 500px at 80% 50%, rgba(204,0,0,.18), transparent 65%),
-        radial-gradient(ellipse 400px 300px at 10% 80%, rgba(204,0,0,.10), transparent 65%);
-      pointer-events:none;
-    }
-    #workshop .section-label{ color:rgba(255,255,255,.45); }
-    #workshop h2{ color:#fff; }
-    #workshop .lead{ color:rgba(255,255,255,.55); }
-    .workshop-layout{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:56px;
-      align-items:center;
-    }
-    .workshop-card{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 26px;
-      padding:36px;
-      position:relative;
-      overflow:hidden;
-    }
-    .workshop-update-photo{
-  width:100%;
-  border-radius:18px;
-  overflow:hidden;
-  margin-bottom:20px;
-  border:1px solid rgba(255,255,255,.12);
-}
-
-.workshop-update-photo img{
-  width:100%;
-  display:block;
-  object-fit:cover;
-  filter: grayscale(100%) contrast(1.05);
-}
-
-.ws-status-finished{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background: rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);
-  color:#fff;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  padding:6px 14px;
-  border-radius:999px;
-  margin-bottom:18px;
-}
-    .workshop-card::before{
-      content:'';
-      position:absolute;
-      top:0; left:0; right:0;
-      height:3px;
-      background: var(--red);
-    }
-    .ws-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      background: var(--red);
-      color:#fff;
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.20em;
-      text-transform:uppercase;
-      padding:5px 14px;
-      border-radius:999px;
-      margin-bottom:20px;
-    }
-    .ws-badge::before{
-      content:'';
-      width:6px; height:6px;
-      background:#fff;
-      border-radius:50%;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes pulse{
-      0%,100%{ opacity:1; transform:scale(1); }
-      50%{ opacity:.5; transform:scale(0.7); }
-    }
-    .ws-title{
-      font-family: var(--font-display);
-      font-size: clamp(28px, 3vw, 42px);
-      letter-spacing:.03em;
-      text-transform:uppercase;
-      color:#fff;
-      line-height:.95;
-      margin-bottom:18px;
-    }
-    .ws-desc{
-      font-size:14px;
-      font-weight:300;
-      line-height:1.8;
-      color:rgba(255,255,255,.60);
-      margin-bottom:28px;
-    }
-    .ws-pills{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:28px;
-    }
-    .ws-pill{
-      display:flex;
-      align-items:center;
-      gap:6px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:10px;
-      padding:7px 14px;
-      font-size:11px;
-      font-weight:600;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.70);
-    }
-    .ws-pill svg{ opacity:.7; }
-    .ws-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      background: var(--red);
-      color:#fff;
-      font-weight:700;
-      font-size:13px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      padding:15px 32px;
-      border-radius:14px;
-      text-decoration:none;
-      border:0;
-      cursor:pointer;
-      transition:.25s ease;
-      box-shadow: 0 8px 28px rgba(204,0,0,.35);
-    }
-    .ws-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 40px rgba(204,0,0,.45); }
-    .ws-arrow{ font-size:18px; transition: transform .2s; }
-    .ws-btn:hover .ws-arrow{ transform:translateX(4px); }
-
-    /* ── UPCOMING ── */
-    .upcoming-layout{
-      display:grid;
-      grid-template-columns: 340px 1fr;
-      gap:56px;
-      align-items:start;
-    }
-    .upcoming-left{ position:sticky; top:100px; }
-    .video-stack{
-      display:flex;
-      flex-direction:column;
-      gap:24px;
-    }
-    .video-item{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,.06);
-      transition: transform .25s, box-shadow .25s;
-    }
-    .video-item:hover{ transform:translateY(-3px); box-shadow:0 20px 50px rgba(0,0,0,.10); }
-    .video-label{
-      padding:14px 18px;
-      border-bottom:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .video-label h3{
-      font-family: var(--font-display);
-      font-size:18px;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-    }
-    .video-tag{
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color: var(--red);
-      background: var(--red-soft);
-      border:1px solid rgba(204,0,0,.15);
-      border-radius:8px;
-      padding:4px 10px;
+        linear-gradient(rgba(255, 248, 240, 0.18), rgba(255, 248, 240, 0.18)),
+        url("assets/woodtexture.png");
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: soft-light;
     }
 
-    /* ── OFFER ── */
-    .offer-layout{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:48px;
-      align-items:start;
-    }
-    .offer-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
-    }
-    .offer-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.05);
-      transition: transform .25s, box-shadow .25s;
-    }
-    .offer-card:hover{ transform:translateY(-3px); box-shadow:0 16px 44px rgba(0,0,0,.09); }
-    .offer-num{
-      font-family: var(--font-display);
-      font-size:36px;
-      letter-spacing:.02em;
-      color: rgba(204,0,0,.18);
-      margin-bottom:12px;
-      line-height:1;
-    }
-    .offer-title{
-      font-weight:700;
-      font-size:14px;
-      letter-spacing:.04em;
-      margin-bottom:8px;
-    }
-    .offer-desc{
-      font-size:13px;
-      font-weight:300;
-      color:var(--muted);
-      line-height:1.7;
+    .bio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(28px, 4vw, 72px);
+      align-items: start;
+      position: relative;
+      z-index: 1;
     }
 
-    /* ── FOOTER ── */
-    footer{
-      border-top: 1px solid var(--line);
-      padding: 32px 24px 48px;
-    }
-    .footer-inner{
-      max-width: var(--max);
-      margin:0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:16px;
-    }
-    .footer-brand{
-      font-family: var(--font-display);
-      font-size:16px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color: var(--text);
-    }
-    .footer-links{
-      display:flex;
-      gap:24px;
-      align-items:center;
-    }
-    .footer-links a{
-      color: var(--muted);
-      text-decoration:none;
-      font-size:12px;
-      font-weight:600;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      transition:.2s;
-    }
-    .footer-links a:hover{ color: var(--red); }
-    .footer-copy{
-      color: var(--muted);
-      font-size:11px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      width:100%;
-      text-align:center;
-      margin-top:16px;
-      border-top:1px solid var(--line);
-      padding-top:20px;
+    .bio-person {
+      display: block;
+      min-width: 0;
     }
 
-    /* ── REVEAL ANIMATIONS ── */
-    .reveal{
-      opacity:0;
-      transform:translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-    .reveal-h{
-      display:block;
-      overflow:hidden;
-    }
-    .reveal-h .inner{
-      display:block;
-      transform:translateY(100%);
-      transition: transform .9s cubic-bezier(.16,1,.3,1);
-    }
-    .reveal-h.visible .inner{
-      transform:translateY(0);
+    .bio-person:first-child {
+      transform: none;
     }
 
-    /* ── BOTTOM NAV (mobile) ── */
-    .bottom-nav{
-      display:none;
-      position:fixed;
-      bottom:0; left:0; right:0;
-      z-index:50;
-      background: rgba(250,250,248,.95);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-top: 1px solid var(--line);
-      padding: 8px 0 max(8px, env(safe-area-inset-bottom));
-    }
-    .bottom-nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-around;
-    }
-    .bottom-nav a{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:4px;
-      text-decoration:none;
-      color: var(--muted);
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      padding:6px 12px;
-      border-radius:10px;
-      transition:.2s ease;
-      flex:1;
-    }
-    .bottom-nav a:hover, .bottom-nav a.active{ color: var(--red); }
-    .bottom-nav a svg{ width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:1.8; }
-    .bottom-nav a.who-btn{
-      color:#fff;
-      background: var(--red);
-      border-radius:12px;
-      margin: 0 6px;
-    }
-    .bottom-nav a.who-btn svg{ stroke:#fff; }
-
-
-    /* ── TICKER ── */
-    .ticker-wrap{
-      position:fixed;
-      top:60px; left:0; right:0;
-      z-index:49;
-      background: #ffd6e0;
-      overflow:hidden;
-      height: 52px;
-      display:flex;
-      align-items:center;
-      border-bottom: 2px solid rgba(0,0,0,.06);
-    }
-    .ticker-track{
-      display:flex;
-      align-items:center;
-      gap:0;
-      animation: ticker 22s linear infinite;
-      white-space:nowrap;
-      height:52px;
-    }
-    .ticker-track span{
-      font-family: var(--font-display);
-      font-size: 15px;
-      letter-spacing:.18em;
-      color:#c2185b;
-      padding: 0 20px;
-      display:inline-flex;
-      align-items:center;
-      height:52px;
-    }
-    .ticker-track .dot{
-      color: #e75480;
-      font-size: 16px;
-      padding: 0 8px;
-      display:inline-flex;
-      align-items:center;
-    }
-    @keyframes ticker{
-      0%{ transform:translateX(0); }
-      100%{ transform:translateX(-50%); }
-    }
-    /* Pixie peeks from right edge */
-    .pixie-peek{
-      position:fixed;
-      right: -200px;
-      top: 10px;
-      height: 220px;
-      width: auto;
-      pointer-events: auto;
-      z-index: 55;
-      display:block;
-      animation: pixie-peek 9s ease-in-out infinite;
-      cursor: pointer;
-    }
-    .pixie-peek img{
-      height: 220px;
-      width: auto;
-      filter: drop-shadow(-3px 3px 8px rgba(0,0,0,.15));
-      display:block;
-    }
-    @keyframes pixie-peek{
-      0%   { right: -200px; transform: rotate(8deg); }
-      18%  { right: 4px;    transform: rotate(-10deg) translateY(-6px); }
-      32%  { right: 4px;    transform: rotate(6deg)   translateY(2px); }
-      48%  { right: 4px;    transform: rotate(-7deg)  translateY(-5px); }
-      64%  { right: 4px;    transform: rotate(4deg)   translateY(0px); }
-      78%  { right: -200px; transform: rotate(8deg); }
-      100% { right: -200px; transform: rotate(8deg); }
+    .bio-person:first-child .portrait-frame {
+      float: left;
+      width: min(44%, 340px);
+      min-width: 180px;
+      max-width: 360px;
+      aspect-ratio: 0.9;
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+      shape-outside: polygon(0 0, 100% 0, 100% 100%);
+      margin: 0 clamp(18px, 2.4vw, 34px) 20px 0;
     }
 
-    /* ── LATEST ── */
-    .latest-layout{
-      display:grid;
-      grid-template-columns: 340px 1fr;
-      gap:56px;
-      align-items:start;
+    .bio-person:first-child .portrait-frame img {
+      object-position: 70% center;
+      transform: scale(1.06);
     }
-    .latest-left{ position:sticky; top:100px; }
-    .latest-feed{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-    }
-    .latest-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,.05);
-      transition: transform .25s, box-shadow .25s;
-    }
-    .latest-card:hover{ transform:translateY(-3px); box-shadow:0 16px 44px rgba(0,0,0,.09); }
-    .latest-card-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:12px 18px;
-      border-bottom:1px solid var(--line);
-    }
-    .latest-tag{
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      padding:4px 10px;
-      border-radius:8px;
-    }
-    .latest-tag--channel{ background:rgba(233,30,99,.08); color:#c2185b; border:1px solid rgba(233,30,99,.15); }
-    .latest-tag--workshop{ background:var(--red-soft); color:var(--red); border:1px solid rgba(204,0,0,.15); }
-    .latest-tag--film{ background:rgba(33,150,243,.07); color:#1565c0; border:1px solid rgba(33,150,243,.15); }
-    .latest-date{
-      font-size:11px;
-      font-weight:600;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:var(--muted);
-    }
-    .latest-card-body{
-      padding:20px 18px;
-    }
-    .latest-card-body--slim{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-    .latest-reel-wrap{
-      display:grid;
-      grid-template-columns: 200px 1fr;
-      gap:20px;
-      align-items:center;
-    }
-    .latest-reel{
-      position:relative;
-      width:200px;
-      padding-top:calc(200px * 16/9);
-      border-radius:12px;
-      overflow:hidden;
-      background:rgba(0,0,0,.04);
-      flex-shrink:0;
-    }
-    .latest-reel iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
-    .latest-title{
-      font-family: var(--font-display);
-      font-size:20px;
-      letter-spacing:.03em;
-      text-transform:uppercase;
-      margin-bottom:8px;
-      line-height:1.1;
-    }
-    .latest-desc{
-      font-size:13px;
-      font-weight:300;
-      color:var(--muted);
-      line-height:1.7;
-      margin-bottom:12px;
-    }
-    .latest-link{
-      display:inline-flex;
-      align-items:center;
-      color:var(--red);
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      text-decoration:none;
-      transition:.2s;
-      white-space:nowrap;
-      flex-shrink:0;
-    }
-    .latest-link:hover{ opacity:.7; }
 
-    .latest-pagination{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      margin-top:20px;
-      flex-wrap:wrap;
+    .bio-person:last-child {
+      margin-top: clamp(72px, 8vw, 140px);
     }
-    .latest-pagination button{
-      width:36px; height:36px;
-      border-radius:10px;
-      border:1.5px solid var(--line);
-      background:#fff;
-      font-family: var(--font-body);
-      font-size:13px;
-      font-weight:700;
-      color:var(--muted);
-      cursor:pointer;
-      transition:.2s ease;
-    }
-    .latest-pagination button:hover{ border-color:var(--red); color:var(--red); }
-    .latest-pagination button.active{ background:var(--red); border-color:var(--red); color:#fff; }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:900px){
-      .hero-inner{ grid-template-columns:1fr; gap:40px; }
-      .hero-right{ display:none; }
-      .about-layout,
-      .workshop-layout,
-      .offer-layout{ grid-template-columns:1fr; gap:36px; }
-      .upcoming-layout,
-      .latest-layout{ grid-template-columns:1fr; gap:32px; }
-      .upcoming-left,
-      .latest-left{ position:static; }
-      nav{ display:none; }
-      .nav-who{ display:none; }
-      .offer-grid{ grid-template-columns:1fr 1fr; }
-      .bottom-nav{ display:flex; }
-      main{ padding-bottom: 80px; padding-top: 112px; }
-      .latest-reel-wrap{ grid-template-columns:1fr; }
-      .latest-reel{ width:100%; padding-top:56.25%; }
-      .latest-card-body--slim{ flex-direction:column; align-items:flex-start; }
+    .bio-person:last-child .portrait-frame {
+      float: right;
+      width: min(48%, 380px);
+      min-width: 190px;
+      max-width: 380px;
+      aspect-ratio: 1.28;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      shape-outside: polygon(50% 0, 100% 100%, 0 100%);
+      margin: 0 0 20px clamp(18px, 2.4vw, 34px);
     }
-    @media(max-width:540px){
-      .offer-grid{ grid-template-columns:1fr; }
-      .person-card{ grid-template-columns:80px 1fr; }
-      .person-photo{ min-height:110px; width:80px; }
-    }
-    @media(prefers-reduced-motion:reduce){
-      html{ scroll-behavior:auto; }
-      .reveal, .reveal-h .inner{ transition:none; opacity:1; transform:none; }
-      .ticker-track{ animation:none; }
-      .pixie-peek{ animation:none; right:-200px; }
 
-      .ws-badge::before{ animation:none; }
+    .bio-person:last-child .portrait-frame img {
+      object-position: center 22%;
+      transform: scale(0.88);
+    }
+
+    .bio-person:last-child .bio-copy {
+      display: block;
+    }
+
+    .portrait-frame {
+      overflow: hidden;
+      border: 1px solid rgba(27, 22, 20, 0.34);
+      box-shadow:
+        inset 8px 8px 0 rgba(27, 22, 20, 0.34),
+        inset -7px -7px 0 rgba(243, 232, 213, 0.18),
+        0 0 0 1px rgba(243, 232, 213, 0.1);
+    }
+
+    .portrait-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.12) sepia(0.12) contrast(1.08);
+    }
+
+    .bio-copy h3 {
+      margin-bottom: 18px;
+      color: #fff7ec;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.06;
+      border-bottom: 1px solid rgba(255, 248, 236, 0.28);
+      padding-bottom: 10px;
+      text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.65),
+        0 0 1px rgba(0, 0, 0, 0.85);
+    }
+
+    .bio-copy::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .bio-copy p {
+      color: rgba(255, 244, 228, 0.96);
+      font-size: clamp(1rem, 1.25vw, 1.15rem);
+      line-height: 1.72;
+      text-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.6),
+        0 0 1px rgba(0, 0, 0, 0.82);
+    }
+
+    .bio-copy cite {
+      color: #ffe1b8;
+    }
+
+    .services-panel {
+      width: 100%;
+      background-image:
+        linear-gradient(rgba(255, 248, 240, 0.10), rgba(255, 248, 240, 0.10)),
+        url("assets/stonedesigntext.png");
+      background-size: 100% 100%;
+      background-position: center top;
+      background-repeat: no-repeat;
+      aspect-ratio: 1320 / 1132;
+      min-height: 0;
+    }
+
+    @keyframes imageDissolve {
+      0% {
+        filter: brightness(1) contrast(1.08) saturate(1);
+        transform: scale(1.01);
+      }
+
+      100% {
+        filter: brightness(0.66) contrast(1.04) saturate(0.92);
+        transform: scale(1.045);
+      }
+    }
+
+    @keyframes veilIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes titleReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .bio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bio-person:last-child {
+        margin-top: clamp(42px, 7vw, 90px);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .site-header {
+        height: auto;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 12px;
+        padding: 18px;
+      }
+
+      .nav-logo {
+        grid-column: auto;
+      }
+
+      .nav {
+        grid-column: auto;
+        justify-self: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-panel {
+        min-height: 78vh;
+      }
+
+      .bio-person,
+      .bio-person:last-child {
+        margin-top: 0;
+        padding-top: 24px;
+        transform: none;
+      }
+
+      .bio-person:last-child .portrait-frame,
+      .bio-person:last-child .bio-copy {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .portrait-frame,
+      .bio-person:first-child .portrait-frame,
+      .bio-person:last-child .portrait-frame {
+        float: none;
+        width: min(100%, 320px);
+        min-width: 0;
+        margin: 0 0 22px;
+        shape-outside: none;
+      }
+
+      .services-panel {
+        aspect-ratio: 1320 / 1132;
+        background-position: center top;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="nav">
-      <a class="brand" id="navHome" href="#top">
-        <img src="assets/logoicon.png" alt="The Mad Goats Inc." />
-        <span class="name">The Mad Goats Inc.</span>
-      </a>
-      <nav>
-        <a href="#workshop">Workshop</a>
-        <a href="#latest">Latest</a>
-        <a href="#upcoming">Upcoming</a>
-        <a href="#offer">Services</a>
-      </nav>
-      <a class="nav-who" href="#about">Who We Are</a>
-    </div>
+  <header class="site-header" aria-label="Site header">
+    <a href="#home" class="nav-logo" aria-label="Skrip Dox - home">
+      <img src="assets/SDtrans.png" alt="Skrip Dox logo">
+    </a>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#bio">Bio</a>
+      <a href="#services">Services</a>
+    </nav>
   </header>
 
-  <!-- PIXIE WINKS - peeks from right edge -->
-  <a class="pixie-peek" href="https://www.youtube.com/@pixie_winks?subconfirmation=1" target="_blank" rel="noopener noreferrer"><img src="assets/pixieflyingfinal.png" alt="Visit Pixie Winks on YouTube" /></a>
-
-  <!-- TICKER -->
-  <div class="ticker-wrap" aria-label="Announcement">
-    <div class="ticker-track">
-      <span>✨ Magic Starts Now!</span><span class="dot">●</span>
-      <span>Stories. Whimsy. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks?subconfirmation=1" target="_blank" rel="noopener noreferrer" style="color:#c2185b;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Pixie Winks — Now Live on Youtube!</span><span class="dot">●</span>
-      <span>Stories. Magic. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks?subconfirmation=1" target="_blank" rel="noopener noreferrer" style="color:#c2185b;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Magic Starts Now!</span><span class="dot">●</span>
-      <span>Stories. Whimsy. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks?subconfirmation=1" target="_blank" rel="noopener noreferrer" style="color:#c2185b;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-      <span>✨ Magic Starts Now!</span><span class="dot">●</span>
-      <span>Stories. Whimsy. Adventures!</span><span class="dot">●</span>
-      <span><a href="https://www.youtube.com/@pixie_winks?subconfirmation=1" target="_blank" rel="noopener noreferrer" style="color:#c2185b;text-decoration:none;font-weight:900;">@pixie_winks on YouTube →</a></span><span class="dot">●</span>
-    </div>
-  </div>
-
-  <main id="top">
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-left">
-          <div class="hero-eyebrow reveal" style="transition-delay:.1s">Story-first filmmaking</div>
-          <h1>
-            <span class="reveal-h" style="transition-delay:.2s"><span class="inner">Story</span></span>
-            <span class="reveal-h" style="transition-delay:.32s"><span class="inner">First.</span></span>
-            <span class="accent reveal-h" style="transition-delay:.44s"><span class="inner">Always.</span></span>
-          </h1>
-          <p class="hero-sub reveal" style="transition-delay:.6s">
-            We are filmmakers who bring senior creative leadership and story architecture to brand work — so the message lands, and the audience stays.
-          </p>
-
-        </div>
-        <div class="hero-right reveal" style="transition-delay:.5s">
-          <div class="logo-card">
-            <video id="heroLogoVideo" autoplay muted playsinline preload="auto">
-              <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
+  <main>
+    <section class="panel hero-panel" id="home" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">Script consultation studio</p>
+        <h1 id="hero-title">SKRIPDOX</h1>
+        <p class="hero-subtitle">Diagnosis. Options. eXecution.</p>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container">
-        <div class="about-layout">
-          <div class="about-left">
-            <div class="section-label reveal">About the Company</div>
-            <div class="reveal-h"><h2 class="inner">Who<br/>We Are</h2></div>
-            <p class="lead reveal" style="transition-delay:.15s">Story-driven strategists with senior creative leadership across all platforms.</p>
-            <div class="about-video reveal" style="transition-delay:.25s">
-              <div class="about-video-label">Company Overview</div>
-              <div class="ratio">
-                <iframe
-                  src="https://www.youtube.com/embed/rjThFAiuV40"
-                  title="The Mad Goats Inc. — Company Pitch Deck"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
+    <section class="panel bio-panel" id="bio" aria-label="Moira Lang and Michiko Yamamoto biographies">
+      <div class="bio-grid">
+        <article class="bio-person">
+          <figure class="portrait-frame">
+            <img src="assets/MOIRAPIC.jpeg" alt="Moira Lang">
+          </figure>
+
+          <div class="bio-copy">
+            <h3>Moira Lang</h3>
+
+            <p>
+              Moira Lang grew out of equal parts commercial instinct, queer spunk and ache, class
+              friction, and a long, intimate education in Philippine cinema.
+            </p>
+
+            <p>
+              She has co-written films that made many cry over a nation of mothers separated from
+              their children (<cite>Anak</cite>), see themselves and their conflicted families
+              (<cite>Tanging Yaman</cite>), flirt with hunger and longing
+              (<cite>Kailangan Kita</cite>), and turn OFW heartbreak into aching romance
+              (<cite>Milan</cite>).
+            </p>
+
+            <p>
+              As a producer she kept pushing: <cite>Ang Pagdadalaga ni Maximo Oliveros</cite>,
+              <cite>Zombadings 1: Patayin sa Shokot si Remington!</cite>,
+              <cite>Norte, Hangganan ng Kasaysayan</cite>, <cite>Patay na si Hesus</cite>, and
+              <cite>Manila's Finest</cite>.
+            </p>
+
+            <p>
+              Her filmography moves between the mainstream and the margins without settling
+              comfortably in either.
+            </p>
           </div>
-          <div class="people-stack">
-            <div class="person-card reveal" style="transition-delay:.1s">
-              <div class="person-photo"><img src="assets/katski.jpg" alt="Katski Flores" /></div>
-              <div class="person-info">
-                <h3>Katski Flores</h3>
-                <div class="person-role">Filmmaker · Producer</div>
-                <p class="person-bio">Seasoned creative executive, writer-director, and producer behind some of Philippine television's most iconic series. Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy. A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.</p>
-              </div>
-            </div>
-            <div class="person-card reveal" style="transition-delay:.22s">
-              <div class="person-photo"><img src="assets/michiko.jpg" alt="Michiko Yamamoto" /></div>
-              <div class="person-info">
-                <h3>Michiko Yamamoto</h3>
-                <div class="person-role">Writer · Producer</div>
-                <p class="person-bio">A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema. A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound. She understands the full lifecycle of content: from development to on-ground production to audience impact.</p>
-              </div>
-            </div>
+        </article>
+
+        <article class="bio-person">
+          <figure class="portrait-frame">
+            <img src="assets/IMG_6304.JPG" alt="Michiko Yamamoto">
+          </figure>
+
+          <div class="bio-copy">
+            <h3>Michiko Yamamoto</h3>
+
+            <p>
+              Michiko Yamamoto writes like she distrusts sentimentality and believes in tenderness.
+            </p>
+
+            <p>
+              A mathematics graduate who found her way into cinema through instinct, observation,
+              and emotional precision, she has spent the last two decades writing some of the most
+              quietly devastating films in Philippine cinema.
+            </p>
+
+            <p>
+              Her work includes <cite>Magnifico</cite>, <cite>Ang Pagdadalaga ni Maximo
+              Oliveros</cite>, <cite>Zombadings 1: Patayin sa Shokot si Remington!</cite>,
+              <cite>On the Job</cite>, <cite>Honor Thy Father</cite>, and <cite>Manila's Finest</cite>.
+            </p>
+
+            <p>
+              Her filmography moves between intimacy and violence without announcing the shift. She
+              writes ordinary people cornered by systems larger than themselves.
+            </p>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
-    <!-- WORKSHOP -->
-    <section id="workshop">
-      <div class="container" style="position:relative; z-index:1;">
-       <div class="workshop-layout">
-          
-
-<div>
-  <div class="section-label reveal">Ongoing</div>
-            <div class="reveal-h"><h2 class="inner">WIP<br/>Series</h2></div>
-            <p class="lead reveal" style="transition-delay:.18s">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
-          </div>
-          <div class="workshop-card reveal" style="transition-delay:.2s">
-           <div class="ws-badge">WIP Series</div>
-
-<div class="workshop-update-photo">
-  <img src="assets/workshop1.JPG" alt="WIP Series Workshop Session 1">
-</div>
-
-<div class="ws-status-finished">
-  Session 1 Finished
-</div>
-
-<div class="ws-title">Screenwriting<br/>Workshop for<br/>Beginners</div>
-
-<p class="ws-desc">
-  Session 1 of the Mad Goats WIP Series is complete.
-  The workshop continues with succeeding sessions currently underway.
-  More batches will be announced soon.
-</p>
-            <div class="ws-pills">
-              <div class="ws-pill">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                In Progress
-              </div>
-              <div class="ws-pill">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-                More Batches Coming
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LATEST -->
-    <section id="latest">
-      <div class="container">
-        <div class="latest-layout">
-          <div class="latest-left">
-            <div class="section-label reveal">What's Happening</div>
-            <div class="reveal-h"><h2 class="inner">Latest</h2></div>
-            <p class="lead reveal" style="transition-delay:.15s">Announcements, launches, and updates from The Mad Goats.</p>
-          </div>
-          <div class="latest-feed" id="latestFeed">
-            <!-- Cards are rendered by JS below -->
-          </div>
-          <div class="latest-pagination" id="latestPagination"></div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- UPCOMING -->
-    <section id="upcoming">
-      <div class="container">
-        <div class="upcoming-layout">
-          <div class="upcoming-left">
-            <div class="section-label reveal">In Production</div>
-            <div class="reveal-h"><h2 class="inner">Upcoming<br/>Projects</h2></div>
-            <p class="lead reveal" style="transition-delay:.15s">Stories in motion. Two major projects currently in production.</p>
-          </div>
-          <div class="video-stack">
-            <div class="video-item reveal" style="transition-delay:.1s">
-              <div class="video-label">
-                <h3>BuyBust: The Undesirables</h3>
-                <span class="video-tag">In Production</span>
-              </div>
-              <div class="ratio">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/MKemy6nL5Eo?start=7"
-                  title="BuyBust: The Undesirables Trailer"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-            <div class="video-item reveal" style="transition-delay:.22s">
-              <div class="video-label">
-                <h3>Edjop — Trailer</h3>
-                <span class="video-tag">In Production</span>
-              </div>
-              <div class="ratio">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/VldT1Dj5AfU?origin=https://themadgoats.com"
-                  title="Edjop Trailer"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-   <!-- OFFER -->
-<section id="offer">
-  <div class="container">
-
-    <div class="offer-layout">
-
-      <div>
-        <div class="section-label reveal">What We Do</div>
-
-        <div class="reveal-h">
-          <h2 class="inner">Services</h2>
-        </div>
-
-        <p class="lead reveal" style="transition-delay:.15s">
-          Story-led outputs built for brands, platforms, and real attention.
-        </p>
-      </div>
-
-      <div class="offer-grid">
-
-        <div class="offer-card reveal" style="transition-delay:.1s">
-          <div class="offer-num">01</div>
-
-          <div class="offer-title">
-            Branded Films
-          </div>
-
-          <p class="offer-desc">
-            Cinematic brand stories with real character,
-            pacing, and payoff.
-          </p>
-        </div>
-
-        <div class="offer-card reveal" style="transition-delay:.18s">
-          <div class="offer-num">02</div>
-
-          <div class="offer-title">
-            Serialized Content
-          </div>
-
-          <p class="offer-desc">
-            Episode-based formats that build retention
-            and make the brand feel alive.
-          </p>
-        </div>
-
-        <div class="offer-card reveal" style="transition-delay:.26s">
-          <div class="offer-num">03</div>
-
-          <div class="offer-title">
-            Narrative Campaigns
-          </div>
-
-          <p class="offer-desc">
-            Campaign structure with a story spine —
-            not random posts in a calendar.
-          </p>
-        </div>
-
-        <div class="offer-card reveal" style="transition-delay:.34s">
-          <div class="offer-num">04</div>
-
-          <div class="offer-title">
-            Culture Initiatives
-          </div>
-
-          <p class="offer-desc">
-            Work that speaks the language of the moment
-            without chasing trends blindly.
-          </p>
-        </div>
-
-        <div class="offer-card reveal" style="transition-delay:.42s">
-          <div class="offer-num">05</div>
-
-          <div class="offer-title">
-            Website Design
-          </div>
-
-          <p class="offer-desc">
-          We currently specialize in custom one-page websites
-focused on strong visual identity, storytelling,
-and brand presentation — for brands, restaurants,
-creatives, and businesses that want
-a stronger online presence.
-            <br><br>
-
-            Email us with your requirements
-            for a customized quote.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-inner">
-        <div class="footer-brand">The Mad Goats Inc.</div>
-        <div class="footer-links">
-          <a href="mailto:admin@themadgoats.com">admin@themadgoats.com</a>
-          <a href="https://www.youtube.com/@themadgoats?subconfirmation=1" target="_blank" rel="noopener noreferrer">YouTube</a>
-        </div>
-        <div class="footer-copy">© <span id="y"></span> The Mad Goats Inc. — Story First. Always.</div>
-      </div>
-    </footer>
-
+    <section class="panel services-panel" id="services" aria-label="Skrip Dox services"></section>
   </main>
 
-  <!-- BOTTOM NAV (mobile only) -->
-  <nav class="bottom-nav" aria-label="Mobile navigation">
-    <div class="bottom-nav-inner">
-      <a href="#top">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Home
-      </a>
-      <a href="#workshop">
-        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Workshop
-      </a>
-      <a href="#latest">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Latest
-      </a>
-      <a href="#about" class="who-btn">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        Who We Are
-      </a>
-      <a href="#upcoming">
-        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-        Upcoming
-      </a>
-      <a href="#offer">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Services
-      </a>
-    </div>
-  </nav>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    document.querySelector(".nav-logo").addEventListener("click", function (event) {
+      event.preventDefault();
 
-    // Scroll restoration
-    (function(){
-      if("scrollRestoration" in history) history.scrollRestoration = "manual";
-      if(window.location.hash) history.replaceState(null,"",window.location.pathname+window.location.search);
-      function toTop(){ window.scrollTo(0,0); setTimeout(()=>window.scrollTo(0,0),0); setTimeout(()=>window.scrollTo(0,0),50); }
-      window.addEventListener("load", toTop);
-      window.addEventListener("pageshow", toTop);
-    })();
+      const hero = document.querySelector(".hero-panel");
+      const content = document.querySelector(".hero-content");
 
-    // Scroll reveal
-    (function(){
-      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if(prefersReduced){
-        document.querySelectorAll(".reveal, .reveal-h").forEach(el=>{
-          el.classList.add("visible");
-        });
-        return;
-      }
-      const els = document.querySelectorAll(".reveal, .reveal-h");
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){ e.target.classList.add("visible"); }
-        });
-      }, { threshold:0.08, rootMargin:"0px 0px -40px 0px" });
-      els.forEach(el => io.observe(el));
-      // trigger visible on load
-      requestAnimationFrame(()=>{
-        els.forEach(el=>{
-          const r = el.getBoundingClientRect();
-          if(r.top < window.innerHeight * 0.95) el.classList.add("visible");
-        });
-      });
-    })();
+      hero.classList.remove("replay");
+      content.classList.remove("replay");
 
-    // Logo parallax fade + replay on return
-    (function(){
-      const logo = document.getElementById("heroLogoVideo");
-      if(!logo) return;
-      if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      const hero = logo.closest("section");
-      let wasOut = false;
-      function tick(){
-        const rect = hero.getBoundingClientRect();
-        const vh = window.innerHeight || 800;
-        const p = Math.max(0, Math.min(1, (0 - rect.top) / (vh * 0.85)));
-        logo.style.transform = `scale(${1.05 - p * 0.15})`;
-        logo.style.opacity = `${1 - p * 0.4}`;
-        // replay video when scrolling back into hero
-        const inView = rect.top < vh && rect.bottom > 0;
-        if(!inView){ wasOut = true; }
-        if(inView && wasOut){
-          wasOut = false;
-          logo.currentTime = 0;
-          logo.play().catch(()=>{});
-        }
-        requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    })();
+      void hero.offsetWidth;
 
-    // Nav home replay
-    (function(){
-      const home = document.getElementById("navHome");
-      const vid = document.getElementById("heroLogoVideo");
-      if(!home || !vid) return;
-      home.addEventListener("click", e=>{
-        e.preventDefault();
-        document.getElementById("top").scrollIntoView({behavior:"smooth"});
-        vid.pause(); vid.currentTime = 0; vid.play().catch(()=>{});
-      });
-    })();
+      hero.classList.add("replay");
+      content.classList.add("replay");
 
-    // ── LATEST CARDS PAGINATION ──
-    // TO ADD A NEW CARD: copy an object below, paste at the TOP of the array, update the fields.
-    // type options: 'channel' | 'workshop' | 'film' | 'press'
-    // video: optional YouTube embed URL (makes card featured with reel)
-    const LATEST_CARDS = [
-      {
-        type: 'workshop',
-        date: 'May 7, 2025',
-        title: 'WIP Series Batch 1 — Starting May 16!',
-        desc: 'The Mad Goats WIP Series: Screenwriting Workshop for Beginners officially kicks off on May 16. Stay tuned for updates and future batches!',
-        link: null,
-        linkText: null
-      },
-      {
-        type: 'channel',
-        date: 'May 2025',
-        title: 'Pixie Winks — Launching Soon!',
-        desc: 'A brand new YouTube channel for kids is on its way. Stories. Magic. Adventures. Subscribe now and be the first to know when we go live.',
-        link: 'https://www.youtube.com/@pixie_winks',
-        linkText: 'Subscribe on YouTube →',
-        video: 'https://www.youtube.com/embed/KDKTvuLJQ9k'
-      },
-      {
-        type: 'workshop',
-        date: 'May 5, 2025',
-        title: 'Last Day to Register — May 6!',
-        desc: 'The Mad Goats WIP Series: Screenwriting Workshop for Beginners. Registration closes tomorrow — sign up before slots fill up!',
-        link: 'https://tinyurl.com/MadGoatsWIP',
-        linkText: 'Register Now →'
-      }
-    ];
-
-    (function(){
-      const PER_PAGE = 3;
-      const feed = document.getElementById('latestFeed');
-      const pagination = document.getElementById('latestPagination');
-      if(!feed || !pagination) return;
-
-      let currentPage = 1;
-      const totalPages = () => Math.ceil(LATEST_CARDS.length / PER_PAGE);
-
-      function tagClass(type){ return `latest-tag latest-tag--${type}`; }
-
-      function renderCards(page){
-        const start = (page - 1) * PER_PAGE;
-        const slice = LATEST_CARDS.slice(start, start + PER_PAGE);
-        feed.innerHTML = slice.map(card => {
-          const featured = card.video ? 'latest-card--featured' : '';
-          const body = card.video
-            ? `<div class="latest-card-body">
-                <div class="latest-reel-wrap">
-                  <div class="latest-reel">
-                    <iframe src="${card.video}" title="${card.title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div>
-                  <div class="latest-card-text">
-                    <h3 class="latest-title">${card.title}</h3>
-                    <p class="latest-desc">${card.desc}</p>
-                    ${card.link ? `<a class="latest-link" href="${card.link}" target="_blank" rel="noopener noreferrer">${card.linkText}</a>` : ''}
-                  </div>
-                </div>
-              </div>`
-            : `<div class="latest-card-body">
-                <div>
-                  <h3 class="latest-title">${card.title}</h3>
-                  <p class="latest-desc">${card.desc}</p>
-                </div>
-                ${card.link ? `<a class="latest-link" href="${card.link}" target="_blank" rel="noopener noreferrer">${card.linkText}</a>` : ''}
-              </div>`;
-          return `<div class="latest-card ${featured}">
-            <div class="latest-card-header">
-              <span class="${tagClass(card.type)}">${card.type.charAt(0).toUpperCase()+card.type.slice(1)}</span>
-              <span class="latest-date">${card.date}</span>
-            </div>
-            ${body}
-          </div>`;
-        }).join('');
-      }
-
-      function renderPagination(page){
-        const total = totalPages();
-        if(total <= 1){ pagination.innerHTML = ''; return; }
-        pagination.innerHTML = Array.from({length: total}, (_,i) => {
-          const n = i + 1;
-          return `<button class="${n === page ? 'active' : ''}" onclick="latestGoTo(${n})">${n}</button>`;
-        }).join('');
-      }
-
-      window.latestGoTo = function(page){
-        currentPage = page;
-        renderCards(page);
-        renderPagination(page);
-        document.getElementById('latest').scrollIntoView({behavior:'smooth', block:'start'});
-      };
-
-      renderCards(currentPage);
-      renderPagination(currentPage);
-    })();
+      document.querySelector("#home").scrollIntoView({ behavior: "smooth" });
+    });
   </script>
 </body>
 </html>
