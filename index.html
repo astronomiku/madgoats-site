@@ -132,15 +132,23 @@
       position:relative;
       overflow:hidden;
     }
-    .hero::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(ellipse 800px 500px at 20% 50%, rgba(204,0,0,.055), transparent 65%),
-        radial-gradient(ellipse 600px 400px at 80% 20%, rgba(204,0,0,.04), transparent 65%);
-      pointer-events:none;
-    }
+ .hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      ellipse 800px 500px at 20% 50%,
+      rgba(30,120,70,.08),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 600px 400px at 80% 20%,
+      rgba(30,120,70,.06),
+      transparent 65%
+    );
+  pointer-events:none;
+}
     .hero-inner{
       max-width: var(--max);
       margin:0 auto;
