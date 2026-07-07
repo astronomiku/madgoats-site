@@ -1,1281 +1,1504 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EDJOP — The Movie</title>
-  <meta name="description" content="EDJOP is a historical film inspired by the life of Edgar Jopson, starring Elijah Canlas. Coming to Philippine cinemas in 2026." />
-  <link rel="canonical" href="https://www.edjopthemovie.com/" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Mad Goats Inc.</title>
+  <meta name="description" content="The Mad Goats Inc. — Story-first branded filmmaking and narrative-led content." />
+  <link rel="icon" href="assets/logoicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/logoicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
 
-  <meta property="og:title" content="EDJOP — The Movie" />
-  <meta property="og:description" content="A historical drama inspired by the life of Edgar Jopson. Coming to Philippine cinemas in 2026." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.edjopthemovie.com/" />
-  <meta property="og:image" content="https://www.edjopthemovie.com/assets/edjoptitle.jpeg" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="EDJOP — The Movie" />
-  <meta name="twitter:description" content="A historical drama inspired by the life of Edgar Jopson. Coming to Philippine cinemas in 2026." />
-  <meta name="twitter:image" content="https://www.edjopthemovie.com/assets/edjoptitle.jpeg" />
-
-  <link rel="icon" type="image/png" href="assets/edjoptitle.jpeg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black:   #050505;
-      --cream:   #f0ebe0;
-      --warm-1:  #c8611a;
-      --warm-2:  #8a2a00;
-      --warm-3:  #e89a3c;
-      --cool-1:  #1a3a5c;
-      --cool-2:  #3a7ca5;
-      --cool-3:  #9dc4d8;
+    :root{
+      --bg:#fafaf8;
+      --text:#0a0a0a;
+      --muted:rgba(10,10,10,.55);
+      --line:rgba(10,10,10,.10);
+      --red:#cc0000;
+      --red-soft:rgba(204,0,0,.07);
+      --max:1100px;
+      --radius:20px;
+      --font-display:'Bebas Neue', sans-serif;
+      --font-body:'DM Sans', sans-serif;
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
     }
 
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--cream);
-      font-family: 'IM Fell English', Georgia, serif;
-      overflow-x: hidden;
+    /* ── HEADER ── */
+    header{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:50;
+      background: rgba(250,250,248,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      transition: background .3s;
     }
-
-    /* ─── LANDING ─────────────────────────────────────────────── */
-
-    #landing {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 20px;
-      background: var(--black);
-      transition: opacity .9s ease;
-      overflow-y: auto;
-      padding: 36px 20px 126px;
+    .nav{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
     }
-
-    /* opacity-only hide — keeps iframe audio alive while on main site */
-    #landing.gone {
-      opacity: 0;
-      pointer-events: none;
-      z-index: -1;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:inherit;
     }
-
-    .landing-title {
-      width: clamp(260px, 44vw, 520px);
-      flex-shrink: 0;
+    .brand img{ width:30px; height:30px; object-fit:contain; }
+    .brand .name{
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing:.08em;
+      color: var(--text);
+      white-space:nowrap;
     }
-
-    .landing-title img {
-      width: 100%;
-      display: block;
-      filter: brightness(1.05) contrast(1.1);
+    nav{ display:flex; align-items:center; gap:4px; }
+    nav a{
+      color: var(--muted);
+      text-decoration:none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: .2s ease;
     }
-
-    .landing-release {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(28px, 5vw, 72px);
-      letter-spacing: .12em;
-      line-height: .9;
-      color: #c0151f;
-      text-align: center;
-      text-transform: uppercase;
-      flex-shrink: 0;
-      margin-top: clamp(-18px, -1.6vw, -8px);
-      text-shadow: 0 0 26px rgba(192,21,31,.22);
-    }
-
-    /* trailer — always landscape 16:9, stable width */
-    .trailer-wrap {
-      width: clamp(320px, 82vw, 920px);
-      aspect-ratio: 16 / 9;
-      flex-shrink: 0;
-      box-shadow: 0 0 80px rgba(200,97,26,.18);
-    }
-
-    .trailer-wrap iframe {
-      width: 100%;
-      height: 100%;
+    nav a:hover{ color: var(--text); background: rgba(0,0,0,.05); }
+    .nav-who{
+      display:inline-flex;
+      align-items:center;
+      color: #fff;
+      background: var(--red);
+      text-decoration:none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      padding: 10px 18px;
+      border-radius: 12px;
       border: 0;
-      display: block;
+      transition: .2s ease;
+      white-space:nowrap;
+    }
+    .nav-who:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(204,0,0,.30); }
+      100%{ transform:translateX(-50%); }
     }
 
-    /* countdown */
-    #countdown {
-      display: flex;
-      gap: clamp(12px, 2.5vw, 36px);
-      align-items: flex-end;
-      flex-shrink: 0;
+    .person-link{
+  margin-top:12px;
+}
+
+.person-link a{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--red);
+  text-decoration:none;
+}
+
+.person-link a:hover{
+  opacity:.7;
+}
+  
+
+    /* ── MAIN OFFSET ── */
+    main{ padding-top: 60px; }
+
+    /* ── HERO ── */
+    .hero{
+      min-height: calc(100vh - 94px);
+      display:flex;
+      align-items:center;
+      border-bottom: 1px solid var(--line);
+      position:relative;
+      overflow:hidden;
     }
-
-    .cd-block { text-align: center; }
-
-    .cd-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(36px, 4.5vw, 68px);
-      line-height: 1;
-      letter-spacing: .06em;
-      color: var(--cream);
-      display: block;
+ .hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      ellipse 800px 500px at 20% 50%,
+      rgba(30,120,70,.08),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 600px 400px at 80% 20%,
+      rgba(30,120,70,.06),
+      transparent 65%
+    );
+  pointer-events:none;
+}
+    .hero-inner{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 60px 24px;
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items:center;
     }
-
-    .cd-label {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(9px, 1vw, 13px);
-      letter-spacing: .28em;
-      opacity: .5;
-      margin-top: 5px;
-      display: block;
+    .hero-left{ position:relative; }
+    .hero-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color: var(--red);
+      margin-bottom: 22px;
     }
-
-    .cd-sep {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(30px, 4vw, 60px);
-      color: var(--warm-1);
-      opacity: .6;
-      padding-bottom: 14px;
+    .hero-eyebrow::before{
+      content:'';
+      display:block;
+      width:28px; height:2px;
+      background: var(--red);
+      border-radius:2px;
     }
-
-    /* enter button */
-    #enter-btn {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 17px;
-      letter-spacing: .38em;
-      padding: 14px 52px;
-      border: 2px solid #c0151f;
-      color: var(--cream);
-      background: #c0151f;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: background .3s ease, border-color .3s ease;
-    }
-
-    #enter-btn:hover {
-      background: #a01018;
-      border-color: #a01018;
-    }
-
-    #enter-btn span { position: relative; z-index: 1; }
-
-    .hashtags {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .hashtags span {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(13px, 1.4vw, 18px);
-      letter-spacing: .18em;
-      color: var(--warm-1);
-      opacity: .85;
-    }
-
-    /* ─── MAIN SITE ───────────────────────────────────────────── */
-
-    #site {
-      opacity: 0;
-      transition: opacity 1s ease .3s;
-      pointer-events: none;
-      position: relative;
-      z-index: 1;
-    }
-
-    #site.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    #ember-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    /* header */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 50;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 22px 48px;
-      background: rgba(5,5,5,.96);
-    }
-
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      min-width: 0;
-    }
-
-    .logo {
-      cursor: pointer;
-      display: block;
-      height: 38px;
-      flex-shrink: 0;
-      max-width: min(42vw, 360px);
-    }
-
-    .logo img {
-      height: 100%;
-      width: auto;
-      display: block;
-      filter: brightness(1.05) contrast(1.1);
-    }
-
-    nav {
-      display: flex;
-      gap: 28px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    nav a {
-      color: var(--cream);
-      text-decoration: none;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 13px;
-      letter-spacing: .2em;
-      opacity: .7;
-      transition: opacity .2s, color .2s;
-    }
-
-    nav a:hover {
-      color: var(--cool-3);
-      opacity: 1;
-    }
-
-    /* sections baseline */
-    section {
-      min-height: 100vh;
-      padding: 120px clamp(24px, 8vw, 120px);
-      border-top: 3px solid rgba(255,255,255,.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(40px, 7vw, 90px);
-      letter-spacing: .12em;
-      margin-bottom: 40px;
-      line-height: 1;
-    }
-
-    p {
-      max-width: 700px;
-      line-height: 1.85;
-      font-size: clamp(16px, 1.3vw, 19px);
-      opacity: .88;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      border: 1px solid rgba(255,255,255,.13);
-      padding: 28px 32px;
-      font-size: 15px;
-      line-height: 1.7;
-      opacity: .65;
-    }
-
-    .news-card {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      color: var(--cream);
-      text-decoration: none;
-      transition: opacity .2s, border-color .2s, transform .2s;
-    }
-
-    .news-card:hover {
-      border-color: rgba(58,124,165,.65);
-      box-shadow: 0 0 28px rgba(58,124,165,.16);
-      opacity: .95;
-      transform: translateY(-2px);
-    }
-
-    .news-meta {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 12px;
-      letter-spacing: .22em;
-      color: var(--warm-3);
-      opacity: .9;
+    h1{
+      font-family: var(--font-display);
+      font-size: clamp(72px, 10vw, 148px);
+      line-height: .88;
+      letter-spacing: .01em;
       text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 28px;
     }
-
-    .news-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(24px, 2.6vw, 38px);
-      letter-spacing: .08em;
-      line-height: 1.05;
-    }
-
-    .news-summary {
-      opacity: .78;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 28px;
-      padding: 14px 32px;
-      border: 1px solid var(--cream);
-      color: var(--cream);
-      background: transparent;
-      text-decoration: none;
-      text-align: center;
-      font-family: 'Bebas Neue', sans-serif;
-      letter-spacing: .22em;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background .25s, border-color .25s, color .25s;
-    }
-
-    .button:hover {
-      background: var(--cool-2);
-      border-color: var(--cool-2);
-      color: var(--cream);
-    }
-
-    /* ─── CAST ───────────────────────────────────────────── */
-
-    #cast {
-      background:
-        linear-gradient(135deg, rgba(138,42,0,.15) 0%, transparent 40%),
-        linear-gradient(225deg, rgba(26,58,92,.2) 100%, transparent 60%),
-        var(--black);
-    }
-
-    #cast h2 {
-      color: var(--cream);
-      text-align: center;
-    }
-
-    .cast-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 180px);
-      gap: 34px 26px;
-      justify-content: center;
-      align-items: start;
-      margin: 0 auto;
-    }
-
-    .cast-member {
-      min-width: 0;
-    }
-
-    .cast-member.small {
-      width: 132px;
-      justify-self: center;
-    }
-
-    .cast-photo {
-      position: relative;
-      width: 180px;
-      height: 180px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      display: block;
-      padding: 0;
-    }
-
-    .cast-member.small .cast-photo {
-      width: 132px;
-      height: 132px;
-    }
-
-    button.cast-photo {
-      cursor: pointer;
-      color: inherit;
-      font: inherit;
-    }
-
-    .cast-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      transition: transform .25s, filter .25s;
-    }
-
-    .cast-photo::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 55%, rgba(5,5,5,.68) 100%);
-      pointer-events: none;
-    }
-
-    button.cast-photo:hover img,
-    button.cast-photo:focus-visible img {
-      transform: scale(1.035);
-      filter: brightness(1.08);
-    }
-
-    .cast-photo.placeholder {
-      display: grid;
-      place-items: center;
-      color: rgba(240,235,224,.42);
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 44px;
-      letter-spacing: .1em;
-    }
-
-    .cast-photo.placeholder::after {
-      display: none;
-    }
-
-    .cast-info {
-      padding: 14px 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .cast-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(22px, 1.8vw, 30px);
-      letter-spacing: .08em;
-      line-height: 1;
-    }
-
-    .cast-member:nth-child(odd) .cast-name { color: var(--warm-3); }
-    .cast-member:nth-child(even) .cast-name { color: var(--cool-3); }
-
-    .cast-role {
-      font-size: 10px;
-      letter-spacing: .16em;
-      line-height: 1.45;
-      text-transform: uppercase;
-      opacity: .58;
-      font-style: italic;
-    }
-
-    .cast-bio-inline {
-      margin-top: 4px;
-      font-size: 12px;
-      line-height: 1.55;
-      opacity: .78;
-    }
-
-    .cast-grid-secondary {
-      margin-top: 46px;
-    }
-
-    .cast-grid-small {
-      grid-template-columns: repeat(3, 132px);
-      gap: 24px;
-      margin-top: 42px;
-    }
-
-    .cast-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 300;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: rgba(0,0,0,.72);
-    }
-
-    .cast-modal.open {
-      display: flex;
-    }
-
-    .cast-modal-panel {
-      width: min(620px, 92vw);
-      max-height: min(78vh, 620px);
-      overflow: auto;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(8,8,8,.96);
-      padding: 28px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.55);
-    }
-
-    .cast-modal-close {
-      float: right;
-      width: 34px;
-      height: 34px;
-      border: 1px solid rgba(255,255,255,.22);
-      background: transparent;
-      color: var(--cream);
-      font-size: 22px;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .cast-modal-close:hover {
-      border-color: var(--cool-3);
-      color: var(--cool-3);
-    }
-
-    .cast-modal-name {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(32px, 6vw, 52px);
-      letter-spacing: .08em;
-      line-height: 1;
-      color: var(--warm-3);
-      padding-right: 44px;
-    }
-
-    .cast-modal-role {
-      margin-top: 8px;
-      font-size: 12px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      opacity: .62;
-      font-style: italic;
-    }
-
-    .cast-modal-bio {
-      margin-top: 22px;
+    h1 .accent{ color: var(--red); display:block; }
+    .hero-sub{
+      color: var(--muted);
       font-size: 16px;
-      line-height: 1.7;
-      opacity: .86;
+      line-height: 1.75;
+      max-width: 52ch;
+      font-weight: 300;
     }
-
-
-    /* ─── SYNOPSIS ────────────────────────────────────────── */
-    #synopsis {
-      background:
-        linear-gradient(90deg, rgba(5,5,5,.88) 0%, rgba(5,5,5,.64) 52%, rgba(5,5,5,.88) 100%),
-        radial-gradient(ellipse at center, rgba(255,255,255,.04), transparent 70%),
-        var(--black);
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      margin-top:36px;
+      flex-wrap:wrap;
     }
-
-    /* ─── CONTACT ─────────────────────────────────────────── */
-    .copy-message {
-      margin-top: 14px;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 13px;
-      letter-spacing: .18em;
-      color: var(--warm-3);
-      opacity: 0;
-      transition: opacity .25s ease;
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background: var(--red);
+      color:#fff;
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding:14px 28px;
+      border-radius:14px;
+      text-decoration:none;
+      border:0;
+      cursor:pointer;
+      transition:.25s ease;
     }
-
-    .copy-message.visible {
-      opacity: .9;
+    .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(204,0,0,.28); }
+    .btn-ghost{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background: transparent;
+      color: var(--text);
+      font-weight:600;
+      font-size:13px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding:14px 28px;
+      border-radius:14px;
+      text-decoration:none;
+      border:1.5px solid var(--line);
+      cursor:pointer;
+      transition:.25s ease;
     }
-
-    #contact p a {
-      color: var(--cool-3);
-      text-decoration: none;
-      transition: color .2s;
-    }
-
-    #contact p a:hover {
-      color: var(--cream);
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 18px;
-      margin-top: 32px;
-      align-items: center;
-    }
-
-    .social-icons a {
-      width: 37px;
-      height: 37px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: .78;
-      transition: opacity .2s, transform .2s, filter .2s;
-    }
-
-    .social-icons a:hover {
-      filter: drop-shadow(0 0 8px rgba(157,196,216,.65));
-      opacity: 1;
-      transform: translateY(-2px);
-    }
-
-    .social-icons img { width: 100%; height: 100%; object-fit: contain; display: block; }
-
-    /* ─── FOOTER ──────────────────────────────────────────── */
-    main {
-      padding-bottom: 118px;
-    }
-
-    footer {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 120;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: clamp(18px, 4vw, 56px);
-      padding: 12px clamp(18px, 6vw, 72px);
-      background: rgba(5,5,5,.88);
-      border-top: 1px solid rgba(255,255,255,.1);
-      backdrop-filter: blur(10px);
-    }
-
-    .footer-credit {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .footer-credit span {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 11px;
-      letter-spacing: .18em;
-      color: var(--cream);
-      opacity: .62;
-      white-space: nowrap;
-      text-transform: uppercase;
-    }
-
-    .footer-credit img {
-      display: block;
-      max-width: clamp(70px, 9vw, 132px);
-      max-height: 34px;
-      object-fit: contain;
-    }
-
-    .footer-credit.produced img {
-      max-width: clamp(72px, 8vw, 118px);
-    }
-
-    /* ─── HAMBURGER ───────────────────────────────────────── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
+    .btn-ghost:hover{ border-color:rgba(10,10,10,.3); background:rgba(0,0,0,.03); }
+    .hero-right{ position:relative; }
+    .logo-card{
+      background: transparent;
       border: none;
-      padding: 4px;
-      z-index: 60;
+      border-radius: 26px;
+      overflow:hidden;
+      box-shadow: none;
+      aspect-ratio: 4/3;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    #heroLogoVideo{
+      width:100%;
+      height:100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      display:block;
+    }
+    /* ── SECTION BASE ── */
+    section{
+      border-bottom: 1px solid var(--line);
+      position:relative;
+    }
+    .container{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 80px 24px;
+      width:100%;
     }
 
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--cream);
-      transition: transform .3s ease, opacity .3s ease;
+    /* ── SECTION LABEL ── */
+    .section-label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .section-label::before{
+      content:'';
+      display:block;
+      width:20px; height:1.5px;
+      background: var(--red);
+      border-radius:2px;
     }
 
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* ── H2 ── */
+    h2{
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 76px);
+      letter-spacing:.02em;
+      text-transform: uppercase;
+      line-height:.92;
+      color: var(--text);
+      margin-bottom:0;
+    }
+    .lead{
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+      font-weight:300;
+      max-width: 52ch;
+      margin-top:16px;
+    }
 
-    /* mobile nav drawer */
-    .nav-drawer {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(5,5,5,.97);
+    /* ── ABOUT ── */
+    .about-layout{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:48px;
+      align-items:start;
+    }
+    .about-left{ }
+    .about-video{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.08);
+      margin-top:32px;
+    }
+    .about-video-label{
+      padding:14px 18px;
+      border-bottom:1px solid var(--line);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .ratio{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      background:rgba(0,0,0,.03);
+    }
+    .ratio iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+    .people-stack{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+    .person-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.06);
+      display:grid;
+      grid-template-columns: 100px 1fr;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .person-card:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 18px 48px rgba(0,0,0,.10);
+    }
+    .person-photo{
+      width:100px;
+      height:100%;
+      min-height:130px;
+      overflow:hidden;
+      background: rgba(204,0,0,.06);
+    }
+    .person-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .person-info{ padding:18px 20px; }
+    .person-info h3{
+      font-family: var(--font-display);
+      font-size:22px;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin-bottom:4px;
+    }
+    .person-role{
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color: var(--red);
+      margin-bottom:10px;
+    }
+    .person-bio{
+      font-size:13px;
+      line-height:1.7;
+      color:var(--muted);
+      font-weight:300;
+    }
+
+    /* ── WORKSHOP ── */
+    #workshop{ background: var(--text); color:#fff; }
+    #workshop::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(ellipse 700px 500px at 80% 50%, rgba(204,0,0,.18), transparent 65%),
+        radial-gradient(ellipse 400px 300px at 10% 80%, rgba(204,0,0,.10), transparent 65%);
+      pointer-events:none;
+    }
+    #workshop .section-label{ color:rgba(255,255,255,.45); }
+    #workshop h2{ color:#fff; }
+    #workshop .lead{ color:rgba(255,255,255,.55); }
+    .workshop-layout{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:56px;
+      align-items:center;
+    }
+    .workshop-card{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 26px;
+      padding:36px;
+      position:relative;
+      overflow:hidden;
+    }
+    .workshop-update-photo{
+  width:100%;
+  border-radius:18px;
+  overflow:hidden;
+  margin-bottom:20px;
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.workshop-update-photo img{
+  width:100%;
+  display:block;
+  object-fit:cover;
+  filter: grayscale(100%) contrast(1.05);
+}
+
+.ws-status-finished{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background: rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:6px 14px;
+  border-radius:999px;
+  margin-bottom:18px;
+}
+    .workshop-card::before{
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height:3px;
+      background: var(--red);
+    }
+    .ws-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background: var(--red);
+      color:#fff;
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      padding:5px 14px;
+      border-radius:999px;
+      margin-bottom:20px;
+    }
+    .ws-badge::before{
+      content:'';
+      width:6px; height:6px;
+      background:#fff;
+      border-radius:50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:.5; transform:scale(0.7); }
+    }
+    .ws-title{
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 42px);
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      color:#fff;
+      line-height:.95;
+      margin-bottom:18px;
+    }
+    .ws-desc{
+      font-size:14px;
+      font-weight:300;
+      line-height:1.8;
+      color:rgba(255,255,255,.60);
+      margin-bottom:28px;
+    }
+    .ws-pills{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:28px;
+    }
+    .ws-pill{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:10px;
+      padding:7px 14px;
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.70);
+    }
+    .ws-pill svg{ opacity:.7; }
+    .ws-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background: var(--red);
+      color:#fff;
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      padding:15px 32px;
+      border-radius:14px;
+      text-decoration:none;
+      border:0;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow: 0 8px 28px rgba(204,0,0,.35);
+    }
+    .ws-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 40px rgba(204,0,0,.45); }
+    .ws-arrow{ font-size:18px; transition: transform .2s; }
+    .ws-btn:hover .ws-arrow{ transform:translateX(4px); }
+
+    /* ── UPCOMING ── */
+    .upcoming-layout{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:56px;
+      align-items:start;
+    }
+    .upcoming-left{ position:sticky; top:100px; }
+    .video-stack{
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+    }
+    .video-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.06);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .video-item:hover{ transform:translateY(-3px); box-shadow:0 20px 50px rgba(0,0,0,.10); }
+    .video-label{
+      padding:14px 18px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .video-label h3{
+      font-family: var(--font-display);
+      font-size:18px;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+    .video-tag{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color: var(--red);
+      background: var(--red-soft);
+      border:1px solid rgba(204,0,0,.15);
+      border-radius:8px;
+      padding:4px 10px;
+    }
+
+    /* ── OFFER ── */
+    .offer-layout{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:48px;
+      align-items:start;
+    }
+    .offer-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    .offer-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.05);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .offer-card:hover{ transform:translateY(-3px); box-shadow:0 16px 44px rgba(0,0,0,.09); }
+    .offer-num{
+      font-family: var(--font-display);
+      font-size:36px;
+      letter-spacing:.02em;
+      color: rgba(204,0,0,.18);
+      margin-bottom:12px;
+      line-height:1;
+    }
+    .offer-title{
+      font-weight:700;
+      font-size:14px;
+      letter-spacing:.04em;
+      margin-bottom:8px;
+    }
+    .offer-desc{
+      font-size:13px;
+      font-weight:300;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer{
+      border-top: 1px solid var(--line);
+      padding: 32px 24px 48px;
+    }
+    .footer-inner{
+      max-width: var(--max);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .footer-brand{
+      font-family: var(--font-display);
+      font-size:16px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color: var(--text);
+    }
+    .footer-links{
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
+    .footer-links a{
+      color: var(--muted);
+      text-decoration:none;
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      transition:.2s;
+    }
+    .footer-links a:hover{ color: var(--red); }
+    .footer-copy{
+      color: var(--muted);
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      width:100%;
+      text-align:center;
+      margin-top:16px;
+      border-top:1px solid var(--line);
+      padding-top:20px;
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal{
+      opacity:0;
+      transform:translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .reveal-h{
+      display:block;
+      overflow:hidden;
+    }
+    .reveal-h .inner{
+      display:block;
+      transform:translateY(100%);
+      transition: transform .9s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal-h.visible .inner{
+      transform:translateY(0);
+    }
+
+    /* ── BOTTOM NAV (mobile) ── */
+    .bottom-nav{
+      display:none;
+      position:fixed;
+      bottom:0; left:0; right:0;
+      z-index:50;
+      background: rgba(250,250,248,.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--line);
+      padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    }
+    .bottom-nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-around;
+    }
+    .bottom-nav a{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:4px;
+      text-decoration:none;
+      color: var(--muted);
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding:6px 12px;
+      border-radius:10px;
+      transition:.2s ease;
+      flex:1;
+    }
+    .bottom-nav a:hover, .bottom-nav a.active{ color: var(--red); }
+    .bottom-nav a svg{ width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:1.8; }
+    .bottom-nav a.who-btn{
+      color:#fff;
+      background: var(--red);
+      border-radius:12px;
+      margin: 0 6px;
+    }
+    .bottom-nav a.who-btn svg{ stroke:#fff; }
+
+
+   
+    /* Pixie peeks from right edge */
+    .pixie-peek{
+      position:fixed;
+      right: -200px;
+      top: 10px;
+      height: 220px;
+      width: auto;
+      pointer-events: auto;
       z-index: 55;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 36px;
+      display:block;
+      animation: pixie-peek 9s ease-in-out infinite;
+      cursor: pointer;
+    }
+    .pixie-peek img{
+      height: 220px;
+      width: auto;
+      filter: drop-shadow(-3px 3px 8px rgba(0,0,0,.15));
+      display:block;
+    }
+    @keyframes pixie-peek{
+      0%   { right: -200px; transform: rotate(8deg); }
+      18%  { right: 4px;    transform: rotate(-10deg) translateY(-6px); }
+      32%  { right: 4px;    transform: rotate(6deg)   translateY(2px); }
+      48%  { right: 4px;    transform: rotate(-7deg)  translateY(-5px); }
+      64%  { right: 4px;    transform: rotate(4deg)   translateY(0px); }
+      78%  { right: -200px; transform: rotate(8deg); }
+      100% { right: -200px; transform: rotate(8deg); }
     }
 
-    .nav-drawer.open { display: flex; }
-
-    .nav-drawer a {
-      color: var(--cream);
-      text-decoration: none;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      letter-spacing: .2em;
-      opacity: .85;
+    /* ── LATEST ── */
+    .latest-layout{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:56px;
+      align-items:start;
     }
-
-    .nav-drawer a:hover {
-      color: var(--cool-3);
-      opacity: 1;
+    .latest-left{ position:sticky; top:100px; }
+    .latest-feed{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
-
-    /* ─── RESPONSIVE ──────────────────────────────────────── */
-
-    @media (max-width: 820px) {
-      /* landing */
-      #landing { gap: 16px; padding: 32px 16px 40px; }
-      .landing-title { width: 80vw; }
-      .landing-release { font-size: clamp(28px, 8vw, 48px); letter-spacing: .08em; max-width: 94vw; margin-top: -10px; }
-      .trailer-wrap { width: 96vw; }
-      .cd-num  { font-size: clamp(34px, 10vw, 58px); }
-      .cd-sep  { font-size: clamp(28px, 8vw, 50px); padding-bottom: 10px; }
-      .cd-label { font-size: 9px; }
-      #countdown { gap: clamp(8px, 2.5vw, 18px); }
-      #enter-btn { font-size: 15px; padding: 13px 38px; }
-
-      /* header: show hamburger, hide desktop nav */
-      header {
-        position: fixed;
-        padding: 12px 20px;
-        background: rgba(5,5,5,.96);
-      }
-
-      nav { display: none; }
-      .hamburger { display: flex; justify-self: end; }
-      .header-brand { gap: 10px; }
-      .logo { height: 28px; max-width: 62vw; }
-      /* sections */
-      section { padding: 64px 20px; }
-      #synopsis { padding-top: 128px; }
-
-      /* cast: two-column cards on mobile */
-      .cast-grid { grid-template-columns: repeat(2, minmax(0, 150px)); gap: 28px 16px; width: 100%; }
-      .cast-photo { width: min(150px, 42vw); height: min(150px, 42vw); }
-      .cast-member.small { width: min(118px, 38vw); }
-      .cast-member.small .cast-photo { width: min(118px, 38vw); height: min(118px, 38vw); }
-      .cast-grid-small { grid-template-columns: repeat(2, minmax(0, 118px)); gap: 22px 16px; }
-      .cast-name { font-size: clamp(20px, 6vw, 30px); }
-      .cast-role { font-size: 9px; letter-spacing: .12em; }
-      .cast-bio-inline { font-size: 11px; line-height: 1.5; }
-      .cast-modal { padding: 14px; }
-      .cast-modal-panel { width: 92vw; max-height: 82vh; padding: 22px; }
-
-      section { min-height: auto; padding: 80px 20px; }
-
-      main { padding-bottom: 178px; }
-      footer {
-        flex-wrap: wrap;
-        gap: 10px 18px;
-        padding: 10px 14px;
-      }
-      .footer-credit { gap: 8px; }
-      .footer-credit span { font-size: 9px; letter-spacing: .14em; }
-      .footer-credit img { max-height: 24px; max-width: 86px; }
-
-      h2 { font-size: clamp(34px, 10vw, 60px); margin-bottom: 24px; }
-      p  { font-size: 15px; }
+    .latest-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.05);
+      transition: transform .25s, box-shadow .25s;
     }
+    .latest-card:hover{ transform:translateY(-3px); box-shadow:0 16px 44px rgba(0,0,0,.09); }
+    .latest-card-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 18px;
+      border-bottom:1px solid var(--line);
+    }
+    .latest-tag{
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      padding:4px 10px;
+      border-radius:8px;
+    }
+    .latest-tag--channel{ background:rgba(233,30,99,.08); color:#c2185b; border:1px solid rgba(233,30,99,.15); }
+    .latest-tag--workshop{ background:var(--red-soft); color:var(--red); border:1px solid rgba(204,0,0,.15); }
+    .latest-tag--film{ background:rgba(33,150,243,.07); color:#1565c0; border:1px solid rgba(33,150,243,.15); }
+    .latest-date{
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .latest-card-body{
+      padding:20px 18px;
+    }
+    .latest-card-body--slim{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .latest-reel-wrap{
+      display:grid;
+      grid-template-columns: 200px 1fr;
+      gap:20px;
+      align-items:center;
+    }
+    .latest-reel{
+      position:relative;
+      width:200px;
+      padding-top:calc(200px * 16/9);
+      border-radius:12px;
+      overflow:hidden;
+      background:rgba(0,0,0,.04);
+      flex-shrink:0;
+    }
+    .latest-reel iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+    .latest-title{
+      font-family: var(--font-display);
+      font-size:20px;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+      line-height:1.1;
+    }
+    .latest-desc{
+      font-size:13px;
+      font-weight:300;
+      color:var(--muted);
+      line-height:1.7;
+      margin-bottom:12px;
+    }
+    .latest-link{
+      display:inline-flex;
+      align-items:center;
+      color:var(--red);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      text-decoration:none;
+      transition:.2s;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
+    .latest-link:hover{ opacity:.7; }
 
-    @media (max-width: 480px) {
-      .cd-num { font-size: 9vw; }
-      .cd-sep  { font-size: 7.5vw; }
+    .latest-pagination{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+    .latest-pagination button{
+      width:36px; height:36px;
+      border-radius:10px;
+      border:1.5px solid var(--line);
+      background:#fff;
+      font-family: var(--font-body);
+      font-size:13px;
+      font-weight:700;
+      color:var(--muted);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .latest-pagination button:hover{ border-color:var(--red); color:var(--red); }
+    .latest-pagination button.active{ background:var(--red); border-color:var(--red); color:#fff; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .hero-inner{ grid-template-columns:1fr; gap:40px; }
+      .hero-right{ display:none; }
+      .about-layout,
+      .workshop-layout,
+      .offer-layout{ grid-template-columns:1fr; gap:36px; }
+      .upcoming-layout,
+      .latest-layout{ grid-template-columns:1fr; gap:32px; }
+      .upcoming-left,
+      .latest-left{ position:static; }
+      nav{ display:none; }
+      .nav-who{ display:none; }
+      .offer-grid{ grid-template-columns:1fr 1fr; }
+      .bottom-nav{ display:flex; }
+      main{ padding-bottom: 80px; padding-top: 60px; }
+      .latest-reel-wrap{ grid-template-columns:1fr; }
+      .latest-reel{ width:100%; padding-top:56.25%; }
+      .latest-card-body--slim{ flex-direction:column; align-items:flex-start; }
+    }
+    @media(max-width:540px){
+      .offer-grid{ grid-template-columns:1fr; }
+      .person-card{ grid-template-columns:80px 1fr; }
+      .person-photo{ min-height:110px; width:80px; }
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{ scroll-behavior:auto; }
+      .reveal, .reveal-h .inner{ transition:none; opacity:1; transform:none; }
+      .ticker-track{ animation:none; }
+      .pixie-peek{ animation:none; right:-200px; }
+
+      .ws-badge::before{ animation:none; }
     }
   </style>
 </head>
+
 <body>
-
-<!-- ══════════════════════════════════════════════════
-     LANDING PAGE
-══════════════════════════════════════════════════ -->
-<div id="landing">
-
-  <div class="landing-title">
-    <img src="assets/edjoptitle.jpeg" alt="EDJOP" />
-  </div>
-
-  <div class="landing-release">Opens September 16, 2026</div>
-
-  <button id="enter-btn" onclick="enterSite()">
-    <span>ENTER</span>
-  </button>
-
-  <div class="trailer-wrap">
-    <iframe
-      src="https://www.youtube.com/embed/mc62f8lIqqU?si=Cx8f7MvQnl9GFlfN"
-      title="EDJOP Trailer"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <div id="countdown">
-    <div class="cd-block">
-      <span class="cd-num" id="cd-days">--</span>
-      <span class="cd-label">DAYS</span>
-    </div>
-    <div class="cd-sep">:</div>
-    <div class="cd-block">
-      <span class="cd-num" id="cd-hours">--</span>
-      <span class="cd-label">HOURS</span>
-    </div>
-    <div class="cd-sep">:</div>
-    <div class="cd-block">
-      <span class="cd-num" id="cd-mins">--</span>
-      <span class="cd-label">MINUTES</span>
-    </div>
-    <div class="cd-sep">:</div>
-    <div class="cd-block">
-      <span class="cd-num" id="cd-secs">--</span>
-      <span class="cd-label">SECONDS</span>
-    </div>
-  </div>
-
-  <div class="hashtags">
-    <span>#jointhemovement</span>
-  </div>
-
-</div>
-
-<!-- ══════════════════════════════════════════════════
-     MAIN SITE
-══════════════════════════════════════════════════ -->
-<div id="site">
-  <canvas id="ember-canvas" aria-hidden="true"></canvas>
-
+  <!-- HEADER -->
   <header>
-    <div class="header-brand">
-      <div class="logo" onclick="goToLanding()">
-        <img src="assets/edjopsept16.png" alt="EDJOP 09162026" />
-      </div>
+    <div class="nav">
+      <a class="brand" id="navHome" href="#top">
+        <img src="assets/logoicon.png" alt="The Mad Goats Inc." />
+        <span class="name">The Mad Goats Inc.</span>
+      </a>
+      <nav>
+        <a href="#workshop">Workshop</a>
+        <a href="#latest">Latest</a>
+        <a href="#upcoming">Upcoming</a>
+        <a href="#offer">Services</a>
+      </nav>
+      <a class="nav-who" href="#about">Who We Are</a>
     </div>
-    <nav>
-      <a href="#synopsis">Home</a>
-      <a href="#cast">Cast</a>
-      <a href="#news">News</a>
-      <a href="#events">Events</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleNav()">
-      <span></span><span></span><span></span>
-    </button>
   </header>
 
-  <!-- mobile nav drawer -->
-  <div class="nav-drawer" id="nav-drawer">
-    <a href="#synopsis"  onclick="closeNav()">Synopsis</a>
-    <a href="#cast" onclick="closeNav()">Cast</a>
-    <a href="#news"      onclick="closeNav()">News</a>
-    <a href="#events"    onclick="closeNav()">Events</a>
-    <a href="#contact"   onclick="closeNav()">Contact</a>
-  </div>
+  <!-- PIXIE WINKS - peeks from right edge -->
+  <a class="pixie-peek" href="https://www.youtube.com/@pixie_winks?subconfirmation=1" target="_blank" rel="noopener noreferrer"><img src="assets/pixieflyingfinal.png" alt="Visit Pixie Winks on YouTube" /></a>
 
-  <main>
+ 
 
-    <section id="synopsis" style="padding-top:160px;">
-      <h2>About the Film</h2>
-      <p>
-        A sweeping historical family drama inspired by the true story of a privileged young man
-        who turned his back on wealth and comfort to confront the Marcos dictatorship.
-      </p>
-      <p style="margin-top: 28px;">
-        A cinematic epic that captures the passion, urgency, and zeal of the youth
-        during one of the most dangerous chapters in our history.
-      </p>
-    </section>
+  <main id="top">
 
-    <!-- CAST -->
-    <section id="cast">
-      <h2>Cast</h2>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-eyebrow reveal" style="transition-delay:.1s">Story-first filmmaking</div>
+          <h1>
+            <span class="reveal-h" style="transition-delay:.2s"><span class="inner">Story</span></span>
+            <span class="reveal-h" style="transition-delay:.32s"><span class="inner">First.</span></span>
+            <span class="accent reveal-h" style="transition-delay:.44s"><span class="inner">Always.</span></span>
+          </h1>
+          <p class="hero-sub reveal" style="transition-delay:.6s">
+            We are filmmakers who bring senior creative leadership and story architecture to brand work — so the message lands, and the audience stays.
+          </p>
 
-      <div class="cast-grid">
-        <div class="cast-member">
-          <div class="cast-photo">
-            <img src="assets/elijah.jpg" alt="Elijah Canlas as Edgar Jopson" />
-          </div>
-          <div class="cast-info">
-            <div class="cast-name">Elijah Canlas</div>
-            <div class="cast-role">as Edgar "Edjop" Jopson</div>
-            <p class="cast-bio-inline">Elijah Canlas is a Filipino actor and performer whose work spans film, television, music and theater. He began acting at age 14 with <em>Sundalong Kanin</em>, an independent entry to the Cinemalaya Philippine Independent Film Festival. Canlas' breakthrough performance came in <em>Kalel, 15</em>, earning him Best Actor honors at the 43rd Gawad Urian Awards, 68th FAMAS Awards, the 17th Asian Film Festival in Rome, and the Harlem International Film Festival, among others.</p>
-          </div>
         </div>
-
-        <div class="cast-member">
-          <div class="cast-photo">
-            <img src="assets/jodi.jpg" alt="Jodi Sta. Maria as Joyette Jopson" />
-          </div>
-          <div class="cast-info">
-            <div class="cast-name">Jodi Sta. Maria</div>
-            <div class="cast-role">as Joyette Jopson</div>
-            <p class="cast-bio-inline">Jodi Sta. Maria is a Filipino actress and producer celebrated for her versatility across film, television, and independent cinema. With a career spanning more than two decades, she has delivered acclaimed performances in drama, romance, horror, and television serials, earning major award recognition in the Philippines and abroad.</p>
-          </div>
-        </div>
-
-        <div class="cast-member">
-          <div class="cast-photo">
-            <img src="assets/menchu.jpg" alt="Menchu Lauchengco-Yulo as Joy Asuncion Jopson" />
-          </div>
-          <div class="cast-info">
-            <div class="cast-name">Menchu Lauchengco-Yulo</div>
-            <div class="cast-role">as Joy Asuncion Jopson</div>
-            <p class="cast-bio-inline">Widely regarded as the "first lady" of Philippine musical theatre, Menchu Lauchengco-Yulo has spent decades commanding the stage in productions like <em>Miss Saigon</em>, <em>Sweeney Todd</em>, and <em>Next to Normal</em>. She is Artistic Director of Resorts World Manila's theater arm and a founding member of Actor's Actor Inc.</p>
-          </div>
-        </div>
-
-        <div class="cast-member">
-          <div class="cast-photo">
-            <img src="assets/kakie.jpg" alt="Kakie Pangilinan as young Joy Jopson" />
-          </div>
-          <div class="cast-info">
-            <div class="cast-name">Kakie Pangilinan</div>
-            <div class="cast-role">as young Joy Jopson</div>
-            <p class="cast-bio-inline">Frankie "Kakie" Pangilinan marks her acting debut in EDJOP. A newcomer to the entertainment industry, Kakie is no stranger to media or political controversy, owing to her parents. A singer-songwriter who launched an album under her own indie label in 2024, she brings a vocal youth activist's fire to her first-ever film role.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="cast-grid cast-grid-secondary">
-        <div class="cast-member">
-          <button class="cast-photo bio-trigger" type="button" data-name="Cedrick Juan" data-role="as Noy Jopson" data-bio="A Metro Manila Film Festival Best Actor winner for his portrayal of Fr. Jose Burgos in GomBurZa (2023), Paul Cedrick Gutierrez Juan built his craft first in theater before breaking into film with credits like Die Beautiful, The Panti Sisters, and Kalel, 15. He is also an advocate for HIV awareness.">
-            <img src="assets/cedrick.jpg" alt="Cedrick Juan as Noy Jopson" />
-          </button>
-          <div class="cast-info">
-            <div class="cast-name">Cedrick Juan</div>
-            <div class="cast-role">as Noy Jopson</div>
-          </div>
-        </div>
-
-        <div class="cast-member">
-          <button class="cast-photo bio-trigger" type="button" data-name="Teroy Guzman" data-role="as Hernan Jopson" data-bio="A veteran stage and screen actor with Tanghalang Pilipino and Repertory Philippines, Teroy Guzman has appeared in Citizen Jake, History of Ha, and Ang Probinsyano, alongside a long list of theater credits including The Dresser.">
-            <img src="assets/teroy.jpg" alt="Teroy Guzman as Hernan Jopson" />
-          </button>
-          <div class="cast-info">
-            <div class="cast-name">Teroy Guzman</div>
-            <div class="cast-role">as Hernan Jopson</div>
-          </div>
-        </div>
-
-        <div class="cast-member">
-          <button class="cast-photo bio-trigger" type="button" data-name="Issa Litton" data-role="as Josefa Jopson" data-bio="An actress, theater performer, host, and entrepreneur, Issa Litton has starred in Smaller and Smaller Circles and He's Into Her, with stage credits at Repertory Philippines and Dulaang UP. She is also President of 1Lit Corp, a talent training and hosting consultancy.">
-            <img src="assets/issa.jpg" alt="Issa Litton as Josefa Jopson" />
-          </button>
-          <div class="cast-info">
-            <div class="cast-name">Issa Litton</div>
-            <div class="cast-role">as Josefa Jopson</div>
-          </div>
-        </div>
-
-        <div class="cast-member">
-          <button class="cast-photo bio-trigger" type="button" data-name="Thea Ma" data-role="as Inday" data-bio="A member of SPIT (Silly People's Improv Theater) Manila, one of the country's longest-running improv groups, Thea has built her craft on stage through spontaneous, character-driven storytelling, training that lends a lived-in naturalism to her dramatic work.">
-            <img src="assets/thea.jpg" alt="Thea Ma as Inday" />
-          </button>
-          <div class="cast-info">
-            <div class="cast-name">Thea Ma</div>
-            <div class="cast-role">as Inday</div>
-          </div>
-        </div>
-
-        <div class="cast-member">
-          <button class="cast-photo bio-trigger" type="button" data-name="Nour Hooshmand" data-role="as Sucel" data-bio="An actress and singer who trained in theater arts at UP Diliman, Nour Hooshmand has built a rising profile through Blue Room (Cinemalaya), the short film Agapito (Cannes Short Film Competition 2025), and the lead role in Arvin Belarmino's upcoming feature Ria.">
-            <img src="assets/nour.jpg" alt="Nour Hooshmand as Sucel" />
-          </button>
-          <div class="cast-info">
-            <div class="cast-name">Nour Hooshmand</div>
-            <div class="cast-role">as Sucel</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cast-grid cast-grid-small">
-        <div class="cast-member small">
-          <div class="cast-photo">
-            <img src="assets/jethro.jpg" alt="Jethro Tenorio" />
-          </div>
-          <div class="cast-info">
-            <div class="cast-name">Jethro Tenorio</div>
-          </div>
-        </div>
-
-        <div class="cast-member small">
-          <div class="cast-photo placeholder">N</div>
-          <div class="cast-info">
-            <div class="cast-name">Nico</div>
-          </div>
-        </div>
-
-        <div class="cast-member small">
-          <div class="cast-photo placeholder">J</div>
-          <div class="cast-info">
-            <div class="cast-name">Jerome</div>
+        <div class="hero-right reveal" style="transition-delay:.5s">
+          <div class="logo-card">
+            <video id="heroLogoVideo" autoplay muted playsinline preload="auto">
+              <source src="assets/madgoatslogoicon4k.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="cast-modal" id="cast-modal" aria-hidden="true">
-      <div class="cast-modal-panel" role="dialog" aria-modal="true" aria-labelledby="cast-modal-name">
-        <button class="cast-modal-close" type="button" aria-label="Close cast bio">&times;</button>
-        <div class="cast-modal-name" id="cast-modal-name"></div>
-        <div class="cast-modal-role" id="cast-modal-role"></div>
-        <p class="cast-modal-bio" id="cast-modal-bio"></p>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-layout">
+
+      <div class="about-left">
+        <div class="section-label reveal">About the Company</div>
+
+        <div class="reveal-h">
+          <h2 class="inner">Who<br/>We Are</h2>
+        </div>
+
+        <p class="lead reveal" style="transition-delay:.15s">
+          Story-driven strategists with senior creative leadership across all platforms.
+        </p>
+
+        <div class="about-video reveal" style="transition-delay:.25s">
+          <div class="about-video-label">Company Overview</div>
+          <div class="ratio">
+            <iframe
+              src="https://www.youtube.com/embed/rjThFAiuV40"
+              title="The Mad Goats Inc. — Company Pitch Deck"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
       </div>
+
+      <div class="people-stack">
+
+        <div class="person-card reveal" style="transition-delay:.1s">
+          <div class="person-photo">
+            <img src="assets/katski.jpg" alt="Katski Flores" />
+          </div>
+
+          <div class="person-info">
+            <h3>Katski Flores</h3>
+
+            <div class="person-role">Filmmaker · Producer</div>
+
+            <div class="person-link">
+              <a href="https://www.imdb.com/name/nm2029621/" target="_blank" rel="noopener noreferrer">
+                IMDb Profile →
+              </a>
+            </div>
+
+            <p class="person-bio">
+              Seasoned creative executive, writer-director, and producer behind some of Philippine television's most iconic series. Former Creative Head for major studios, specializing in story architecture, brand-aligned development, and content strategy. A pioneer in social media marketing for local cinema, she led the campaigns for Kimmydora and <em>Zombadings: Patayin sa Shokot si Remington</em>.
+            </p>
+          </div>
+        </div>
+
+        <div class="person-card reveal" style="transition-delay:.22s">
+          <div class="person-photo">
+            <img src="assets/michiko.jpg" alt="Michiko Yamamoto" />
+          </div>
+
+          <div class="person-info">
+            <h3>Michiko Yamamoto</h3>
+
+            <div class="person-role">Writer · Producer</div>
+
+            <div class="person-link">
+              <a href="https://www.imdb.com/name/nm1340266/" target="_blank" rel="noopener noreferrer">
+                IMDb Profile →
+              </a>
+            </div>
+
+            <p class="person-bio">
+              A multi-awarded screenwriter in the Philippines and abroad, and one of the most respected and sought-after writers in Philippine cinema. A master of character-driven narratives, her core strength lies in building story and narrative integrity. She is highly production fluent, ensuring that ideas are both powerful and operationally sound. She understands the full lifecycle of content: from development to on-ground production to audience impact.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
     </div>
+  </div>
+</section>
 
+    <!-- WORKSHOP -->
+    <section id="workshop">
+      <div class="container" style="position:relative; z-index:1;">
+       <div class="workshop-layout">
+          
 
-    <section id="news">
-      <h2>News</h2>
-      <div class="card-grid">
-        <a class="card news-card" href="https://www.abs-cbn.com/entertainment/showbiz/movies-series/2026/7/1/5-years-in-the-making-edjop-heads-to-cinemas-1234" target="_blank" rel="noopener noreferrer">
-          <span class="news-meta">ABS-CBN News &middot; July 1, 2026</span>
-          <span class="news-title">5 years in the making, film on Martial Law activist heads to cinemas</span>
-          <span class="news-summary">ABS-CBN reports on EDJOP heading to cinemas after years in development.</span>
-        </a>
-        <a class="card news-card" href="https://rollingstonephilippines.com/culture/philippine-cinema/edjop-elijah-canlas-2026-release/" target="_blank" rel="noopener noreferrer">
-          <span class="news-meta">Rolling Stone Philippines &middot; February 19, 2026</span>
-          <span class="news-title">'Edjop' is Coming to Philippine Cinemas This Year</span>
-          <span class="news-summary">Rolling Stone Philippines covers the trailer, cast, and 2026 cinema release.</span>
-        </a>
-        <a class="card news-card" href="https://www.rappler.com/entertainment/movies/edjop-edgar-jopson-cast-2025/" target="_blank" rel="noopener noreferrer">
-          <span class="news-meta">Rappler &middot; 2025</span>
-          <span class="news-title">EDJOP cast announcement</span>
-          <span class="news-summary">Rappler highlights the film's cast and the story of Edgar &quot;Edjop&quot; Jopson.</span>
-        </a>
-        <a class="card news-card" href="https://www.spot.ph/entertainment/movies-music-tv/110291/making-edjop-direk-katski-flores-on-the-journey-of-a-biopic-a4469-20241019-lfrm" target="_blank" rel="noopener noreferrer">
-          <span class="news-meta">SPOT.ph &middot; October 19, 2024</span>
-          <span class="news-title">Making EDJOP: Direk Katski Flores on the journey of a biopic</span>
-          <span class="news-summary">SPOT.ph interviews director Katski Flores on the long road to bringing EDJOP to screen.</span>
-        </a>
+<div>
+  <div class="section-label reveal">Ongoing</div>
+            <div class="reveal-h"><h2 class="inner">WIP<br/>Series</h2></div>
+            <p class="lead reveal" style="transition-delay:.18s">The Mad Goats WIP Series is an ongoing program bringing professional craft to those just beginning their creative journey.</p>
+          </div>
+          <div class="workshop-card reveal" style="transition-delay:.2s">
+           <div class="ws-badge">WIP Series</div>
+
+<div class="workshop-update-photo">
+  <img src="assets/batch1.png" alt="WIP Series Workshop Session 1">
+</div>
+
+<div class="ws-status-finished">
+  First Draft Phase
+</div>
+
+<div class="ws-title">Screenwriting<br/>Workshop for<br/>Beginners</div>
+
+<p class="ws-desc">
+  The workshop's lecture portion has concluded and participants are now writing their first drafts.
+  The next stage focuses on applying the tools, techniques, and lessons developed throughout the WIP Series. 
+</p>
+            <div class="ws-pills">
+              <div class="ws-pill">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                First Drafts Underway
+              </div>
+              <div class="ws-pill">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                More Batches Coming
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="events">
-      <h2>Upcoming Events</h2>
-      <div class="card-grid">
-        <div class="card">Stay tuned for announcements.</div>
+    <!-- LATEST -->
+    <section id="latest">
+      <div class="container">
+        <div class="latest-layout">
+          <div class="latest-left">
+            <div class="section-label reveal">What's Happening</div>
+            <div class="reveal-h"><h2 class="inner">Latest</h2></div>
+            <p class="lead reveal" style="transition-delay:.15s">Announcements, launches, and updates from The Mad Goats.</p>
+          </div>
+          <div class="latest-feed" id="latestFeed">
+            <!-- Cards are rendered by JS below -->
+          </div>
+          <div class="latest-pagination" id="latestPagination"></div>
+
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>For all inquiries, email <a href="mailto:info@edjopthemovie.com">info@edjopthemovie.com</a>.</p>
-      <p style="margin-top: 18px;">Do you want to book a screening? <a href="https://docs.google.com/forms/d/e/1FAIpQLSffCDudkecoZ7FZdC_yTi5uDgdmIsz7vfCzPcFEqWNodoW0dw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Fill up this form</a> or email us at <a href="mailto:sales@edjopthemovie.com">sales@edjopthemovie.com</a>.</p>
-      <div class="social-icons">
-        <a href="https://www.facebook.com/EDJOPTheMovie" target="_blank" rel="noopener noreferrer">
-          <img src="assets/fblogo.png" alt="Facebook" />
-        </a>
-        <a href="https://www.instagram.com/EDJOPTheMovie" target="_blank" rel="noopener noreferrer">
-          <img src="assets/IGlogo.png" alt="Instagram" />
-        </a>
-        <a href="https://x.com/edjopthemovie" target="_blank" rel="noopener noreferrer">
-          <img src="assets/xlogo.png" alt="X" />
-        </a>
-        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-          <img src="assets/youtube.png" alt="YouTube" />
-        </a>
-        <a href="https://www.imdb.com/title/tt43339238/?ref_=fn_t_1" target="_blank" rel="noopener noreferrer">
-          <img src="assets/imdblogo.png" alt="IMDb" />
-        </a>
+    <!-- UPCOMING -->
+    <section id="upcoming">
+      <div class="container">
+        <div class="upcoming-layout">
+          <div class="upcoming-left">
+            <div class="section-label reveal">In Production</div>
+            <div class="reveal-h"><h2 class="inner">Upcoming<br/>Projects</h2></div>
+            <p class="lead reveal" style="transition-delay:.15s">Stories in motion. Two major projects currently in production.</p>
+          </div>
+          <div class="video-stack">
+            <div class="video-item reveal" style="transition-delay:.1s">
+              <div class="video-label">
+                <h3>BuyBust: The Undesirables</h3>
+                <span class="video-tag">In Production</span>
+              </div>
+              <div class="ratio">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/MKemy6nL5Eo?start=7"
+                  title="BuyBust: The Undesirables Trailer"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <div class="video-item reveal" style="transition-delay:.22s">
+              <div class="video-label">
+                <h3>Edjop — Trailer</h3>
+                <span class="video-tag">In Production</span>
+              </div>
+              <div class="ratio">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/VldT1Dj5AfU?origin=https://themadgoats.com"
+                  title="Edjop Trailer"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
+   <!-- OFFER -->
+<section id="offer">
+  <div class="container">
+
+    <div class="offer-layout">
+
+      <div>
+        <div class="section-label reveal">What We Do</div>
+
+        <div class="reveal-h">
+          <h2 class="inner">Services</h2>
+        </div>
+
+        <p class="lead reveal" style="transition-delay:.15s">
+          Story-led outputs built for brands, platforms, and real attention.
+        </p>
+      </div>
+
+      <div class="offer-grid">
+
+        <div class="offer-card reveal" style="transition-delay:.1s">
+          <div class="offer-num">01</div>
+
+          <div class="offer-title">
+            Branded Films
+          </div>
+
+          <p class="offer-desc">
+            Cinematic brand stories with real character,
+            pacing, and payoff.
+          </p>
+        </div>
+
+        <div class="offer-card reveal" style="transition-delay:.18s">
+          <div class="offer-num">02</div>
+
+          <div class="offer-title">
+            Serialized Content
+          </div>
+
+          <p class="offer-desc">
+            Episode-based formats that build retention
+            and make the brand feel alive.
+          </p>
+        </div>
+
+        <div class="offer-card reveal" style="transition-delay:.26s">
+          <div class="offer-num">03</div>
+
+          <div class="offer-title">
+            Narrative Campaigns
+          </div>
+
+          <p class="offer-desc">
+            Campaign structure with a story spine —
+            not random posts in a calendar.
+          </p>
+        </div>
+
+        <div class="offer-card reveal" style="transition-delay:.34s">
+          <div class="offer-num">04</div>
+
+          <div class="offer-title">
+            Culture Initiatives
+          </div>
+
+          <p class="offer-desc">
+            Work that speaks the language of the moment
+            without chasing trends blindly.
+          </p>
+        </div>
+
+        <div class="offer-card reveal" style="transition-delay:.42s">
+          <div class="offer-num">05</div>
+
+          <div class="offer-title">
+            Website Design
+          </div>
+
+          <p class="offer-desc">
+          We currently specialize in custom one-page websites
+focused on strong visual identity, storytelling,
+and brand presentation — for brands, restaurants,
+creatives, and businesses that want
+a stronger online presence.
+            <br><br>
+
+            Email us with your requirements
+            for a customized quote.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">The Mad Goats Inc.</div>
+        <div class="footer-links">
+          <a href="mailto:admin@themadgoats.com">admin@themadgoats.com</a>
+          <a href="https://www.youtube.com/@themadgoats?subconfirmation=1" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+        <div class="footer-copy">© <span id="y"></span> The Mad Goats Inc. — Story First. Always.</div>
+      </div>
+    </footer>
 
   </main>
 
-</div>
-
-  <footer>
-    <div class="footer-credit">
-      <span>Presented by</span>
-      <img src="assets/warner.png" alt="Warner" />
+  <!-- BOTTOM NAV (mobile only) -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <div class="bottom-nav-inner">
+      <a href="#top">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="#workshop">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Workshop
+      </a>
+      <a href="#latest">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Latest
+      </a>
+      <a href="#about" class="who-btn">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Who We Are
+      </a>
+      <a href="#upcoming">
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        Upcoming
+      </a>
+      <a href="#offer">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Services
+      </a>
     </div>
-    <div class="footer-credit produced">
-      <span>Produced by</span>
-      <img src="assets/openwater.png" alt="Open Waters" />
-      <img src="assets/TMGIwhite.png" alt="TMGI" />
-    </div>
-    <div class="footer-credit">
-      <span>In association with</span>
-      <img src="assets/narra.png" alt="Narra" />
-    </div>
-  </footer>
+  </nav>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
 
-<script>
-  if (window.location.hash) {
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-  }
+    // Scroll restoration
+    (function(){
+      if("scrollRestoration" in history) history.scrollRestoration = "manual";
+      if(window.location.hash) history.replaceState(null,"",window.location.pathname+window.location.search);
+      function toTop(){ window.scrollTo(0,0); setTimeout(()=>window.scrollTo(0,0),0); setTimeout(()=>window.scrollTo(0,0),50); }
+      window.addEventListener("load", toTop);
+      window.addEventListener("pageshow", toTop);
+    })();
 
-  // ── Countdown ── set RELEASE to the actual premiere date ─────
-  const RELEASE = new Date('2026-09-16T00:00:00');
+    // Scroll reveal
+    (function(){
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if(prefersReduced){
+        document.querySelectorAll(".reveal, .reveal-h").forEach(el=>{
+          el.classList.add("visible");
+        });
+        return;
+      }
+      const els = document.querySelectorAll(".reveal, .reveal-h");
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ e.target.classList.add("visible"); }
+        });
+      }, { threshold:0.08, rootMargin:"0px 0px -40px 0px" });
+      els.forEach(el => io.observe(el));
+      // trigger visible on load
+      requestAnimationFrame(()=>{
+        els.forEach(el=>{
+          const r = el.getBoundingClientRect();
+          if(r.top < window.innerHeight * 0.95) el.classList.add("visible");
+        });
+      });
+    })();
 
-  function pad(n) { return String(n).padStart(2, '0'); }
+    // Logo parallax fade + replay on return
+    (function(){
+      const logo = document.getElementById("heroLogoVideo");
+      if(!logo) return;
+      if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const hero = logo.closest("section");
+      let wasOut = false;
+      function tick(){
+        const rect = hero.getBoundingClientRect();
+        const vh = window.innerHeight || 800;
+        const p = Math.max(0, Math.min(1, (0 - rect.top) / (vh * 0.85)));
+        logo.style.transform = `scale(${1.05 - p * 0.15})`;
+        logo.style.opacity = `${1 - p * 0.4}`;
+        // replay video when scrolling back into hero
+        const inView = rect.top < vh && rect.bottom > 0;
+        if(!inView){ wasOut = true; }
+        if(inView && wasOut){
+          wasOut = false;
+          logo.currentTime = 0;
+          logo.play().catch(()=>{});
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
 
-  function tick() {
-    const diff = RELEASE - Date.now();
-    if (diff <= 0) {
-      document.getElementById('countdown').innerHTML =
-        '<span style="font-family:\'Bebas Neue\',sans-serif;font-size:clamp(22px,4vw,44px);letter-spacing:.22em;opacity:.9;">IN CINEMAS NOW</span>';
-      return;
-    }
-    const d = Math.floor(diff / 864e5);
-    const h = Math.floor((diff % 864e5) / 36e5);
-    const m = Math.floor((diff % 36e5) / 6e4);
-    const s = Math.floor((diff % 6e4) / 1e3);
-    document.getElementById('cd-days').textContent  = pad(d);
-    document.getElementById('cd-hours').textContent = pad(h);
-    document.getElementById('cd-mins').textContent  = pad(m);
-    document.getElementById('cd-secs').textContent  = pad(s);
-  }
+    // Nav home replay
+    (function(){
+      const home = document.getElementById("navHome");
+      const vid = document.getElementById("heroLogoVideo");
+      if(!home || !vid) return;
+      home.addEventListener("click", e=>{
+        e.preventDefault();
+        document.getElementById("top").scrollIntoView({behavior:"smooth"});
+        vid.pause(); vid.currentTime = 0; vid.play().catch(()=>{});
+      });
+    })();
 
-  tick();
-  setInterval(tick, 1000);
+    // ── LATEST CARDS PAGINATION ──
+    // TO ADD A NEW CARD: copy an object below, paste at the TOP of the array, update the fields.
+    // type options: 'channel' | 'workshop' | 'film' | 'press'
+    // video: optional YouTube embed URL (makes card featured with reel)
+    const LATEST_CARDS = [
+      {
+        type: 'workshop',
+        date: 'May 7, 2025',
+        title: 'WIP Series Batch 1 — Starting May 16!',
+        desc: 'The Mad Goats WIP Series: Screenwriting Workshop for Beginners officially kicks off on May 16. Stay tuned for updates and future batches!',
+        link: null,
+        linkText: null
+      },
+      {
+        type: 'channel',
+        date: 'May 2025',
+        title: 'Pixie Winks — Launching Soon!',
+        desc: 'A brand new YouTube channel for kids is on its way. Stories. Magic. Adventures. Subscribe now and be the first to know when we go live.',
+        link: 'https://www.youtube.com/@pixie_winks',
+        linkText: 'Subscribe on YouTube →',
+        video: 'https://www.youtube.com/embed/KDKTvuLJQ9k'
+      },
+      {
+        type: 'workshop',
+        date: 'May 5, 2025',
+        title: 'Last Day to Register — May 6!',
+        desc: 'The Mad Goats WIP Series: Screenwriting Workshop for Beginners. Registration closes tomorrow — sign up before slots fill up!',
+        link: 'https://tinyurl.com/MadGoatsWIP',
+        linkText: 'Register Now →'
+      }
+    ];
 
-  // ── Enter / back transitions ─────────────────────────────────
-  function enterSite() {
-    document.getElementById('landing').classList.add('gone');
-    document.getElementById('site').classList.add('visible');
-    document.body.style.overflowY = 'auto';
-    window.scrollTo(0, 0);
-    document.getElementById('synopsis').scrollIntoView({ behavior: 'instant' });
-  }
+    (function(){
+      const PER_PAGE = 3;
+      const feed = document.getElementById('latestFeed');
+      const pagination = document.getElementById('latestPagination');
+      if(!feed || !pagination) return;
 
-  function goToLanding() {
-    document.getElementById('site').classList.remove('visible');
-    const landing = document.getElementById('landing');
-    landing.classList.remove('gone');
-    document.body.style.overflowY = 'hidden';
-    window.scrollTo(0, 0);
-    closeNav();
-  }
+      let currentPage = 1;
+      const totalPages = () => Math.ceil(LATEST_CARDS.length / PER_PAGE);
 
-  document.body.style.overflowY = 'hidden';
+      function tagClass(type){ return `latest-tag latest-tag--${type}`; }
 
-  // ── Embers ───────────────────────────────────────────────────
-  const emberCanvas = document.getElementById('ember-canvas');
-  const emberCtx = emberCanvas.getContext('2d');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let embers = [];
-  let emberAnimation;
-
-  function resizeEmbers() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    emberCanvas.width = Math.floor(window.innerWidth * dpr);
-    emberCanvas.height = Math.floor(window.innerHeight * dpr);
-    emberCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    createEmbers();
-  }
-
-  function createEmbers() {
-    const emberCount = Math.min(45, Math.max(18, Math.floor(window.innerWidth / 36)));
-    embers = Array.from({ length: emberCount }, () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      size: Math.random() * 2.8 + .7,
-      speed: Math.random() * .7 + .25,
-      drift: (Math.random() - .5) * .45,
-      glow: Math.random() * .5 + .35,
-      pulse: Math.random() * Math.PI * 2
-    }));
-  }
-
-  function drawEmbers() {
-    emberCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-    embers.forEach((ember) => {
-      ember.y -= ember.speed;
-      ember.x += ember.drift + Math.sin(ember.pulse) * .18;
-      ember.pulse += .025;
-
-      if (ember.y < -12 || ember.x < -20 || ember.x > window.innerWidth + 20) {
-        ember.x = Math.random() * window.innerWidth;
-        ember.y = window.innerHeight + Math.random() * 80;
+      function renderCards(page){
+        const start = (page - 1) * PER_PAGE;
+        const slice = LATEST_CARDS.slice(start, start + PER_PAGE);
+        feed.innerHTML = slice.map(card => {
+          const featured = card.video ? 'latest-card--featured' : '';
+          const body = card.video
+            ? `<div class="latest-card-body">
+                <div class="latest-reel-wrap">
+                  <div class="latest-reel">
+                    <iframe src="${card.video}" title="${card.title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                  <div class="latest-card-text">
+                    <h3 class="latest-title">${card.title}</h3>
+                    <p class="latest-desc">${card.desc}</p>
+                    ${card.link ? `<a class="latest-link" href="${card.link}" target="_blank" rel="noopener noreferrer">${card.linkText}</a>` : ''}
+                  </div>
+                </div>
+              </div>`
+            : `<div class="latest-card-body">
+                <div>
+                  <h3 class="latest-title">${card.title}</h3>
+                  <p class="latest-desc">${card.desc}</p>
+                </div>
+                ${card.link ? `<a class="latest-link" href="${card.link}" target="_blank" rel="noopener noreferrer">${card.linkText}</a>` : ''}
+              </div>`;
+          return `<div class="latest-card ${featured}">
+            <div class="latest-card-header">
+              <span class="${tagClass(card.type)}">${card.type.charAt(0).toUpperCase()+card.type.slice(1)}</span>
+              <span class="latest-date">${card.date}</span>
+            </div>
+            ${body}
+          </div>`;
+        }).join('');
       }
 
-      const alpha = ember.glow * (.65 + Math.sin(ember.pulse) * .25);
-      const gradient = emberCtx.createRadialGradient(
-        ember.x, ember.y, 0,
-        ember.x, ember.y, ember.size * 5
-      );
-      gradient.addColorStop(0, `rgba(255, 190, 88, ${alpha})`);
-      gradient.addColorStop(.35, `rgba(232, 88, 28, ${alpha * .55})`);
-      gradient.addColorStop(1, 'rgba(232, 88, 28, 0)');
+      function renderPagination(page){
+        const total = totalPages();
+        if(total <= 1){ pagination.innerHTML = ''; return; }
+        pagination.innerHTML = Array.from({length: total}, (_,i) => {
+          const n = i + 1;
+          return `<button class="${n === page ? 'active' : ''}" onclick="latestGoTo(${n})">${n}</button>`;
+        }).join('');
+      }
 
-      emberCtx.fillStyle = gradient;
-      emberCtx.beginPath();
-      emberCtx.arc(ember.x, ember.y, ember.size * 5, 0, Math.PI * 2);
-      emberCtx.fill();
-    });
+      window.latestGoTo = function(page){
+        currentPage = page;
+        renderCards(page);
+        renderPagination(page);
+        document.getElementById('latest').scrollIntoView({behavior:'smooth', block:'start'});
+      };
 
-    emberAnimation = requestAnimationFrame(drawEmbers);
-  }
-
-  function startEmbers() {
-    cancelAnimationFrame(emberAnimation);
-    emberCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    if (reduceMotion.matches) return;
-    resizeEmbers();
-    drawEmbers();
-  }
-
-  window.addEventListener('resize', resizeEmbers);
-  if (reduceMotion.addEventListener) {
-    reduceMotion.addEventListener('change', startEmbers);
-  } else {
-    reduceMotion.addListener(startEmbers);
-  }
-  startEmbers();
-
-
-  // ── Cast bio modal ──────────────────────────────────────────
-  const castModal = document.getElementById('cast-modal');
-  const castModalName = document.getElementById('cast-modal-name');
-  const castModalRole = document.getElementById('cast-modal-role');
-  const castModalBio = document.getElementById('cast-modal-bio');
-  const castModalClose = document.querySelector('.cast-modal-close');
-
-  function openCastBio(trigger) {
-    castModalName.textContent = trigger.dataset.name || '';
-    castModalRole.textContent = trigger.dataset.role || '';
-    castModalBio.textContent = trigger.dataset.bio || '';
-    castModal.classList.add('open');
-    castModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflowY = 'hidden';
-    castModalClose.focus();
-  }
-
-  function closeCastBio() {
-    castModal.classList.remove('open');
-    castModal.setAttribute('aria-hidden', 'true');
-    if (document.getElementById('site').classList.contains('visible')) {
-      document.body.style.overflowY = 'auto';
-    }
-  }
-
-  document.querySelectorAll('.bio-trigger').forEach((trigger) => {
-    trigger.addEventListener('click', () => openCastBio(trigger));
-  });
-
-  castModalClose.addEventListener('click', closeCastBio);
-  castModal.addEventListener('click', (event) => {
-    if (event.target === castModal) closeCastBio();
-  });
-  window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && castModal.classList.contains('open')) closeCastBio();
-  });
-
-
-  // ── Mobile nav ───────────────────────────────────────────────
-  function toggleNav() {
-    document.getElementById('hamburger').classList.toggle('open');
-    document.getElementById('nav-drawer').classList.toggle('open');
-  }
-
-  function closeNav() {
-    document.getElementById('hamburger').classList.remove('open');
-    document.getElementById('nav-drawer').classList.remove('open');
-  }
-</script>
-
+      renderCards(currentPage);
+      renderPagination(currentPage);
+    })();
+  </script>
 </body>
 </html>
