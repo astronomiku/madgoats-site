@@ -633,6 +633,125 @@
       color:var(--muted);
       line-height:1.7;
     }
+    .offer-card-button{
+      appearance:none;
+      width:100%;
+      font:inherit;
+      text-align:left;
+      cursor:pointer;
+    }
+    .offer-card-button:focus-visible{
+      outline:3px solid rgba(204,0,0,.28);
+      outline-offset:3px;
+    }
+    .offer-card-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:18px;
+      color:var(--red);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .offer-card-cta span{ transition:transform .2s ease; }
+    .offer-card-button:hover .offer-card-cta span{ transform:translateX(4px); }
+
+    /* ── WEBSITE PORTFOLIO MODAL ── */
+    .portfolio-modal{
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      background:rgba(20,20,20,.68);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      opacity:0;
+      visibility:hidden;
+      transition:opacity .25s ease, visibility .25s ease;
+    }
+    .portfolio-modal.open{ opacity:1; visibility:visible; }
+    .portfolio-dialog{
+      position:relative;
+      width:min(520px, 100%);
+      max-height:calc(100vh - 48px);
+      overflow:auto;
+      background:#fff;
+      border-radius:24px;
+      padding:36px;
+      box-shadow:0 30px 90px rgba(0,0,0,.28);
+      transform:translateY(18px) scale(.98);
+      transition:transform .25s cubic-bezier(.16,1,.3,1);
+    }
+    .portfolio-modal.open .portfolio-dialog{ transform:none; }
+    .portfolio-close{
+      position:absolute;
+      top:18px;
+      right:18px;
+      width:38px;
+      height:38px;
+      border:1px solid var(--line);
+      border-radius:50%;
+      background:#fff;
+      color:var(--text);
+      font-size:24px;
+      line-height:1;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .portfolio-close:hover{ color:var(--red); border-color:rgba(204,0,0,.3); }
+    .portfolio-eyebrow{
+      color:var(--red);
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .portfolio-dialog h3{
+      font-family:var(--font-display);
+      font-size:clamp(32px, 6vw, 48px);
+      line-height:.95;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      margin:0 44px 12px 0;
+    }
+    .portfolio-intro{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+      margin-bottom:24px;
+    }
+    .portfolio-links{ display:grid; gap:10px; }
+    .portfolio-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 20px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      color:var(--text);
+      font-weight:700;
+      text-decoration:none;
+      transition:.2s ease;
+    }
+    .portfolio-link span{ color:var(--red); transition:transform .2s ease; }
+    .portfolio-link:hover{
+      color:var(--red);
+      border-color:rgba(204,0,0,.25);
+      background:var(--red-soft);
+      transform:translateY(-2px);
+    }
+    .portfolio-link:hover span{ transform:translate(3px,-3px); }
+    body.modal-open{ overflow:hidden; }
+    @media (max-width:560px){
+      .portfolio-modal{ padding:16px; }
+      .portfolio-dialog{ padding:30px 22px 24px; border-radius:20px; }
+    }
 
     /* ── FOOTER ── */
     footer{
@@ -1256,7 +1375,7 @@
           </p>
         </div>
 
-        <div class="offer-card reveal" style="transition-delay:.42s">
+        <button class="offer-card offer-card-button reveal" id="websitePortfolioOpen" type="button" style="transition-delay:.42s" aria-haspopup="dialog" aria-controls="websitePortfolioModal">
           <div class="offer-num">05</div>
 
           <div class="offer-title">
@@ -1274,13 +1393,28 @@ a stronger online presence.
             Email us with your requirements
             for a customized quote.
           </p>
-        </div>
+          <div class="offer-card-cta">View website portfolio <span aria-hidden="true">→</span></div>
+        </button>
 
       </div>
 
     </div>
   </div>
 </section>
+
+    <div class="portfolio-modal" id="websitePortfolioModal" aria-hidden="true">
+      <div class="portfolio-dialog" role="dialog" aria-modal="true" aria-labelledby="portfolioTitle">
+        <button class="portfolio-close" id="websitePortfolioClose" type="button" aria-label="Close website portfolio">&times;</button>
+        <div class="portfolio-eyebrow">Selected Work</div>
+        <h3 id="portfolioTitle">Website Portfolio</h3>
+        <p class="portfolio-intro">Explore websites designed and developed by The Mad Goats.</p>
+        <div class="portfolio-links">
+          <a class="portfolio-link" href="https://rekdi.ph" target="_blank" rel="noopener noreferrer">rekdi.ph <span aria-hidden="true">↗</span></a>
+          <a class="portfolio-link" href="https://crumbnextdoor.com" target="_blank" rel="noopener noreferrer">crumbnextdoor.com <span aria-hidden="true">↗</span></a>
+          <a class="portfolio-link" href="https://edjopthemovie.com" target="_blank" rel="noopener noreferrer">edjopthemovie.com <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -1329,6 +1463,36 @@ a stronger online presence.
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Website portfolio modal
+    (function(){
+      const modal = document.getElementById("websitePortfolioModal");
+      const openButton = document.getElementById("websitePortfolioOpen");
+      const closeButton = document.getElementById("websitePortfolioClose");
+      if(!modal || !openButton || !closeButton) return;
+
+      function openModal(){
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        closeButton.focus();
+      }
+      function closeModal(){
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+        openButton.focus();
+      }
+
+      openButton.addEventListener("click", openModal);
+      closeButton.addEventListener("click", closeModal);
+      modal.addEventListener("click", event=>{
+        if(event.target === modal) closeModal();
+      });
+      document.addEventListener("keydown", event=>{
+        if(event.key === "Escape" && modal.classList.contains("open")) closeModal();
+      });
+    })();
 
     // Scroll restoration
     (function(){
